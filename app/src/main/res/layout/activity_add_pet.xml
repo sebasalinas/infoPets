@@ -20,24 +20,25 @@
 
     <EditText
         android:id="@+id/editText5"
-        android:layout_width="299dp"
-        android:layout_height="53dp"
+        android:layout_width="184dp"
+        android:layout_height="55dp"
         android:layout_marginEnd="13dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="13dp"
+        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Nombre Mascota"
         android:inputType="textPersonName"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.458"
         app:layout_constraintLeft_toRightOf="@+id/imageButton2"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/txtId"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        tools:layout_constraintTop_creator="1"
+        tools:layout_editor_absoluteY="5dp" />
 
     <EditText
         android:id="@+id/editText7"
@@ -202,7 +203,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Telefono"
-        android:inputType="number"
+        android:inputType="phone"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -238,5 +239,16 @@
         app:layout_constraintTop_toBottomOf="@+id/editText12"
         app:layout_constraintVertical_bias="0.529"
         app:srcCompat="@android:drawable/button_onoff_indicator_on" />
+
+    <EditText
+        android:id="@+id/txtId"
+        android:layout_width="93dp"
+        android:layout_height="54dp"
+        android:layout_marginRight="8dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="textEnd"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="9dp" />
 
 </android.support.constraint.ConstraintLayout>
