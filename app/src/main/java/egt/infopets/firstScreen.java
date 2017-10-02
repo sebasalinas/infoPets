@@ -17,4 +17,8 @@ public class firstScreen extends AppCompatActivity {
         Intent intent = new Intent(this, addPet.class);
         startActivity(intent);
     }
+    public void goToSearchPet(View view) {
+        Intent intent = new Intent(this, searchPet.class);
+        startActivity(intent);
+    }
 }
