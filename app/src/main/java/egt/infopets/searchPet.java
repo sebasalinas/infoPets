@@ -14,6 +14,6 @@ public class searchPet extends AppCompatActivity {
 
     }
     public void mensaje(String mensaje){
-        Toast.makeText(this,mensaje,Toast.LENGTH_SHORT);
+        Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
     }
 }

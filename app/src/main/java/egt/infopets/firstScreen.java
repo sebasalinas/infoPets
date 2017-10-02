@@ -21,8 +21,6 @@ public class firstScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_screen);
-
-
     }
 
     public void goToAddPet(View view) {
@@ -32,31 +30,44 @@ public class firstScreen extends AppCompatActivity {
 
     public void goToSearchPet(View view) {
 
-        Intent intent = new Intent(this, searchPet.class);
-
-        EditText auxId = (EditText) findViewById(R.id.txtId);
-
-
-
-        intent.putExtra("varCod",auxId.getText().toString());
-
         try {
-            this.conector = new dbInfoPet(this.context);
-            String query = "SELECT * FROM mascota WHERE id = " + view;
-            Cursor resultado = this.conector.select(query);
-            mascota auxMascota = new mascota();
-            if (resultado.moveToFirst()){
-                auxMascota = this.
+
+            EditText auxId = (EditText) findViewById(R.id.txtId);
+
+            String idAux = auxId.toString();
+
+            if (searchPetById(auxId.getText().toString())){
+
+                Intent intent = new Intent(this, searchPet.class);
+
+                this.mensaje("La mascota ha sido encontrada");
+
+                intent.putExtra("varCod",auxId.getText().toString());
+
+                startActivity(intent);
+            }
+            else {
+                this.mensaje("No se encontro mascota");
             }
         }
         catch (Exception ex){
-            this.mensaje("Codigo no encontrado");
+            this.mensaje("Codigo no encontrado "+ex);
         }
+    }
 
-        startActivity(intent);
+    public boolean searchPetById(String id) {
+
+        this.conector = new dbInfoPet(this.context);
+        String query = "SELECT * FROM " + tabla + " WHERE id = " + id;
+        Cursor resultado = this.conector.select(query);
+        if (resultado.moveToFirst()){
+            this.mensaje("Paso");
+            return true;
+        }
+        return false;
     }
 
     public void mensaje(String mensaje){
-        Toast.makeText(this,mensaje,Toast.LENGTH_SHORT);
+        Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
     }
 }
