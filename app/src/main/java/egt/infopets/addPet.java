@@ -19,6 +19,10 @@ public class addPet extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void addPet(View view){
+
+    }
+
     public void mensaje(String mensaje){
         Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
     }

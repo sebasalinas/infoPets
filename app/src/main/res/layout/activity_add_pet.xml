@@ -211,6 +211,7 @@
 
     <ImageButton
         android:id="@+id/ibtnAdd"
+        android:onClick="addPet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
