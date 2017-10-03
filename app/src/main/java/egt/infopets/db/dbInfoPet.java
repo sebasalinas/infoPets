@@ -30,7 +30,6 @@ public class dbInfoPet extends SQLiteOpenHelper{
             "dNombre TEXT," +
             "direccion TEXT," +
             "numero TEXT," +
-            "FOREIGN KEY (diagnostico) REFERENCES visitas(cod)," +
             "FOREIGN KEY (rut) REFERENCES duenio(rut))";
     private static final String TABLA_DUENIO = "CREATE TABLE duenio (" +
             "rut TEXT PRIMARY KEY," +
@@ -45,7 +44,9 @@ public class dbInfoPet extends SQLiteOpenHelper{
     private static final String TABLA_VISITAS = "CREATE TABLE visitas (" +
             "cod INTEGER AUTOINCREMENT," +
             "fVisita TEXT," +
-            "descripcion TEXT)";
+            "id INTEGER" +
+            "descripcion TEXT)," +
+            "FOREIGN KEY (id) REFERENCES mascota(id))";
 
     private SQLiteDatabase db = null;
 

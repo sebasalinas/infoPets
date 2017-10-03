@@ -11,7 +11,7 @@ public class SpecieAndRace implements Serializable {
     private String id;
     private boolean estado;
     private String specie;
-    private String[] race;
+    private String race;
 
 
     public String getSpecie() {
@@ -22,11 +22,11 @@ public class SpecieAndRace implements Serializable {
         this.specie = specie;
     }
 
-    public String[] getRace() {
+    public String getRace() {
         return race;
     }
 
-    public void setRace(String[] race) {
+    public void setRace(String race) {
         this.race = race;
     }
 
@@ -45,4 +45,5 @@ public class SpecieAndRace implements Serializable {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
 }

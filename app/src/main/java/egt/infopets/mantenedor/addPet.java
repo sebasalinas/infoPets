@@ -16,11 +16,6 @@ import egt.infopets.clases.mascota;
 
 public class addPet extends AppCompatActivity {
 
-    private dbInfoPet conector;
-    private Context context;
-    private ArrayList<String> columnas;
-    private String tabla;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,35 +27,10 @@ public class addPet extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void addPet(mascota newMascota){
-        try {
-            this.conector = new dbInfoPet(this.context);
-            ArrayList<String> valores = this.valores(newMascota);
-            this.conector.insert(tabla, columnas, valores);
-            conector.close();
-            mensaje("Mascota "+newMascota +"Agregada");
-        }catch (Exception ex){
-            conector.close();
-            mensaje("Error de Codigo "+ex);
-        }
-
-    }
 
     public void mensaje(String mensaje){
         Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
     }
 
-    private ArrayList<String> valores(mascota newMascota){
-        ArrayList<String> valores = new ArrayList<String>();
-        valores.add(newMascota.getmNombre());
-        valores.add(newMascota.getfNacimiento());
-        valores.add(newMascota.getEspecie());
-        valores.add(newMascota.getRaza());
-        valores.add(newMascota.getSexo());
-        valores.add(newMascota.getColor());
-        valores.add(newMascota.getNombre());
-        valores.add(newMascota.getDireccion());
-        valores.add(newMascota.getNumero());
-        return valores;
-    }
+
 }
