@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class mascota implements Serializable{
 
     private String id;
-    private String mNombre;
+    private duenio mNombre;
     private String fNacimiento;
     private String especie;
     private String raza;
@@ -29,11 +29,11 @@ public class mascota implements Serializable{
         this.id = id;
     }
 
-    public String getmNombre() {
+    public duenio getmNombre() {
         return mNombre;
     }
 
-    public void setmNombre(String mNombre) {
+    public void setmNombre(duenio mNombre) {
         this.mNombre = mNombre;
     }
 

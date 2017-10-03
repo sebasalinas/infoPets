@@ -245,11 +245,12 @@
         android:id="@+id/txtId"
         android:layout_width="93dp"
         android:layout_height="54dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="31dp"
         android:ems="10"
         android:inputType="number"
         android:textAlignment="textEnd"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="9dp" />
+        android:layout_marginBottom="9dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText7" />
 
 </android.support.constraint.ConstraintLayout>

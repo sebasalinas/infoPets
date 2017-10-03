@@ -33,10 +33,17 @@ public class addPet extends AppCompatActivity {
     }
 
     public void addPet(mascota newMascota){
+        try {
             this.conector = new dbInfoPet(this.context);
             ArrayList<String> valores = this.valores(newMascota);
             this.conector.insert(tabla, columnas, valores);
             conector.close();
+            mensaje("Mascota "+newMascota +"Agregada");
+        }catch (Exception ex){
+            conector.close();
+            mensaje("Error de Codigo "+ex);
+        }
+
     }
 
     public void mensaje(String mensaje){

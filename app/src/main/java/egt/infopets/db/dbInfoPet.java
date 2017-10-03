@@ -18,7 +18,8 @@ public class dbInfoPet extends SQLiteOpenHelper{
     private static final int VERSION_BASEDATOS = 1;
     private static final String NOMBRE_BASEDATOS = "infoPets";
     private static final String TABLA_MASCOTA = "CREATE TABLE mascota (" +
-            "id TEXT PRIMARY KEY AUTOINCREMENT, " +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "rut TEXT," +
             "mNombre TEXT, " +
             "fNacimiento TEXT, " +
             "especie TEXT, " +
@@ -32,18 +33,22 @@ public class dbInfoPet extends SQLiteOpenHelper{
             "FOREIGN KEY (diagnostico) REFERENCES visitas(cod)," +
             "FOREIGN KEY (rut) REFERENCES duenio(rut))";
     private static final String TABLA_DUENIO = "CREATE TABLE duenio (" +
-            "rut TEXT," +
+            "rut TEXT PRIMARY KEY," +
             "nombre TEXT," +
             "direccion TEXT," +
             "numero TEXT )";
     private static final String TABLA_SPECIEANDRACE = "CREATE TABLE specieandrace(" +
-            "specie TEXT PRIMARY KEY, " +
-            "race TEXT)";
+            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "estado BOOLEAN," +
+            "especie TEXT, " +
+            "raza TEXT)";
     private static final String TABLA_VISITAS = "CREATE TABLE visitas (" +
-            "cod TEXT," +
+            "cod INTEGER AUTOINCREMENT," +
+            "fVisita TEXT," +
             "descripcion TEXT)";
 
     private SQLiteDatabase db = null;
+
 
     public dbInfoPet(Context context){
         super(context, NOMBRE_BASEDATOS, null, VERSION_BASEDATOS);
@@ -52,7 +57,7 @@ public class dbInfoPet extends SQLiteOpenHelper{
 
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+    public void onCreate(SQLiteDatabase db) {
         db.execSQL(TABLA_DUENIO);
         db.execSQL(TABLA_VISITAS);
         db.execSQL(TABLA_MASCOTA);
