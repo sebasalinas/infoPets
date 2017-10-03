@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import egt.infopets.db.dbInfoPet;
+import egt.infopets.mantenedor.addPet;
+import egt.infopets.mantenedor.mantenedorSpeciesAndRace;
 
 public class firstScreen extends AppCompatActivity {
 
@@ -25,6 +27,11 @@ public class firstScreen extends AppCompatActivity {
 
     public void goToAddPet(View view) {
         Intent intent = new Intent(this, addPet.class);
+        startActivity(intent);
+    }
+
+    public void goToSpeciesAndRace(View view) {
+        Intent intent = new Intent(this, mantenedorSpeciesAndRace.class);
         startActivity(intent);
     }
 
@@ -70,4 +77,5 @@ public class firstScreen extends AppCompatActivity {
     public void mensaje(String mensaje){
         Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
     }
+
 }

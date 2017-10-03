@@ -1,4 +1,4 @@
-package egt.infopets;
+package egt.infopets.clases;
 
 import java.io.Serializable;
 
@@ -15,7 +15,7 @@ public class mascota implements Serializable{
     private String raza;
     private String sexo;
     private String color;
-    private visitas[] diagnostico;
+    private visitas[] visita;
     private String nombre;
     private String direccion;
     private String numero;
@@ -77,14 +77,6 @@ public class mascota implements Serializable{
         this.color = color;
     }
 
-    public visitas getDiagnostico() {
-        return diagnostico;
-    }
-
-    public void setDiagnostico(visitas diagnostico) {
-        this.diagnostico = diagnostico;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -107,5 +99,13 @@ public class mascota implements Serializable{
 
     public void setNumero(String numero) {
         this.numero = numero;
+    }
+
+    public visitas[] getVisita() {
+        return visita;
+    }
+
+    public void setVisita(visitas[] visita) {
+        this.visita = visita;
     }
 }

@@ -4,6 +4,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="egt.infopets.mantenedorSpeciesAndRace">
+    tools:context="egt.infopets.mantenedor.mantenedorSpeciesAndRace">
 
+    <ImageButton
+        android:id="@+id/ibtAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        android:layout_marginLeft="78dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/ibtCancel"
+        android:onClick="goToFirstScreen"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/ibtAdd"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/button_onoff_indicator_on"
+        app:layout_constraintHorizontal_bias="0.505" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="379dp"
+        android:layout_height="344dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/rbNewSpecie"
+            android:layout_width="210dp"
+            android:layout_height="72dp"
+            android:text="Nueva Especie" />
+
+        <EditText
+            android:id="@+id/txtNewSpecie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Nombre Especie"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/txtNewRace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Nombre Raza"
+            android:inputType="textPersonName" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="29dp" />
+
+        <RadioButton
+            android:id="@+id/rbOldSpecie"
+            android:layout_width="347dp"
+            android:layout_height="79dp"
+            android:text="Especie Existente" />
+
+        <Spinner
+            android:id="@+id/spOldSpecie"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1" />
+
+        <EditText
+            android:id="@+id/txtNewRaceOldSpecie"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Nombre Raza"
+            android:inputType="textPersonName" />
+
+    </RadioGroup>
 </android.support.constraint.ConstraintLayout>

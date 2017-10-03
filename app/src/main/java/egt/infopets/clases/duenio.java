@@ -1,4 +1,4 @@
-package egt.infopets;
+package egt.infopets.clases;
 
 import java.io.Serializable;
 

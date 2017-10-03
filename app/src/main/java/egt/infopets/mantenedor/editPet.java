@@ -1,7 +1,9 @@
-package egt.infopets;
+package egt.infopets.mantenedor;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import egt.infopets.R;
 
 public class editPet extends AppCompatActivity {
 

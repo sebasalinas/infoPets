@@ -1,4 +1,4 @@
-package egt.infopets;
+package egt.infopets.mantenedor;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import egt.infopets.R;
+import egt.infopets.db.dbInfoPet;
+import egt.infopets.firstScreen;
+import egt.infopets.clases.mascota;
 
 public class addPet extends AppCompatActivity {
 

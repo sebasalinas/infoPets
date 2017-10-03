@@ -1,4 +1,4 @@
-package egt.infopets;
+package egt.infopets.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -36,6 +36,9 @@ public class dbInfoPet extends SQLiteOpenHelper{
             "nombre TEXT," +
             "direccion TEXT," +
             "numero TEXT )";
+    private static final String TABLA_SPECIEANDRACE = "CREATE TABLE specieandrace(" +
+            "specie TEXT PRIMARY KEY, " +
+            "race TEXT)";
     private static final String TABLA_VISITAS = "CREATE TABLE visitas (" +
             "cod TEXT," +
             "descripcion TEXT)";
@@ -53,6 +56,7 @@ public class dbInfoPet extends SQLiteOpenHelper{
         db.execSQL(TABLA_DUENIO);
         db.execSQL(TABLA_VISITAS);
         db.execSQL(TABLA_MASCOTA);
+        db.execSQL(TABLA_SPECIEANDRACE);
     }
 
     @Override
@@ -60,6 +64,7 @@ public class dbInfoPet extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS "+ TABLA_DUENIO);
         db.execSQL("DROP TABLE IF EXISTS "+ TABLA_VISITAS);
         db.execSQL("DROP TABLE IF EXISTS "+ TABLA_MASCOTA);
+        db.execSQL("DROP TABLE IF EXISTS "+ TABLA_SPECIEANDRACE);
         onCreate(db);
     }
 

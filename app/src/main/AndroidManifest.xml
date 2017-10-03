@@ -17,14 +17,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".addPet"
+            android:name=".mantenedor.addPet"
             android:parentActivityName=".firstScreen" />
         <activity
             android:name=".searchPet"
             android:parentActivityName=".firstScreen" />
-        <activity android:name=".editPet"
+        <activity android:name=".mantenedor.editPet"
             android:parentActivityName=".firstScreen"/>
-        <activity android:name=".mantenedorSpeciesAndRace"
+        <activity android:name=".mantenedor.mantenedorSpeciesAndRace"
             android:parentActivityName=".firstScreen"></activity>
     </application>
 
