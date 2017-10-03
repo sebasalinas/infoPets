@@ -16,8 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".addPet" />
-        <activity android:name=".searchPet"></activity>
+        <activity
+            android:name=".addPet"
+            android:parentActivityName=".firstScreen" />
+        <activity
+            android:name=".searchPet"
+            android:parentActivityName=".firstScreen" />
+        <activity android:name=".editPet"
+            android:parentActivityName=".firstScreen"/>
+        <activity android:name=".mantenedorSpeciesAndRace"
+            android:parentActivityName=".firstScreen"></activity>
     </application>
 
 </manifest>
