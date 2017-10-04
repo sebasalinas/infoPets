@@ -15,7 +15,7 @@ public class mascota implements Serializable{
     private String raza;
     private String sexo;
     private String color;
-    private visitas diagnostico;
+    private visitas[] diagnostico;
     private String nombre;
     private String direccion;
     private String numero;
