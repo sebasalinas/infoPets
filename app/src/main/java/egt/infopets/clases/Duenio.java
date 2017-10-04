@@ -13,6 +13,16 @@ public class Duenio implements Serializable{
     private String numero;
     private String direccion;
 
+    public Duenio() {
+    }
+
+    public Duenio(String rut, String nombre, String numero, String direccion) {
+        this.rut = rut;
+        this.nombre = nombre;
+        this.numero = numero;
+        this.direccion = direccion;
+    }
+
     public String getRut() {
         return rut;
     }

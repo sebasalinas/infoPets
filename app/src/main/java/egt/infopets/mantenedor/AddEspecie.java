@@ -14,7 +14,7 @@ import egt.infopets.R;
 import egt.infopets.clases.Especie;
 import egt.infopets.FirstScreen;
 
-public class AddSpeciesAndRace extends AppCompatActivity {
+public class AddEspecie extends AppCompatActivity {
     private RadioGroup gRb;
     private boolean var1 = false;
     private boolean var2 = false;
@@ -68,13 +68,13 @@ public class AddSpeciesAndRace extends AppCompatActivity {
 
             newSpecie.setEstado(true);
             newSpecie.setSpecie(auxNewSpecie.getText().toString());
-            newSpecie.setRace(auxNewRace.getText().toString());
+            //newSpecie.setRaza(auxNewRace.getText().toString());
             MantenedorSpeciesAndRace auxMantenderor = new MantenedorSpeciesAndRace(this);
             auxMantenderor.inset(newSpecie);
             this.mensaje("guardado");
         }
         else if (var2){
-            newSpecie.setRace(auxOldNewRace.getText().toString());
+            //newSpecie.setRace(auxOldNewRace.getText().toString());
         }
     }
 

@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import egt.infopets.db.DbInfoPet;
 import egt.infopets.mantenedor.AddPet;
-import egt.infopets.mantenedor.AddSpeciesAndRace;
+import egt.infopets.mantenedor.AddEspecie;
 
 public class FirstScreen extends AppCompatActivity {
 
@@ -31,7 +31,7 @@ public class FirstScreen extends AppCompatActivity {
     }
 
     public void goToSpeciesAndRace(View view) {
-        Intent intent = new Intent(this, AddSpeciesAndRace.class);
+        Intent intent = new Intent(this, AddEspecie.class);
         startActivity(intent);
     }
 

@@ -14,8 +14,7 @@ public class Especie implements Serializable {
     private String specie;
     private ArrayList<Raza> races;
 
-    public Especie(String id) {
-        this.id = id;
+    public Especie(){
     }
 
     public Especie(String id, boolean estado, String specie) {

@@ -24,7 +24,7 @@
             android:parentActivityName=".FirstScreen" />
         <activity android:name=".mantenedor.EditPet"
             android:parentActivityName=".FirstScreen"/>
-        <activity android:name=".mantenedor.AddSpeciesAndRace"
+        <activity android:name=".mantenedor.AddEspecie"
             android:parentActivityName=".FirstScreen"></activity>
     </application>
 

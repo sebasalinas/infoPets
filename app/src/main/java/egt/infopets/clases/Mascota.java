@@ -1,6 +1,7 @@
 package egt.infopets.clases;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by Soporte on 02-10-2017.
@@ -11,15 +12,26 @@ public class Mascota implements Serializable{
     private String id;
     private Duenio mNombre;
     private String fNacimiento;
-    private String especie;
-    private String raza;
+    private Especie especie;
+    private Raza raza;
     private String sexo;
     private String color;
-    private Visitas[] visita;
-    private String nombre;
-    private String direccion;
-    private String numero;
+    private ArrayList<Visitas> visita;
 
+    public Mascota() {
+        visita = new ArrayList<Visitas>();
+    }
+
+    public Mascota(String id, Duenio mNombre, String fNacimiento, Especie especie, Raza raza, String sexo, String color) {
+        this.id = id;
+        this.mNombre = mNombre;
+        this.fNacimiento = fNacimiento;
+        this.especie = especie;
+        this.raza = raza;
+        this.sexo = sexo;
+        this.color = color;
+        visita = new ArrayList<Visitas>();
+    }
 
     public String getId() {
         return id;
@@ -45,19 +57,19 @@ public class Mascota implements Serializable{
         this.fNacimiento = fNacimiento;
     }
 
-    public String getEspecie() {
+    public Especie getEspecie() {
         return especie;
     }
 
-    public void setEspecie(String especie) {
+    public void setEspecie(Especie especie) {
         this.especie = especie;
     }
 
-    public String getRaza() {
+    public Raza getRaza() {
         return raza;
     }
 
-    public void setRaza(String raza) {
+    public void setRaza(Raza raza) {
         this.raza = raza;
     }
 
@@ -77,35 +89,11 @@ public class Mascota implements Serializable{
         this.color = color;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    public Visitas[] getVisita() {
+    public ArrayList<Visitas> getVisita() {
         return visita;
     }
 
-    public void setVisita(Visitas[] visita) {
+    public void setVisita(ArrayList<Visitas> visita) {
         this.visita = visita;
     }
 }

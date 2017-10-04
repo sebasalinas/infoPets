@@ -56,7 +56,7 @@ public class MantenedorSpeciesAndRace {
         valores.add(valor.getId());
         valores.add(Boolean.toString(valor.isEstado()));
         valores.add(valor.getSpecie());
-        valores.add(valor.getRace());
+        //valores.add(valor.getRaces());
         return valores;
     }
 }
