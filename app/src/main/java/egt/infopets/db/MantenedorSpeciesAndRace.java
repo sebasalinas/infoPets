@@ -1,4 +1,4 @@
-package egt.infopets.mantenedor;
+package egt.infopets.db;
 
 import android.content.Context;
 import android.database.Cursor;

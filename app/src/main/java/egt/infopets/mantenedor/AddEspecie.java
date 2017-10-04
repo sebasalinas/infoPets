@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import egt.infopets.R;
 import egt.infopets.clases.Especie;
-import egt.infopets.FirstScreen;
+import egt.infopets.db.MantenedorSpeciesAndRace;
 
 public class AddEspecie extends AppCompatActivity {
     private RadioGroup gRb;

@@ -9,12 +9,13 @@ import java.io.Serializable;
 public class Raza implements Serializable {
     private int id;
     private String descripcion;
+    private Especie especie;
     private boolean estado;
 
     public Raza() {
     }
 
-    public Raza(int id, String descripcion, boolean estado) {
+    public Raza(int id, String descripcion, boolean estado, Especie especie) {
 
         this.id = id;
         this.descripcion = descripcion;

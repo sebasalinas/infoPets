@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import egt.infopets.R;
-import egt.infopets.FirstScreen;
 
 public class AddPet extends AppCompatActivity {
 

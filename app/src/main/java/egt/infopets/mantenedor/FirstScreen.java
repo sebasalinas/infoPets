@@ -1,4 +1,4 @@
-package egt.infopets;
+package egt.infopets.mantenedor;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,9 +9,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import egt.infopets.R;
 import egt.infopets.db.DbInfoPet;
-import egt.infopets.mantenedor.AddPet;
-import egt.infopets.mantenedor.AddEspecie;
 
 public class FirstScreen extends AppCompatActivity {
 

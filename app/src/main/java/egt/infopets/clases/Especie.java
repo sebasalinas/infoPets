@@ -15,12 +15,14 @@ public class Especie implements Serializable {
     private ArrayList<Raza> races;
 
     public Especie(){
+        this.races = new ArrayList<Raza>();
     }
 
     public Especie(String id, boolean estado, String specie) {
         this.id = id;
         this.estado = estado;
         this.specie = specie;
+        this.races = new ArrayList<Raza>();
     }
 
     public Especie(String id, boolean estado, String specie, ArrayList<Raza> races) {
