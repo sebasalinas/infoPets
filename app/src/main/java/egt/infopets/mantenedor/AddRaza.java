@@ -46,7 +46,7 @@ public class AddRaza extends AppCompatActivity {
      //       newSpecie.setEstado(true);
      //       newSpecie.setSpecie(auxNewSpecie.getText().toString());
             //newSpecie.setRaza(auxNewRace.getText().toString());
-     //       MantenedorSpeciesAndRace auxMantenderor = new MantenedorSpeciesAndRace(this);
+     //       MantenedorEspecie auxMantenderor = new MantenedorEspecie(this);
      //       auxMantenderor.inset(newSpecie);
       //      this.mensaje("guardado");
       //  }

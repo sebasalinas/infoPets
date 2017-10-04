@@ -28,16 +28,28 @@ public class AddEspecie extends AppCompatActivity {
             RadioButton auxInactivo = (RadioButton) findViewById(R.id.rbInactivo);
 
             Especie newEspecie = new Especie();
-            if (auxActivo.isChecked()) {
-                mensaje("activo");
-            } else if (auxInactivo.isChecked()) {
-                mensaje("Inactivo");
-            }
-            //if (auxEspecie != null){
-            //    newEspecie.setSpecie(auxEspecie.getText().toString());
-            //}
-        } catch (Exception ex) {
 
+            if (!auxEspecie.getText().toString().isEmpty())
+            {
+                if (auxActivo.isChecked())
+                {
+
+                } else if (auxInactivo.isChecked())
+                {
+
+                }
+                else
+                    {
+                        mensaje("Debe seleccionar el estado de la especie");
+                    }
+            }
+            else
+                {
+                this.mensaje("Debes Ingresar una nueva especie");
+                }
+
+        } catch (Exception ex) {
+            this.mensaje("Error al ejecutar. codigo:"+ex);
         }
 
     }
