@@ -8,9 +8,95 @@
 
     <ImageButton
         android:id="@+id/imageButton3"
+        android:layout_width="87dp"
+        android:layout_height="53dp"
+        app:srcCompat="@android:drawable/ic_menu_report_image"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp" />
+
+    <EditText
+        android:id="@+id/txtMNombre"
+        android:layout_width="268dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintHorizontal_bias="0.777"
+        app:layout_constraintLeft_toRightOf="@+id/imageButton3"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="8dp" />
+
+    <EditText
+        android:id="@+id/txtDNombre"
+        android:layout_width="366dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtMNombre" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_report_image"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:layout_marginTop="11dp"
+        app:layout_constraintTop_toBottomOf="@+id/txtDNombre"
+        android:layout_marginRight="298dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="298dp" />
+
+    <ListView
+        android:id="@+id/lvMedicamentos"
+        android:layout_width="366dp"
+        android:layout_height="314dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
+
+    <EditText
+        android:id="@+id/txtFNacimiento"
+        android:layout_width="162dp"
+        android:layout_height="52dp"
+        android:layout_marginRight="9dp"
+        android:layout_marginTop="11dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDNombre" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="87dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Edad"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintLeft_toRightOf="@+id/imageButton4"
+        app:layout_constraintRight_toLeftOf="@+id/txtFNacimiento"
+        tools:layout_editor_absoluteY="143dp"
+        app:layout_constraintHorizontal_bias="0.547" />
 </android.support.constraint.ConstraintLayout>
