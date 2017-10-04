@@ -43,8 +43,8 @@ public class MantenedorRaza {
         ArrayList<Raza> razas = new ArrayList<Raza>();
         if (resultado.moveToFirst()) {
             do {
-                Raza raza = this.setRaza(resultado);
-                razas.add(raza);
+                //Raza raza = this.setRaza(resultado);
+                //razas.add(raza);
             } while (resultado.moveToNext());
         }
         conector.close();
@@ -53,9 +53,9 @@ public class MantenedorRaza {
 
     private ArrayList<String> valores(Raza raza){
         ArrayList<String> valores = new ArrayList<String>();
-        valores.add(raza.getId());
+        //valores.add(raza.getId());
         valores.add(Boolean.toString(raza.isEstado()));
-        valores.add(raza.getSpecie());
+        //valores.add(raza.getSpecie());
         return valores;
     }
 
@@ -65,7 +65,7 @@ public class MantenedorRaza {
         Cursor resultado = this.conector.select(query);
         Raza raza = new Raza();
         if (resultado.moveToFirst()) {
-            raza = this.setRaza(resultado);
+            //raza = this.setRaza(resultado);
         }
         conector.close();
         return raza;
@@ -88,10 +88,10 @@ public class MantenedorRaza {
 
     private Raza setRaza(Raza resultado){
         Raza raza = new Raza();
-        raza.setDescripcion(resultado.getString(1));
-        raza.setEstado(Boolean.valueOf(resultado.getDescripcion()));
-        raza.setEstado(Boolean.valueOf(resultado.getString(2)));
-        raza.setDescripcion(resultado.getString(2));
+        //raza.setDescripcion(resultado.getString(1));
+        //raza.setEstado(Boolean.valueOf(resultado.getDescripcion()));
+        //raza.setEstado(Boolean.valueOf(resultado.getString(2)));
+       // raza.setDescripcion(resultado.getString(2));
         return raza;
     }
 }

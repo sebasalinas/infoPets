@@ -62,8 +62,9 @@ public class AddRaza extends AppCompatActivity {
             RadioButton auxInactivo = (RadioButton)findViewById(R.id.rbInactivo);
 
             Especie newEspecie = new Especie();
+
             if (auxActivo.isChecked()){
-                mensaje("activo");
+
             }
             else if(auxInactivo.isChecked()){
                 mensaje("Inactivo");

@@ -19,13 +19,15 @@ public class Especie implements Serializable {
     }
 
     public Especie(String id, boolean estado, String specie) {
+
         this.id = id;
         this.estado = estado;
         this.specie = specie;
-        this.races = new ArrayList<Raza>();
+        //this.races = new ArrayList<Raza>();
     }
 
     public Especie(String id, boolean estado, String specie, ArrayList<Raza> races) {
+
         this.id = id;
         this.estado = estado;
         this.specie = specie;
@@ -40,13 +42,13 @@ public class Especie implements Serializable {
         this.specie = specie;
     }
 
-    public ArrayList<Raza> getRaces() {
-        return races;
-    }
+    //public ArrayList<Raza> getRaces() {
+     //   return races;
+    //}
 
-    public void setRaces(ArrayList<Raza> races) {
-        this.races = races;
-    }
+    //public void setRaces(ArrayList<Raza> races) {
+    //    this.races = races;
+    //}
 
     public String getId() {
         return id;

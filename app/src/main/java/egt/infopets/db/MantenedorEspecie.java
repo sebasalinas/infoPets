@@ -18,7 +18,7 @@ public class MantenedorEspecie {
     private DbInfoPet conector;
     private Context context;
     private ArrayList<String> columnas;
-    private String tabla = "especie";
+    private String tabla;
 
     public MantenedorEspecie(Context context){
         this.context = context;
@@ -40,15 +40,15 @@ public class MantenedorEspecie {
         this.conector = new DbInfoPet(this.context);
         String query = "SELECT * FROM " + tabla;
         Cursor resultado = this.conector.select(query);
-        ArrayList<Especie> specieandraces = new ArrayList<Especie>();
+        ArrayList<Especie> especies = new ArrayList<Especie>();
         if (resultado.moveToFirst()) {
             do {
                 Especie specie = this.setEspecie(resultado);
-                specieandraces.add(specie);
+                especies.add(specie);
             } while (resultado.moveToNext());
         }
         conector.close();
-        return specieandraces;
+        return especies;
     }
 
     private ArrayList<String> valores(Especie especie){
@@ -88,6 +88,7 @@ public class MantenedorEspecie {
 
     private Especie setEspecie(Cursor resultado){
         Especie especie = new Especie();
+        especie.setId("");
         especie.setEstado(Boolean.valueOf(resultado.getString(1)));
         especie.setSpecie(resultado.getString(2));
         return especie;

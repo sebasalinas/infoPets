@@ -16,19 +16,19 @@ import java.util.ArrayList;
 public class DbInfoPet extends SQLiteOpenHelper{
 
     private static final int VERSION_BASEDATOS = 1;
-    private static final String NOMBRE_BASEDATOS = "infoPets";
+    private static final String NOMBRE_BASEDATOS = "infoPets.db";
     private static final String TABLA_ESPECIE = "CREATE TABLE especie (" +
-            "id_Especie NUMERIC PRIMARY KEY AUTOINCREMENT," +
+            "id_Especie INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
             "estado TEXT," +
-            "especie TEXT);";
+            "especie TEXT)";
     private static final String TABLA_RAZA  = "CREATE TABLE raza (" +
-            "id_Raza NUMERIC PRIMARY KEY AUTOINCREMENT," +
+            "id_Raza INTEGER PRIMARY KEY AUTOINCREMENT," +
             "descripcion TEXT," +
-            "id_Especie Text," +
+            "id_Especie INTEGER," +
             "estado BOOLEAN," +
-            "FOREIGN KEY (id_Especie) REFERENCES especie(id_Especie);";
+            "FOREIGN KEY (id_Especie) REFERENCES especie(id_Especie)";
 
-    private static final String TABLA_MASCOTA = "CREATE TABLE Mascota (" +
+    private static final String TABLA_MASCOTA = "CREATE TABLE mascota (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "rut TEXT," +
             "mNombre TEXT, " +
@@ -41,17 +41,12 @@ public class DbInfoPet extends SQLiteOpenHelper{
             "dNombre TEXT," +
             "direccion TEXT," +
             "numero TEXT," +
-            "FOREIGN KEY (rut) REFERENCES Duenio(rut))";
+            "FOREIGN KEY (rut) REFERENCES duenio(rut))";
     private static final String TABLA_DUENIO = "CREATE TABLE Duenio (" +
             "rut TEXT PRIMARY KEY," +
             "nombre TEXT," +
             "direccion TEXT," +
             "numero TEXT )";
-    private static final String TABLA_SPECIEANDRACE = "CREATE TABLE specieandrace(" +
-            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "estado BOOLEAN," +
-            "especie TEXT, " +
-            "raza TEXT)";
     private static final String TABLA_VISITAS = "CREATE TABLE Visitas (" +
             "cod INTEGER AUTOINCREMENT," +
             "fVisita TEXT," +
@@ -70,18 +65,20 @@ public class DbInfoPet extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(TABLA_DUENIO);
-        db.execSQL(TABLA_VISITAS);
-        db.execSQL(TABLA_MASCOTA);
-        db.execSQL(TABLA_SPECIEANDRACE);
+        db.execSQL(TABLA_ESPECIE);
+       // db.execSQL(TABLA_RAZA);
+        //db.execSQL(TABLA_DUENIO);
+        //db.execSQL(TABLA_VISITAS);
+        //db.execSQL(TABLA_MASCOTA);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS "+ TABLA_ESPECIE);
+        db.execSQL("DROP TABLE IF EXISTS "+ TABLA_RAZA);
         db.execSQL("DROP TABLE IF EXISTS "+ TABLA_DUENIO);
         db.execSQL("DROP TABLE IF EXISTS "+ TABLA_VISITAS);
         db.execSQL("DROP TABLE IF EXISTS "+ TABLA_MASCOTA);
-        db.execSQL("DROP TABLE IF EXISTS "+ TABLA_SPECIEANDRACE);
         onCreate(db);
     }
 
