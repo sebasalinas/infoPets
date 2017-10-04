@@ -5,7 +5,7 @@ import android.database.Cursor;
 
 import java.util.ArrayList;
 
-import egt.infopets.clases.SpecieAndRace;
+import egt.infopets.clases.Especie;
 import egt.infopets.db.DbInfoPet;
 
 /**
@@ -29,21 +29,21 @@ public class MantenedorSpeciesAndRace {
         columnas.add("Raza");
     }
 
-    public void inset(SpecieAndRace tipo) {
+    public void inset(Especie tipo) {
         this.conector = new DbInfoPet(this.context);
         ArrayList<String> valores = this.valores(tipo);
         this.conector.insert(tabla, columnas, valores);
         conector.close();
     }
 
-    public ArrayList<SpecieAndRace> getAll() {
+    public ArrayList<Especie> getAll() {
         this.conector = new DbInfoPet(this.context);
         String query = "SELECT * FROM " + tabla;
         Cursor resultado = this.conector.select(query);
-        ArrayList<SpecieAndRace> specieandraces = new ArrayList<SpecieAndRace>();
+        ArrayList<Especie> specieandraces = new ArrayList<Especie>();
         if (resultado.moveToFirst()) {
             do {
-                //SpecieAndRace specie = this.setTicket(resultado);
+                //Especie specie = this.setTicket(resultado);
                 //specieandraces.add(specie);
             } while (resultado.moveToNext());
         }
@@ -51,7 +51,7 @@ public class MantenedorSpeciesAndRace {
         return specieandraces;
     }
 
-    private ArrayList<String> valores(SpecieAndRace valor){
+    private ArrayList<String> valores(Especie valor){
         ArrayList<String> valores = new ArrayList<String>();
         valores.add(valor.getId());
         valores.add(Boolean.toString(valor.isEstado()));

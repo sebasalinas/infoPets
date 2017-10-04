@@ -11,7 +11,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import egt.infopets.R;
-import egt.infopets.clases.SpecieAndRace;
+import egt.infopets.clases.Especie;
 import egt.infopets.FirstScreen;
 
 public class AddSpeciesAndRace extends AppCompatActivity {
@@ -63,7 +63,7 @@ public class AddSpeciesAndRace extends AppCompatActivity {
         EditText auxOldNewRace = (EditText) findViewById(R.id.txtNewRaceOldSpecie);
         Spinner auxOldRace = (Spinner) findViewById(R.id.spEspecie);
 
-        SpecieAndRace newSpecie = new SpecieAndRace();
+        Especie newSpecie = new Especie();
         if (var1){
 
             newSpecie.setEstado(true);
