@@ -51,6 +51,9 @@ public class AddRaza extends AppCompatActivity {
 
         listaString = new String[auxLista.size()];
 
+        for(int i=0;i<auxLista.size();i++)
+            listaString[i]=auxLista.get(i).getSpecie();
+        /*
         Iterator iter = auxLista.iterator();
 
         int pos = 0;
@@ -66,7 +69,7 @@ public class AddRaza extends AppCompatActivity {
                 auxLista.add(auxEspecie);
 
                 pos++;
-        }
+        }*/
     }
 
     public void goToFirstScreen(View view) {
@@ -91,7 +94,6 @@ public class AddRaza extends AppCompatActivity {
             {
                 if (auxActivo.isChecked())
                 {
-                    newEspecie.setId("1");
                     newEspecie.setEstado(true);
                     newEspecie.setSpecie(auxEspecie.getText().toString());
                     auxMantenedor.insert(newEspecie);

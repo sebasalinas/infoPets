@@ -24,7 +24,6 @@ public class MantenedorEspecie {
         this.context = context;
         tabla = "especie";
         columnas = new ArrayList<String>();
-        columnas.add("id_Especie");
         columnas.add("estado");
         columnas.add("especie");
     }
@@ -53,7 +52,6 @@ public class MantenedorEspecie {
 
     private ArrayList<String> valores(Especie especie){
         ArrayList<String> valores = new ArrayList<String>();
-        valores.add(especie.getId());
         valores.add(Boolean.toString(especie.isEstado()));
         valores.add(especie.getSpecie());
         return valores;
@@ -88,7 +86,7 @@ public class MantenedorEspecie {
 
     private Especie setEspecie(Cursor resultado){
         Especie especie = new Especie();
-        especie.setId(resultado.getString(0));
+        especie.setId(resultado.getInt(0));
         especie.setEstado(Boolean.valueOf(resultado.getString(1)));
         especie.setSpecie(resultado.getString(2));
         return especie;

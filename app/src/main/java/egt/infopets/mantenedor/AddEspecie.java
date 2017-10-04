@@ -43,7 +43,6 @@ public class AddEspecie extends AppCompatActivity {
             {
                 if (auxActivo.isChecked())
                 {
-                    newEspecie.setId(var);
                     newEspecie.setEstado(true);
                     newEspecie.setSpecie(auxEspecie.getText().toString());
                     auxMantenedor.insert(newEspecie);
@@ -53,7 +52,6 @@ public class AddEspecie extends AppCompatActivity {
                     var = String.valueOf(auxVar+1);
                 } else if (auxInactivo.isChecked())
                 {
-                    newEspecie.setId(var);
                     newEspecie.setEstado(false);
                     newEspecie.setSpecie(auxEspecie.getText().toString());
                     auxMantenedor.insert(newEspecie);

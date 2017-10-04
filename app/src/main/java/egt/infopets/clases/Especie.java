@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Especie implements Serializable {
 
-    private String id;
+    private int id;
     private boolean estado;
     private String specie;
    // private ArrayList<Raza> races;
@@ -18,7 +18,7 @@ public class Especie implements Serializable {
         //this.races = new ArrayList<Raza>();
     }
 
-    public Especie(String id, boolean estado, String specie) {
+    public Especie(int id, boolean estado, String specie) {
 
         this.id = id;
         this.estado = estado;
@@ -26,7 +26,7 @@ public class Especie implements Serializable {
         //this.races = new ArrayList<Raza>();
     }
 
-    public Especie(String id, boolean estado, String specie, ArrayList<Raza> races) {
+    public Especie(int id, boolean estado, String specie, ArrayList<Raza> races) {
 
         this.id = id;
         this.estado = estado;
@@ -50,11 +50,11 @@ public class Especie implements Serializable {
     //    this.races = races;
     //}
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
