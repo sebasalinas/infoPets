@@ -12,10 +12,10 @@ public class Especie implements Serializable {
     private String id;
     private boolean estado;
     private String specie;
-    private ArrayList<Raza> races;
+   // private ArrayList<Raza> races;
 
     public Especie(){
-        this.races = new ArrayList<Raza>();
+        //this.races = new ArrayList<Raza>();
     }
 
     public Especie(String id, boolean estado, String specie) {
@@ -31,7 +31,7 @@ public class Especie implements Serializable {
         this.id = id;
         this.estado = estado;
         this.specie = specie;
-        this.races = races;
+       //this.races = races;
     }
 
     public String getSpecie() {

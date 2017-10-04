@@ -1,5 +1,6 @@
 package egt.infopets.mantenedor;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -20,6 +21,7 @@ import egt.infopets.db.MantenedorEspecie;
 
 public class AddEspecie extends AppCompatActivity {
 
+    String var = "0";
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_especie);
@@ -41,16 +43,24 @@ public class AddEspecie extends AppCompatActivity {
             {
                 if (auxActivo.isChecked())
                 {
+                    newEspecie.setId(var);
                     newEspecie.setEstado(true);
                     newEspecie.setSpecie(auxEspecie.getText().toString());
                     auxMantenedor.insert(newEspecie);
-                    this.mensaje("Especie: "+ especie +" con esado: Activo");
+                    this.mensaje("Especie: "+ especie +" || Esado: Activo");
                     ((EditText) findViewById(R.id.txtNewEspecie)).setText("");
+                    int auxVar = Integer.parseInt(var);
+                    var = String.valueOf(auxVar+1);
                 } else if (auxInactivo.isChecked())
                 {
+                    newEspecie.setId(var);
                     newEspecie.setEstado(false);
                     newEspecie.setSpecie(auxEspecie.getText().toString());
-                    this.mensaje("Especie: "+ auxEspecie +" con esado: Inactivo");
+                    auxMantenedor.insert(newEspecie);
+                    this.mensaje("Especie: "+ auxEspecie +" || Esado: Inactivo");
+                    ((EditText) findViewById(R.id.txtNewEspecie)).setText("");
+                    int auxVar = Integer.parseInt(var);
+                    var = String.valueOf(auxVar+1);
                 }
                 else
                     {
@@ -65,30 +75,6 @@ public class AddEspecie extends AppCompatActivity {
             this.mensaje("Error al ejecutar. codigo:"+ex);
         }
 
-    }
-
-    public void mostrar(View view){
-
-        MantenedorEspecie auxMantenedor = new MantenedorEspecie(this);
-
-        List<Especie> auxListaEspecies = auxMantenedor.getAll();
-
-        String[] listaString = new String[auxListaEspecies.size()];
-
-        Iterator iter = auxListaEspecies.iterator();
-
-        int pos = 1;
-
-        while (iter.hasNext()){
-
-            Especie auxEspecies = new Especie();
-
-            auxEspecies = (Especie) iter.next();
-
-            listaString[pos] = auxEspecies.getId()+" "+auxEspecies.getSpecie();
-
-            pos++;
-        }
     }
 
     public void mensaje(String mensaje) {
