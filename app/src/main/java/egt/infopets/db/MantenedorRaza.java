@@ -25,8 +25,7 @@ public class MantenedorRaza {
         this.context = context;
         tabla = "raza";
         columnas = new ArrayList<String>();
-        columnas.add("id_Raza");
-        columnas.add("descipcion");
+        columnas.add("descripcion");
         columnas.add("id_Especie");
         columnas.add("estado");
     }
@@ -57,7 +56,7 @@ public class MantenedorRaza {
         ArrayList<String> valores = new ArrayList<String>();
         ArrayList<String> razas = new ArrayList<String>();
         valores.add(raza.getDescripcion());
-        valores.add(raza.getEspecie());
+        valores.add(Integer.toString(raza.getEspecie()));
         valores.add(Boolean.toString(raza.isEstado()));
         return valores;
     }
@@ -93,7 +92,7 @@ public class MantenedorRaza {
         Raza raza = new Raza();
         raza.setId(resultado.getInt(0));
         raza.setDescripcion(resultado.getString(1));
-        raza.setEspecie((null));
+        raza.setEspecie(resultado.getInt(2));
         raza.setEstado(Boolean.valueOf(resultado.getString(3)));
         return raza;
     }

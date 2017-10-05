@@ -10,13 +10,13 @@ public class Raza implements Serializable {
 
     private int id;
     private String descripcion;
-    private Especie especie;
+    private int especie;
     private boolean estado;
 
     public Raza() {
     }
 
-    public Raza(int id, String descripcion, boolean estado, Especie especie) {
+    public Raza(int id, String descripcion, boolean estado, int especie) {
 
         this.id = id;
         this.descripcion = descripcion;
@@ -48,11 +48,12 @@ public class Raza implements Serializable {
         this.estado = estado;
     }
 
-    public Especie getEspecie() {
+
+    public int getEspecie() {
         return especie;
     }
 
-    public void setEspecie(Especie especie) {
+    public void setEspecie(int especie) {
         this.especie = especie;
     }
 }

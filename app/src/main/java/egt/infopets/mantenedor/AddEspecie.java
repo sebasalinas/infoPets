@@ -3,8 +3,11 @@ package egt.infopets.mantenedor;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ListViewCompat;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -21,10 +24,13 @@ import egt.infopets.db.MantenedorEspecie;
 
 public class AddEspecie extends AppCompatActivity {
 
-    String var = "0";
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_especie);
+
+        ListView auxListView = (ListView)findViewById(R.id.lvMostrar);
+
+        mostrar();
     }
 
     public void addEspecie(View view) {
@@ -48,17 +54,13 @@ public class AddEspecie extends AppCompatActivity {
                     auxMantenedor.insert(newEspecie);
                     this.mensaje("Especie: "+ especie +" || Esado: Activo");
                     ((EditText) findViewById(R.id.txtNewEspecie)).setText("");
-                    int auxVar = Integer.parseInt(var);
-                    var = String.valueOf(auxVar+1);
                 } else if (auxInactivo.isChecked())
                 {
                     newEspecie.setEstado(false);
                     newEspecie.setSpecie(auxEspecie.getText().toString());
                     auxMantenedor.insert(newEspecie);
-                    this.mensaje("Especie: "+ auxEspecie +" || Esado: Inactivo");
+                    this.mensaje("Especie: "+ especie +" || Esado: Inactivo");
                     ((EditText) findViewById(R.id.txtNewEspecie)).setText("");
-                    int auxVar = Integer.parseInt(var);
-                    var = String.valueOf(auxVar+1);
                 }
                 else
                     {
@@ -69,12 +71,37 @@ public class AddEspecie extends AppCompatActivity {
                 {
                 this.mensaje("Debes Ingresar una nueva especie");
                 }
+                mostrar();
         } catch (Exception ex) {
             this.mensaje("Error al ejecutar. codigo:"+ex);
         }
 
     }
 
+    public void mostrar(){
+        MantenedorEspecie mantenedorEspecie =new MantenedorEspecie(this);
+
+        List<Especie> auxListaEspecie = mantenedorEspecie.getAll();
+
+        String[] listaString = new String[auxListaEspecie.size()];
+
+        Iterator iter = auxListaEspecie.iterator();
+
+        int pos = 0;
+
+        while (iter.hasNext()){
+            Especie auxLista = new Especie();
+
+            auxLista = (Especie) iter.next();
+
+            listaString[pos] = auxLista.getId() +" "+ auxLista.getSpecie();
+            pos++;
+        }
+
+        ListView auxListView = (ListView)findViewById(R.id.lvMostrar);
+
+        auxListView.setAdapter(new ArrayAdapter(this,android.R.layout.simple_list_item_1,listaString));
+    }
     public void mensaje(String mensaje) {
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
     }

@@ -20,16 +20,20 @@ public class DbInfoPet extends SQLiteOpenHelper{
     private static final String TABLA_ESPECIE = "CREATE TABLE especie (" +
             "id_Especie INTEGER PRIMARY KEY AUTOINCREMENT," +
             "estado TEXT," +
-            "especie TEXT)";
+            "especie TEXT UNIQUE)";
     private static final String TABLA_RAZA  = "CREATE TABLE raza (" +
             "id_Raza INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "descripcion TEXT," +
+            "descripcion TEXT UNIQUE," +
             "id_Especie INTEGER," +
             "estado BOOLEAN," +
-            "FOREIGN KEY (id_Especie) REFERENCES especie(id_Especie)";
-
+            "FOREIGN KEY (id_Especie) REFERENCES especie(id_Especie))";
+    private static final String TABLA_DUENIO = "CREATE TABLE Duenio (" +
+            "rut TEXT PRIMARY KEY," +
+            "nombre TEXT," +
+            "direccion TEXT," +
+            "numero TEXT )";
     private static final String TABLA_MASCOTA = "CREATE TABLE mascota (" +
-            "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "id_Mascota INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "rut TEXT," +
             "mNombre TEXT, " +
             "fNacimiento TEXT, " +
@@ -42,11 +46,7 @@ public class DbInfoPet extends SQLiteOpenHelper{
             "direccion TEXT," +
             "numero TEXT," +
             "FOREIGN KEY (rut) REFERENCES duenio(rut))";
-    private static final String TABLA_DUENIO = "CREATE TABLE Duenio (" +
-            "rut TEXT PRIMARY KEY," +
-            "nombre TEXT," +
-            "direccion TEXT," +
-            "numero TEXT )";
+
     private static final String TABLA_VISITAS = "CREATE TABLE Visitas (" +
             "cod INTEGER AUTOINCREMENT," +
             "fVisita TEXT," +
