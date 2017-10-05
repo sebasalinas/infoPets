@@ -18,7 +18,7 @@ public class AddEspecie extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_raza);
+        setContentView(R.layout.add_especie);
     }
 
     public void addEspecie(View view) {

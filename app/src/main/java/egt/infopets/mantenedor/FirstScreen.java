@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import egt.infopets.R;
+import egt.infopets.clases.Especie;
 import egt.infopets.db.DbInfoPet;
 
 public class FirstScreen extends AppCompatActivity {
@@ -34,8 +35,8 @@ public class FirstScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void goToEspecie(View view) {
-        Intent intent = new Intent(this,AddEspecie.class);
+    public void goToEspecie(View view){
+        Intent intent = new Intent(this, AddEspecie.class);
         startActivity(intent);
     }
 

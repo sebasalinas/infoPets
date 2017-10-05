@@ -20,6 +20,9 @@
             android:name=".mantenedor.AddPet"
             android:parentActivityName=".mantenedor.FirstScreen" />
         <activity
+            android:name=".mantenedor.AddEspecie"
+            android:parentActivityName=".mantenedor.FirstScreen" />
+        <activity
             android:name=".mantenedor.SearchPet"
             android:parentActivityName=".mantenedor.FirstScreen" />
         <activity android:name=".mantenedor.AddRaza"
