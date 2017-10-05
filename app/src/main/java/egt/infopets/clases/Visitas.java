@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Soporte on 02-10-2017.
  */
 
-public class visitas implements Serializable {
+public class Visitas implements Serializable {
 
     private String cod;
     private String descripcion;

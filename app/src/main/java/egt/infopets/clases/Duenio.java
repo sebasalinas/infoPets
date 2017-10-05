@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Soporte on 02-10-2017.
  */
 
-public class duenio implements Serializable{
+public class Duenio implements Serializable{
 
     private String rut;
     private String nombre;

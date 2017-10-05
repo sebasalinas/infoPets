@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".firstScreen">
+        <activity android:name=".FirstScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,15 +17,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".mantenedor.addPet"
-            android:parentActivityName=".firstScreen" />
+            android:name=".mantenedor.AddPet"
+            android:parentActivityName=".FirstScreen" />
         <activity
-            android:name=".searchPet"
-            android:parentActivityName=".firstScreen" />
-        <activity android:name=".mantenedor.editPet"
-            android:parentActivityName=".firstScreen"/>
-        <activity android:name=".mantenedor.mantenedorSpeciesAndRace"
-            android:parentActivityName=".firstScreen"></activity>
+            android:name=".SearchPet"
+            android:parentActivityName=".FirstScreen" />
+        <activity android:name=".mantenedor.EditPet"
+            android:parentActivityName=".FirstScreen"/>
+        <activity android:name=".mantenedor.AddSpeciesAndRace"
+            android:parentActivityName=".FirstScreen"></activity>
     </application>
 
 </manifest>

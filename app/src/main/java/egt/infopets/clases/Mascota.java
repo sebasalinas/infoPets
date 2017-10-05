@@ -6,16 +6,16 @@ import java.io.Serializable;
  * Created by Soporte on 02-10-2017.
  */
 
-public class mascota implements Serializable{
+public class Mascota implements Serializable{
 
     private String id;
-    private duenio mNombre;
+    private Duenio mNombre;
     private String fNacimiento;
     private String especie;
     private String raza;
     private String sexo;
     private String color;
-    private visitas[] visita;
+    private Visitas[] visita;
     private String nombre;
     private String direccion;
     private String numero;
@@ -29,11 +29,11 @@ public class mascota implements Serializable{
         this.id = id;
     }
 
-    public duenio getmNombre() {
+    public Duenio getmNombre() {
         return mNombre;
     }
 
-    public void setmNombre(duenio mNombre) {
+    public void setmNombre(Duenio mNombre) {
         this.mNombre = mNombre;
     }
 
@@ -101,11 +101,11 @@ public class mascota implements Serializable{
         this.numero = numero;
     }
 
-    public visitas[] getVisita() {
+    public Visitas[] getVisita() {
         return visita;
     }
 
-    public void setVisita(visitas[] visita) {
+    public void setVisita(Visitas[] visita) {
         this.visita = visita;
     }
 }

@@ -13,11 +13,11 @@ import java.util.ArrayList;
  * Created by Soporte on 02-10-2017.
  */
 
-public class dbInfoPet extends SQLiteOpenHelper{
+public class DbInfoPet extends SQLiteOpenHelper{
 
     private static final int VERSION_BASEDATOS = 1;
     private static final String NOMBRE_BASEDATOS = "infoPets";
-    private static final String TABLA_MASCOTA = "CREATE TABLE mascota (" +
+    private static final String TABLA_MASCOTA = "CREATE TABLE Mascota (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "rut TEXT," +
             "mNombre TEXT, " +
@@ -30,8 +30,8 @@ public class dbInfoPet extends SQLiteOpenHelper{
             "dNombre TEXT," +
             "direccion TEXT," +
             "numero TEXT," +
-            "FOREIGN KEY (rut) REFERENCES duenio(rut))";
-    private static final String TABLA_DUENIO = "CREATE TABLE duenio (" +
+            "FOREIGN KEY (rut) REFERENCES Duenio(rut))";
+    private static final String TABLA_DUENIO = "CREATE TABLE Duenio (" +
             "rut TEXT PRIMARY KEY," +
             "nombre TEXT," +
             "direccion TEXT," +
@@ -41,17 +41,17 @@ public class dbInfoPet extends SQLiteOpenHelper{
             "estado BOOLEAN," +
             "especie TEXT, " +
             "raza TEXT)";
-    private static final String TABLA_VISITAS = "CREATE TABLE visitas (" +
+    private static final String TABLA_VISITAS = "CREATE TABLE Visitas (" +
             "cod INTEGER AUTOINCREMENT," +
             "fVisita TEXT," +
             "id INTEGER" +
             "descripcion TEXT)," +
-            "FOREIGN KEY (id) REFERENCES mascota(id))";
+            "FOREIGN KEY (id) REFERENCES Mascota(id))";
 
     private SQLiteDatabase db = null;
 
 
-    public dbInfoPet(Context context){
+    public DbInfoPet(Context context){
         super(context, NOMBRE_BASEDATOS, null, VERSION_BASEDATOS);
         db = getWritableDatabase();
     }
@@ -87,7 +87,7 @@ public class dbInfoPet extends SQLiteOpenHelper{
 
     public void update(String tabla ,ArrayList<String> columnas, ArrayList<String> valores, String condicion) throws SQLiteException {
         ContentValues update = new ContentValues();
-        for(int z=0;z<columnas.size();z++)
+        for(int z=1;z<columnas.size();z++)
             update.put(columnas.get(z),valores.get(z));
         db.update(tabla, update, condicion, null);
     }

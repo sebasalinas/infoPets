@@ -6,22 +6,22 @@ import android.database.Cursor;
 import java.util.ArrayList;
 
 import egt.infopets.clases.SpecieAndRace;
-import egt.infopets.db.dbInfoPet;
+import egt.infopets.db.DbInfoPet;
 
 /**
  * Created by Soporte on 03-10-2017.
  */
 
-public class mantenedorNewSpeciesAndRace {
+public class MantenedorSpeciesAndRace {
 
-    private dbInfoPet conector;
+    private DbInfoPet conector;
     private Context context;
     private ArrayList<String> columnas;
     private String tabla = "specieandrace";
 
-    public mantenedorNewSpeciesAndRace(Context context){
+    public MantenedorSpeciesAndRace(Context context){
         this.context = context;
-        tabla = "mascota";
+        tabla = "Mascota";
         columnas = new ArrayList<String>();
         columnas.add("ID");
         columnas.add("Estado");
@@ -30,14 +30,14 @@ public class mantenedorNewSpeciesAndRace {
     }
 
     public void inset(SpecieAndRace tipo) {
-        this.conector = new dbInfoPet(this.context);
+        this.conector = new DbInfoPet(this.context);
         ArrayList<String> valores = this.valores(tipo);
         this.conector.insert(tabla, columnas, valores);
         conector.close();
     }
 
     public ArrayList<SpecieAndRace> getAll() {
-        this.conector = new dbInfoPet(this.context);
+        this.conector = new DbInfoPet(this.context);
         String query = "SELECT * FROM " + tabla;
         Cursor resultado = this.conector.select(query);
         ArrayList<SpecieAndRace> specieandraces = new ArrayList<SpecieAndRace>();

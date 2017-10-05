@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class searchPet extends AppCompatActivity {
+public class SearchPet extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

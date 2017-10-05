@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import egt.infopets.R;
 
-public class editPet extends AppCompatActivity {
+public class EditPet extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

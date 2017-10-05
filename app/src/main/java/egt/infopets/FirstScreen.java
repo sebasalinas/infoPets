@@ -3,20 +3,19 @@ package egt.infopets;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import egt.infopets.db.dbInfoPet;
-import egt.infopets.mantenedor.addPet;
-import egt.infopets.mantenedor.mantenedorSpeciesAndRace;
+import egt.infopets.db.DbInfoPet;
+import egt.infopets.mantenedor.AddPet;
+import egt.infopets.mantenedor.AddSpeciesAndRace;
 
-public class firstScreen extends AppCompatActivity {
+public class FirstScreen extends AppCompatActivity {
 
-    private dbInfoPet conector;
+    private DbInfoPet conector;
     private Context context;
     private String tabla;
 
@@ -27,12 +26,12 @@ public class firstScreen extends AppCompatActivity {
     }
 
     public void goToAddPet(View view) {
-        Intent intent = new Intent(this, addPet.class);
+        Intent intent = new Intent(this, AddPet.class);
         startActivity(intent);
     }
 
     public void goToSpeciesAndRace(View view) {
-        Intent intent = new Intent(this, mantenedorSpeciesAndRace.class);
+        Intent intent = new Intent(this, AddSpeciesAndRace.class);
         startActivity(intent);
     }
 
@@ -46,16 +45,16 @@ public class firstScreen extends AppCompatActivity {
 
             if (searchPetById(auxId.getText().toString())){
 
-                Intent intent = new Intent(this, searchPet.class);
+                Intent intent = new Intent(this, SearchPet.class);
 
-                this.mensaje("La mascota ha sido encontrada");
+                this.mensaje("La Mascota ha sido encontrada");
 
                 intent.putExtra("varCod",auxId.getText().toString());
 
                 startActivity(intent);
             }
             else {
-                this.mensaje("No se encontro mascota");
+                this.mensaje("No se encontro Mascota");
             }
         }
         catch (Exception ex){
@@ -65,7 +64,7 @@ public class firstScreen extends AppCompatActivity {
 
     public boolean searchPetById(String id) {
 
-        this.conector = new dbInfoPet(this.context);
+        this.conector = new DbInfoPet(this.context);
         String query = "SELECT * FROM " + tabla + " WHERE id = " + id;
         Cursor resultado = this.conector.select(query);
         if (resultado.moveToFirst()){

@@ -1,27 +1,20 @@
 package egt.infopets.mantenedor;
 
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 import egt.infopets.R;
 import egt.infopets.clases.SpecieAndRace;
-import egt.infopets.db.dbInfoPet;
-import egt.infopets.firstScreen;
+import egt.infopets.FirstScreen;
 
-public class mantenedorSpeciesAndRace extends AppCompatActivity {
+public class AddSpeciesAndRace extends AppCompatActivity {
     private RadioGroup gRb;
     private boolean var1 = false;
     private boolean var2 = false;
@@ -29,7 +22,7 @@ public class mantenedorSpeciesAndRace extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mantenedor_species_and_race);
+        setContentView(R.layout.add_species_and_race);
 
 
         gRb = (RadioGroup) findViewById(R.id.gRb);
@@ -59,7 +52,7 @@ public class mantenedorSpeciesAndRace extends AppCompatActivity {
     }
 
     public void goToFirstScreen(View view) {
-        Intent intent = new Intent(this, firstScreen.class);
+        Intent intent = new Intent(this, FirstScreen.class);
         startActivity(intent);
     }
 
@@ -76,7 +69,7 @@ public class mantenedorSpeciesAndRace extends AppCompatActivity {
             newSpecie.setEstado(true);
             newSpecie.setSpecie(auxNewSpecie.getText().toString());
             newSpecie.setRace(auxNewRace.getText().toString());
-            mantenedorNewSpeciesAndRace auxMantenderor = new mantenedorNewSpeciesAndRace(this);
+            MantenedorSpeciesAndRace auxMantenderor = new MantenedorSpeciesAndRace(this);
             auxMantenderor.inset(newSpecie);
             this.mensaje("guardado");
         }

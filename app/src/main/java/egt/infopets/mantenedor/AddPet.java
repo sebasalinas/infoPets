@@ -1,20 +1,15 @@
 package egt.infopets.mantenedor;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 import egt.infopets.R;
-import egt.infopets.db.dbInfoPet;
-import egt.infopets.firstScreen;
-import egt.infopets.clases.mascota;
+import egt.infopets.FirstScreen;
 
-public class addPet extends AppCompatActivity {
+public class AddPet extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +18,7 @@ public class addPet extends AppCompatActivity {
     }
 
     public void backToFirstScreen(View view){
-        Intent intent = new Intent(this, firstScreen.class);
+        Intent intent = new Intent(this, FirstScreen.class);
         startActivity(intent);
     }
 
