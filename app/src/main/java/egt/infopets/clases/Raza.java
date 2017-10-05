@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 
 public class Raza implements Serializable {
+
     private int id;
     private String descripcion;
     private Especie especie;

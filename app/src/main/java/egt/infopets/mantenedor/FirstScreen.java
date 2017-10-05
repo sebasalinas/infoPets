@@ -29,8 +29,13 @@ public class FirstScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void goToSpeciesAndRace(View view) {
-        Intent intent = new Intent(this, AddEspecie.class);
+    public void goToRaza(View view) {
+        Intent intent = new Intent(this, AddRaza.class);
+        startActivity(intent);
+    }
+
+    public void goToEspecie(View view) {
+        Intent intent = new Intent(this,AddEspecie.class);
         startActivity(intent);
     }
 

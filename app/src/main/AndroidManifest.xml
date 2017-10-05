@@ -22,7 +22,7 @@
         <activity
             android:name=".mantenedor.SearchPet"
             android:parentActivityName=".mantenedor.FirstScreen" />
-        <activity android:name=".mantenedor.AddEspecie"
+        <activity android:name=".mantenedor.AddRaza"
             android:parentActivityName=".mantenedor.FirstScreen"></activity>
     </application>
 
