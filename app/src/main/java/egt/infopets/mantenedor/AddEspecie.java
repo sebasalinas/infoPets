@@ -94,7 +94,7 @@ public class AddEspecie extends AppCompatActivity {
 
             auxLista = (Especie) iter.next();
 
-            listaString[pos] = auxLista.getId() +" "+ auxLista.getSpecie();
+            listaString[pos] = auxLista.getId() +"         "+ auxLista.getSpecie()+"         "+auxLista.isEstado();
             pos++;
         }
 
@@ -102,6 +102,7 @@ public class AddEspecie extends AppCompatActivity {
 
         auxListView.setAdapter(new ArrayAdapter(this,android.R.layout.simple_list_item_1,listaString));
     }
+
     public void mensaje(String mensaje) {
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
     }

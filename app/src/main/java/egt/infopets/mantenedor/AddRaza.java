@@ -28,7 +28,7 @@ public class AddRaza extends AppCompatActivity {
     Spinner spEspecie;
     List<Especie> auxLista;
     String[] listaString;
-
+    Boolean var =false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,6 @@ public class AddRaza extends AppCompatActivity {
         ListView auxListView = (ListView) findViewById(R.id.lvMostrarRaza);
 
         mostrar();
-
         MantenedorEspecie auxMantenedor = new MantenedorEspecie(this);
 
         spEspecie = (Spinner) findViewById(R.id.spRazaEspecie);
@@ -47,6 +46,8 @@ public class AddRaza extends AppCompatActivity {
 
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listaString);
         spEspecie.setAdapter(adaptador);
+
+
     }
 
     public void mostrar() {
@@ -64,8 +65,11 @@ public class AddRaza extends AppCompatActivity {
             Raza auxLista = new Raza();
 
             auxLista = (Raza) iter.next();
+            if (auxLista.getDescripcion()==""){
+                break;
+            }
 
-            listaString[pos] = auxLista.getId() + " " + auxLista.getDescripcion();
+            listaString[pos] = auxLista.getId() + "         " + auxLista.getDescripcion()+"         "+auxLista.isEstado();
             pos++;
         }
 
@@ -74,22 +78,23 @@ public class AddRaza extends AppCompatActivity {
         auxListView.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaString));
     }
 
-    private void consultaListaEspecies() {
+    private boolean consultaListaEspecies() {
         MantenedorEspecie auxMantenedor = new MantenedorEspecie(this);
-
+        Boolean var = false;
         auxLista =  auxMantenedor.getAll();
 
         listaString = new String[auxLista.size()];
 
-        for(int i=0;i<auxLista.size();i++)
-            listaString[i]=auxLista.get(i).getSpecie();
+        for(int i=0;i<auxLista.size();i++) {
+            listaString[i] = auxLista.get(i).getSpecie();
+            if (auxLista.get(0).getSpecie() == "") {
+                var = true;
+            } else {
+                var = true;
+            }
+        }
+        return var;
     }
-
-    public void goToFirstScreen(View view) {
-        Intent intent = new Intent(this, FirstScreen.class);
-        startActivity(intent);
-    }
-
 
     public void addRaza(View view){
         try {
@@ -101,41 +106,37 @@ public class AddRaza extends AppCompatActivity {
             Raza newRaza = new Raza();
             MantenedorRaza auxMantenedor = new MantenedorRaza(this);
 
-
             String raza = auxRaza.getText().toString();
-            if (!auxRaza.getText().toString().isEmpty())
-            {
-                if (auxActivo.isChecked())
-                {
-                    newRaza.setDescripcion(auxRaza.getText().toString());
-                    newRaza.setEspecie(auxSpinner.getSelectedItemPosition());
-                    newRaza.setEstado(true);
-                    auxMantenedor.insert(newRaza);
-                    this.mensaje("Especie: "+ raza +" || Esado: Activo");
-                    ((EditText) findViewById(R.id.txtNewRaza)).setText("");
-                } else if (auxInactivo.isChecked())
-                {
-                    newRaza.setDescripcion(auxRaza.getText().toString());
-                    newRaza.setEspecie((Integer) auxSpinner.getSelectedItem());
-                    newRaza.setEstado(false);
-                    auxMantenedor.insert(newRaza);
-                    this.mensaje("Especie: "+ raza +" || Esado: Inactivo");
-                }
-                else
-                {
-                    mensaje("Debe seleccionar el estado de la especie");
-                }
+            if (!consultaListaEspecies()){
+                mensaje("Debe haber una raza previamente cargada");
             }
-            else
-            {
-                this.mensaje("Debes Ingresar una nueva especie");
+            else {
+                if (!auxRaza.getText().toString().isEmpty()) {
+                    if (auxActivo.isChecked()) {
+                        newRaza.setDescripcion(auxRaza.getText().toString());
+                        newRaza.setEspecie(auxSpinner.getSelectedItemPosition());
+                        newRaza.setEstado(true);
+                        auxMantenedor.insert(newRaza);
+                        this.mensaje("Especie: " + raza + " || Esado: Activo");
+                        ((EditText) findViewById(R.id.txtNewRaza)).setText("");
+                    } else if (auxInactivo.isChecked()) {
+                        newRaza.setDescripcion(auxRaza.getText().toString());
+                        newRaza.setEspecie((Integer) auxSpinner.getSelectedItem());
+                        newRaza.setEstado(false);
+                        auxMantenedor.insert(newRaza);
+                        this.mensaje("Especie: " + raza + " || Esado: Inactivo");
+                    } else {
+                        mensaje("Debe seleccionar el estado de la especie");
+                    }
+                } else {
+                    this.mensaje("Debes Ingresar una nueva especie");
+                }
             }
             mostrar();
         } catch (Exception ex) {
             this.mensaje("Error al ejecutar. codigo:"+ex);
         }
     }
-
 
     public void mensaje(String mensaje) {
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
