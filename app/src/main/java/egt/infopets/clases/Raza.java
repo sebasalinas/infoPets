@@ -20,6 +20,7 @@ public class Raza implements Serializable {
 
         this.id = id;
         this.descripcion = descripcion;
+        this.setEspecie(especie);
         this.estado = estado;
     }
 
@@ -47,4 +48,11 @@ public class Raza implements Serializable {
         this.estado = estado;
     }
 
+    public Especie getEspecie() {
+        return especie;
+    }
+
+    public void setEspecie(Especie especie) {
+        this.especie = especie;
+    }
 }

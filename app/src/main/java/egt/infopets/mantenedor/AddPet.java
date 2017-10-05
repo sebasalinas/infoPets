@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.Iterator;
 import java.util.List;
 
 import egt.infopets.R;
@@ -28,7 +27,7 @@ public class AddPet extends AppCompatActivity {
 
         MantenedorEspecie auxMantenedor = new MantenedorEspecie(this);
 
-        spEspecie = (Spinner) findViewById(R.id.spEspecie);
+        spEspecie = (Spinner) findViewById(R.id.spRazaEspecie);
 
         consultaListaEspecies();
 
@@ -43,21 +42,8 @@ public class AddPet extends AppCompatActivity {
 
         listaString = new String[auxLista.size()];
 
-        Iterator iter = auxLista.iterator();
-        int pos = 0;
-
-        while (iter.hasNext()){
-            Especie auxEspecie = new Especie();
-
-            auxEspecie = (Especie) iter.next();
-
-            listaString[pos] = auxEspecie.getSpecie();
-
-            auxLista.add(auxEspecie);
-
-            pos++;;
-
-        }
+        for(int i=0;i<auxLista.size();i++)
+            listaString[i]=auxLista.get(i).getSpecie();
     }
 
     public void backToFirstScreen(View view){

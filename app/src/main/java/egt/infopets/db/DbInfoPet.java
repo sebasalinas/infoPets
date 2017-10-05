@@ -66,7 +66,7 @@ public class DbInfoPet extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TABLA_ESPECIE);
-       // db.execSQL(TABLA_RAZA);
+        db.execSQL(TABLA_RAZA);
         //db.execSQL(TABLA_DUENIO);
         //db.execSQL(TABLA_VISITAS);
         //db.execSQL(TABLA_MASCOTA);

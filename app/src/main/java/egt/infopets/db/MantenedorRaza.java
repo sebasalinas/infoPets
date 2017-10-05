@@ -2,10 +2,12 @@ package egt.infopets.db;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 
 import java.util.ArrayList;
 
+import egt.infopets.clases.Especie;
 import egt.infopets.clases.Raza;
 
 /**
@@ -23,10 +25,10 @@ public class MantenedorRaza {
         this.context = context;
         tabla = "raza";
         columnas = new ArrayList<String>();
-        columnas.add("ID");
-        columnas.add("Descipcion");
-        columnas.add("Especie");
-        columnas.add("Estado");
+        columnas.add("id_Raza");
+        columnas.add("descipcion");
+        columnas.add("id_Especie");
+        columnas.add("estado");
     }
 
     public void insert(Raza raza) {
@@ -43,8 +45,8 @@ public class MantenedorRaza {
         ArrayList<Raza> razas = new ArrayList<Raza>();
         if (resultado.moveToFirst()) {
             do {
-                //Raza raza = this.setRaza(resultado);
-                //razas.add(raza);
+                Raza raza = this.setRaza(resultado);
+                razas.add(raza);
             } while (resultado.moveToNext());
         }
         conector.close();
@@ -53,9 +55,10 @@ public class MantenedorRaza {
 
     private ArrayList<String> valores(Raza raza){
         ArrayList<String> valores = new ArrayList<String>();
-        //valores.add(raza.getId());
+        ArrayList<String> razas = new ArrayList<String>();
+        valores.add(raza.getDescripcion());
+        valores.add(raza.getEspecie());
         valores.add(Boolean.toString(raza.isEstado()));
-        //valores.add(raza.getSpecie());
         return valores;
     }
 
@@ -65,7 +68,7 @@ public class MantenedorRaza {
         Cursor resultado = this.conector.select(query);
         Raza raza = new Raza();
         if (resultado.moveToFirst()) {
-            //raza = this.setRaza(resultado);
+            raza = this.setRaza(resultado);
         }
         conector.close();
         return raza;
@@ -86,12 +89,12 @@ public class MantenedorRaza {
         conector.close();
     }
 
-    private Raza setRaza(Raza resultado){
+    private Raza setRaza(Cursor resultado){
         Raza raza = new Raza();
-        //raza.setDescripcion(resultado.getString(1));
-        //raza.setEstado(Boolean.valueOf(resultado.getDescripcion()));
-        //raza.setEstado(Boolean.valueOf(resultado.getString(2)));
-       // raza.setDescripcion(resultado.getString(2));
+        raza.setId(resultado.getInt(0));
+        raza.setDescripcion(resultado.getString(1));
+        raza.setEspecie((null));
+        raza.setEstado(Boolean.valueOf(resultado.getString(3)));
         return raza;
     }
 }

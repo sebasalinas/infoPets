@@ -3,7 +3,6 @@ package egt.infopets.mantenedor;
 
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,13 +12,13 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import egt.infopets.R;
 import egt.infopets.clases.Especie;
+import egt.infopets.clases.Raza;
 import egt.infopets.db.MantenedorEspecie;
+import egt.infopets.db.MantenedorRaza;
 
 public class AddRaza extends AppCompatActivity {
 
@@ -35,7 +34,7 @@ public class AddRaza extends AppCompatActivity {
 
         MantenedorEspecie auxMantenedor = new MantenedorEspecie(this);
 
-        spEspecie = (Spinner) findViewById(R.id.spEspecie);
+        spEspecie = (Spinner) findViewById(R.id.spRazaEspecie);
 
         consultaListaEspecies();
 
@@ -53,23 +52,6 @@ public class AddRaza extends AppCompatActivity {
 
         for(int i=0;i<auxLista.size();i++)
             listaString[i]=auxLista.get(i).getSpecie();
-        /*
-        Iterator iter = auxLista.iterator();
-
-        int pos = 0;
-
-        while (iter.hasNext()){
-
-                Especie auxEspecie = new Especie();
-
-                auxEspecie = (Especie) iter.next();
-
-                listaString[pos] = auxEspecie.getSpecie();
-
-                auxLista.add(auxEspecie);
-
-                pos++;
-        }*/
     }
 
     public void goToFirstScreen(View view) {
@@ -80,30 +62,34 @@ public class AddRaza extends AppCompatActivity {
 
     public void addRaza(View view){
         try {
-            EditText auxEspecie = (EditText) findViewById(R.id.txtNewEspecie);
+            Spinner auxSpinner = (Spinner) findViewById(R.id.spRazaEspecie);
+            EditText auxRaza = (EditText) findViewById(R.id.txtNewRaza);
             RadioButton auxActivo = (RadioButton) findViewById(R.id.rbActivo);
             RadioButton auxInactivo = (RadioButton) findViewById(R.id.rbInactivo);
 
-            Especie newEspecie = new Especie();
-            MantenedorEspecie auxMantenedor = new MantenedorEspecie(this);
+            Raza newRaza = new Raza();
+            MantenedorRaza auxMantenedor = new MantenedorRaza(this);
 
 
-            String especie = auxEspecie.getText().toString();
+            String raza = auxRaza.getText().toString();
 
-            if (!auxEspecie.getText().toString().isEmpty())
+            if (!auxRaza.getText().toString().isEmpty())
             {
                 if (auxActivo.isChecked())
                 {
-                    newEspecie.setEstado(true);
-                    newEspecie.setSpecie(auxEspecie.getText().toString());
-                    auxMantenedor.insert(newEspecie);
-                    this.mensaje("Especie: "+ especie +" con esado: Activo");
+                    newRaza.setDescripcion(auxRaza.getText().toString());
+                    newRaza.setEspecie((Especie) auxSpinner.getSelectedItem());
+                    newRaza.setEstado(true);
+                    auxMantenedor.insert(newRaza);
+                    this.mensaje("Especie: "+ raza +" con esado: Activo");
                     ((EditText) findViewById(R.id.txtNewEspecie)).setText("");
                 } else if (auxInactivo.isChecked())
                 {
-                    newEspecie.setEstado(false);
-                    newEspecie.setSpecie(auxEspecie.getText().toString());
-                    this.mensaje("Especie: "+ auxEspecie +" con esado: Inactivo");
+                    newRaza.setDescripcion(auxRaza.getText().toString());
+                    newRaza.setEspecie((Especie) auxSpinner.getSelectedItem());
+                    newRaza.setEstado(false);
+                    auxMantenedor.insert(newRaza);
+                    this.mensaje("Especie: "+ raza +" con esado: Inactivo");
                 }
                 else
                 {
