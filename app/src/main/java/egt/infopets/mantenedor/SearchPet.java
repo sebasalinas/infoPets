@@ -1,7 +1,9 @@
 package egt.infopets.mantenedor;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ public class SearchPet extends AppCompatActivity {
         EditText auxCod = (EditText)findViewById(R.id.txtCod);
 
         auxCod.setText(getIntent().getStringExtra("varCod"));
+
         auxVar = auxCod.getText().toString();
 
         datosMascota();
@@ -31,25 +34,47 @@ public class SearchPet extends AppCompatActivity {
     public void datosDuenio(){
         MantenedorDuenio auxMantenedor = new MantenedorDuenio(this);
         EditText auxNombre = (EditText)findViewById(R.id.txtDNombre);
-        Duenio auxDuenio = auxMantenedor.getByCodigoTicket(auxVar2);
+        Duenio auxDuenio = auxMantenedor.getByCodigo(auxVar2);
 
         auxNombre.setText(auxDuenio.getNombre().toString());
     }
 
-    public void datosMascota(){
+    public void datosMascota() {
         MantenedorMascota auxMantenedor = new MantenedorMascota(this);
         Mascota auxMascota = auxMantenedor.getByCodigo(Integer.valueOf(auxVar));
 
-        EditText auxNombre =(EditText)findViewById(R.id.txtMNombre);
-        EditText auxEdad = (EditText)findViewById(R.id.txtFNacimiento);
-        EditText auxRut = (EditText)findViewById(R.id.txtDNombre);
+        EditText auxNombre = (EditText) findViewById(R.id.txtMNombre);
+        EditText auxEdad = (EditText) findViewById(R.id.txtFNacimiento);
+        EditText auxRut = (EditText) findViewById(R.id.txtDNombre);
+
 
         auxNombre.setText(auxMascota.getNombre().toString());
         auxEdad.setText(auxMascota.getfNacimiento().toString());
         auxRut.setText(String.valueOf(auxMascota.getRut()));
+
         auxVar2 = auxRut.getText().toString();
 
     }
+
+    public void envioMascota(View view) {
+
+        EditText auxCod =(EditText)findViewById(R.id.txtCod);
+        EditText auxNombre = (EditText)findViewById(R.id.txtMNombre);
+        EditText auxNombreD = (EditText)findViewById(R.id.txtDNombre);
+
+
+        Intent intent = new Intent(this,AddPet.class);
+
+        intent.putExtra("varId",auxCod.getText().toString());
+        intent.putExtra("varMascota",auxNombre.getText().toString());
+        intent.putExtra("varRut",auxVar2);
+        intent.putExtra("varDuenio",auxNombreD.getText().toString());
+
+        startActivity(intent);
+
+
+    }
+
     public void mensaje(String mensaje){
         Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
     }

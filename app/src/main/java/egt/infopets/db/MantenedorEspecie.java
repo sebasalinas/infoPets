@@ -57,7 +57,7 @@ public class MantenedorEspecie {
         return valores;
     }
 
-    public Especie getByCodigoTicket(String codEspecie) {
+    public Especie getByCodigo(String codEspecie) {
         this.conector = new DbInfoPet(this.context);
         String query = "SELECT * FROM " + tabla + " WHERE id = " + codEspecie;
         Cursor resultado = this.conector.select(query);

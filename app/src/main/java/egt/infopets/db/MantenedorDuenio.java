@@ -60,7 +60,7 @@ public class MantenedorDuenio {
         return valores;
     }
 
-    public Duenio getByCodigoTicket(String rut) {
+    public Duenio getByCodigo(String rut) {
         this.conector = new DbInfoPet(this.context);
         String query = "SELECT * FROM " + tabla + " WHERE rut = " + rut;
         Cursor resultado = this.conector.select(query);

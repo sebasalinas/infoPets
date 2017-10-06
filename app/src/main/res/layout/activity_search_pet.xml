@@ -7,8 +7,9 @@
     tools:context="egt.infopets.mantenedor.SearchPet">
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/ibtnImagen"
         android:layout_width="87dp"
+        android:onClick="envioMascota"
         android:layout_height="53dp"
         app:srcCompat="@android:drawable/ic_menu_report_image"
         android:layout_marginLeft="8dp"
@@ -26,10 +27,9 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:ems="10"
-        android:enabled="false"
         android:inputType="textPersonName"
         app:layout_constraintHorizontal_bias="0.777"
-        app:layout_constraintLeft_toRightOf="@+id/imageButton3"
+        app:layout_constraintLeft_toRightOf="@+id/ibtnImagen"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_editor_absoluteY="8dp" />
 

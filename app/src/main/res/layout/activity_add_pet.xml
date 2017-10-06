@@ -224,6 +224,7 @@
         android:layout_height="54dp"
         android:layout_marginRight="31dp"
         android:ems="10"
+        android:enabled="false"
         android:inputType="number"
         android:textAlignment="textEnd"
         app:layout_constraintRight_toRightOf="parent"

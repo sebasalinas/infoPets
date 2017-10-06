@@ -60,9 +60,9 @@ public class MantenedorRaza {
         return valores;
     }
 
-    public Raza getByCodigoTicket(String id) {
+    public Raza getByCodigo(int id) {
         this.conector = new DbInfoPet(this.context);
-        String query = "SELECT * FROM " + tabla + " WHERE id = " + id;
+        String query = "SELECT * FROM " + tabla + " WHERE id_Raza = " + id;
         Cursor resultado = this.conector.select(query);
         Raza raza = new Raza();
         if (resultado.moveToFirst()) {
@@ -75,14 +75,14 @@ public class MantenedorRaza {
     public void update(Raza raza) {
         this.conector = new DbInfoPet(this.context);
         ArrayList<String> valores = this.valores(raza);
-        String condicion = "id = " + raza.getId();
+        String condicion = "id_Raza = " + raza.getId();
         this.conector.update(tabla, columnas, valores, condicion);
         conector.close();
     }
 
-    public void delete(int codEspecie) {
+    public void delete(int cod) {
         this.conector = new DbInfoPet(this.context);
-        String condicion = "id = " + codEspecie;
+        String condicion = "id_Raza = " + cod;
         this.conector.delete(tabla, condicion);
         conector.close();
     }
