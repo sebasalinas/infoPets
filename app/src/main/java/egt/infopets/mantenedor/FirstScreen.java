@@ -50,15 +50,16 @@ public class FirstScreen extends AppCompatActivity {
         try {
 
             EditText auxId = (EditText) findViewById(R.id.txtId);
-
+            String auxVar = auxId.getText().toString();
             if (searchPetById(Integer.valueOf( auxId.getText().toString()))){
 
                 Intent intent = new Intent(this, SearchPet.class);
 
-                this.mensaje("La Mascota ha sido encontrada");
+                this.mensaje("La mascota ha sido encontrada");
 
-                intent.putExtra("varCod",auxId.getText().toString());
+                intent.putExtra("varCod",auxVar);
 
+                auxId.setText("");
                 startActivity(intent);
             }
             else {
@@ -74,7 +75,7 @@ public class FirstScreen extends AppCompatActivity {
         MantenedorMascota auxMantenedor =new MantenedorMascota(this);
         Mascota auxListaMascota = auxMantenedor.getByCodigo(id);
 
-        if (auxListaMascota.getId()==1){
+        if (auxListaMascota.getId()>0){
             return true;
         }
         else return false;
