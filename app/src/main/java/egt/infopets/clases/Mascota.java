@@ -1,7 +1,6 @@
 package egt.infopets.clases;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * Created by Soporte on 02-10-2017.
@@ -9,44 +8,46 @@ import java.util.ArrayList;
 
 public class Mascota implements Serializable{
 
-    private String id;
-    private Duenio mNombre;
+    private int id;
+    private String nombre;
+    private int rut;
     private String fNacimiento;
-    private Especie especie;
-    private Raza raza;
+    private int especie;
+    private int raza;
     private String sexo;
     private String color;
-    private ArrayList<Visitas> visita;
+    //private ArrayList<Visitas> visita;
 
     public Mascota() {
-        visita = new ArrayList<Visitas>();
+       // visita = new ArrayList<Visitas>();
     }
 
-    public Mascota(String id, Duenio mNombre, String fNacimiento, Especie especie, Raza raza, String sexo, String color) {
-        this.id = id;
-        this.mNombre = mNombre;
-        this.fNacimiento = fNacimiento;
-        this.especie = especie;
-        this.raza = raza;
-        this.sexo = sexo;
-        this.color = color;
-        visita = new ArrayList<Visitas>();
+    public Mascota(int id,String nombre,int rut, String fNacimiento, int especie, int raza, String sexo, String color) {
+        this.setId(id);
+        this.setNombre(nombre);
+        this.setRut(rut);
+        this.setfNacimiento(fNacimiento);
+        this.setEspecie(especie);
+        this.setRaza(raza);
+        this.setSexo(sexo);
+        this.setColor(color);
+        //visita = new ArrayList<Visitas>();
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Duenio getmNombre() {
-        return mNombre;
+    public int getRut() {
+        return rut;
     }
 
-    public void setmNombre(Duenio mNombre) {
-        this.mNombre = mNombre;
+    public void setRut(int rut) {
+        this.rut = rut;
     }
 
     public String getfNacimiento() {
@@ -57,19 +58,19 @@ public class Mascota implements Serializable{
         this.fNacimiento = fNacimiento;
     }
 
-    public Especie getEspecie() {
+    public int getEspecie() {
         return especie;
     }
 
-    public void setEspecie(Especie especie) {
+    public void setEspecie(int especie) {
         this.especie = especie;
     }
 
-    public Raza getRaza() {
+    public int getRaza() {
         return raza;
     }
 
-    public void setRaza(Raza raza) {
+    public void setRaza(int raza) {
         this.raza = raza;
     }
 
@@ -89,11 +90,19 @@ public class Mascota implements Serializable{
         this.color = color;
     }
 
-    public ArrayList<Visitas> getVisita() {
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /*public ArrayList<Visitas> getVisita() {
         return visita;
     }
 
     public void setVisita(ArrayList<Visitas> visita) {
         this.visita = visita;
-    }
+    }*/
 }

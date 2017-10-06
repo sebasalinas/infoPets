@@ -9,9 +9,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Iterator;
+import java.util.List;
+
 import egt.infopets.R;
 import egt.infopets.clases.Especie;
+import egt.infopets.clases.Mascota;
 import egt.infopets.db.DbInfoPet;
+import egt.infopets.db.MantenedorMascota;
 
 public class FirstScreen extends AppCompatActivity {
 
@@ -46,9 +51,7 @@ public class FirstScreen extends AppCompatActivity {
 
             EditText auxId = (EditText) findViewById(R.id.txtId);
 
-            String idAux = auxId.toString();
-
-            if (searchPetById(auxId.getText().toString())){
+            if (searchPetById(Integer.valueOf( auxId.getText().toString()))){
 
                 Intent intent = new Intent(this, SearchPet.class);
 
@@ -63,20 +66,19 @@ public class FirstScreen extends AppCompatActivity {
             }
         }
         catch (Exception ex){
-            this.mensaje("Codigo no encontrado "+ex);
+            this.mensaje("Codigo no encontrado ");
         }
     }
 
-    public boolean searchPetById(String id) {
+    public boolean searchPetById(int id) {
+        MantenedorMascota auxMantenedor =new MantenedorMascota(this);
+        Mascota auxListaMascota = auxMantenedor.getByCodigo(id);
 
-        this.conector = new DbInfoPet(this.context);
-        String query = "SELECT * FROM " + tabla + " WHERE id = " + id;
-        Cursor resultado = this.conector.select(query);
-        if (resultado.moveToFirst()){
-            this.mensaje("Paso");
+        if (auxListaMascota.getId()==1){
             return true;
         }
-        return false;
+        else return false;
+
     }
 
     public void mensaje(String mensaje){

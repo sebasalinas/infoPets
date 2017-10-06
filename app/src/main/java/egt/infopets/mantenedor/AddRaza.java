@@ -63,13 +63,18 @@ public class AddRaza extends AppCompatActivity {
 
         while (iter.hasNext()) {
             Raza auxLista = new Raza();
-
+            String auxVar = "";
             auxLista = (Raza) iter.next();
             if (auxLista.getDescripcion()==""){
                 break;
             }
-
-            listaString[pos] = auxLista.getId() + "         " + auxLista.getDescripcion()+"         "+auxLista.isEstado();
+            if (auxLista.isEstado()){
+                 auxVar = "Activo";
+            }
+            else {
+                 auxVar = "Inactivo";
+            }
+            listaString[pos] = auxLista.getId() + "         " + auxLista.getDescripcion()+"         "+ auxVar;
             pos++;
         }
 
@@ -121,7 +126,7 @@ public class AddRaza extends AppCompatActivity {
                         ((EditText) findViewById(R.id.txtNewRaza)).setText("");
                     } else if (auxInactivo.isChecked()) {
                         newRaza.setDescripcion(auxRaza.getText().toString());
-                        newRaza.setEspecie((Integer) auxSpinner.getSelectedItem());
+                        newRaza.setEspecie(auxSpinner.getSelectedItemPosition());
                         newRaza.setEstado(false);
                         auxMantenedor.insert(newRaza);
                         this.mensaje("Especie: " + raza + " || Esado: Inactivo");

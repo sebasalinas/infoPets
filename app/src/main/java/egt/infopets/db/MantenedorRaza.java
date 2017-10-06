@@ -54,7 +54,6 @@ public class MantenedorRaza {
 
     private ArrayList<String> valores(Raza raza){
         ArrayList<String> valores = new ArrayList<String>();
-        ArrayList<String> razas = new ArrayList<String>();
         valores.add(raza.getDescripcion());
         valores.add(Integer.toString(raza.getEspecie()));
         valores.add(Boolean.toString(raza.isEstado()));

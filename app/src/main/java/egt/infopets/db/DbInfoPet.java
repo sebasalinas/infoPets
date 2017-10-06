@@ -34,17 +34,13 @@ public class DbInfoPet extends SQLiteOpenHelper{
             "numero TEXT )";
     private static final String TABLA_MASCOTA = "CREATE TABLE mascota (" +
             "id_Mascota INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "nombre TEXT," +
             "rut TEXT," +
-            "mNombre TEXT, " +
             "fNacimiento TEXT, " +
             "especie TEXT, " +
             "raza TEXT, " +
             "sexo TEXT, " +
             "color TEXT," +
-            "diagnostico TEXT," +
-            "dNombre TEXT," +
-            "direccion TEXT," +
-            "numero TEXT," +
             "FOREIGN KEY (rut) REFERENCES duenio(rut))";
 
     private static final String TABLA_VISITAS = "CREATE TABLE Visitas (" +
@@ -67,9 +63,9 @@ public class DbInfoPet extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TABLA_ESPECIE);
         db.execSQL(TABLA_RAZA);
-        //db.execSQL(TABLA_DUENIO);
+        db.execSQL(TABLA_DUENIO);
+        db.execSQL(TABLA_MASCOTA);
         //db.execSQL(TABLA_VISITAS);
-        //db.execSQL(TABLA_MASCOTA);
     }
 
     @Override
@@ -77,8 +73,8 @@ public class DbInfoPet extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS "+ TABLA_ESPECIE);
         db.execSQL("DROP TABLE IF EXISTS "+ TABLA_RAZA);
         db.execSQL("DROP TABLE IF EXISTS "+ TABLA_DUENIO);
-        db.execSQL("DROP TABLE IF EXISTS "+ TABLA_VISITAS);
         db.execSQL("DROP TABLE IF EXISTS "+ TABLA_MASCOTA);
+        db.execSQL("DROP TABLE IF EXISTS "+ TABLA_VISITAS);
         onCreate(db);
     }
 
