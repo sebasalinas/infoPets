@@ -162,7 +162,7 @@ public class SearchPet extends AppCompatActivity {
 
             auxLista = (Visitas) iter.next();
 
-            listaString[pos] = auxLista.getCod() + " || " + auxLista.getFechaVisita()+ " || "+auxLista.getDescripcion()+" || "+auxLista.getMascota();
+            listaString[pos] = auxLista.getCod() + " || " + auxLista.getFechaVisita()+ " || "+auxLista.getDescripcion();
             pos++;
         }
 

@@ -31,6 +31,8 @@ public class FirstScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_screen);
+
+
     }
 
     public void goToAddPet(View view) {
@@ -82,6 +84,10 @@ public class FirstScreen extends AppCompatActivity {
             return true;
         }
         else return false;
+
+    }
+
+    public void touch() {
 
     }
 
