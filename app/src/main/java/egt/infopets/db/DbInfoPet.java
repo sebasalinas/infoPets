@@ -43,12 +43,12 @@ public class DbInfoPet extends SQLiteOpenHelper{
             "color TEXT," +
             "FOREIGN KEY (rut) REFERENCES duenio(rut))";
 
-    private static final String TABLA_VISITAS = "CREATE TABLE Visitas (" +
-            "cod INTEGER AUTOINCREMENT," +
+    private static final String TABLA_VISITAS = "CREATE TABLE visitas (" +
+            "cod_Visita INTEGER PRIMARY KEY AUTOINCREMENT," +
             "fVisita TEXT," +
-            "id INTEGER" +
-            "descripcion TEXT)," +
-            "FOREIGN KEY (id) REFERENCES Mascota(id))";
+            "id_Mascota INTEGER," +
+            "descripcion TEXT," +
+            "FOREIGN KEY (id_Mascota) REFERENCES mascota(id_Mascota))";
 
     private SQLiteDatabase db = null;
 
@@ -65,7 +65,7 @@ public class DbInfoPet extends SQLiteOpenHelper{
         db.execSQL(TABLA_RAZA);
         db.execSQL(TABLA_DUENIO);
         db.execSQL(TABLA_MASCOTA);
-        //db.execSQL(TABLA_VISITAS);
+        db.execSQL(TABLA_VISITAS);
     }
 
     @Override

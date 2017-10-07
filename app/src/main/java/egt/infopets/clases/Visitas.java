@@ -1,7 +1,6 @@
 package egt.infopets.clases;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by Soporte on 02-10-2017.
@@ -9,26 +8,26 @@ import java.util.Date;
 
 public class Visitas implements Serializable {
 
-    private String cod;
+    private int cod;
     private String descripcion;
-    private Date fechaVisita;
-    private Date fechaCreacion;
+    private String fechaVisita;
+    private int mascota;
 
     public Visitas() {
     }
 
-    public Visitas(String cod, String descripcion, Date fechaVisita, Date fechaCreacion) {
-        this.cod = cod;
-        this.descripcion = descripcion;
-        this.fechaVisita = fechaVisita;
-        this.fechaCreacion = fechaCreacion;
+    public Visitas(int cod, String descripcion, String fechaVisita, int mascota) {
+        this.setCod(cod);
+        this.setDescripcion(descripcion);
+        this.setFechaVisita(fechaVisita);
+        this.setMascota(mascota);
     }
 
-    public String getCod() {
+    public int getCod() {
         return cod;
     }
 
-    public void setCod(String cod) {
+    public void setCod(int cod) {
         this.cod = cod;
     }
 
@@ -40,19 +39,19 @@ public class Visitas implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Date getFechaVisita() {
+    public String getFechaVisita() {
         return fechaVisita;
     }
 
-    public void setFechaVisita(Date fechaVisita) {
+    public void setFechaVisita(String fechaVisita) {
         this.fechaVisita = fechaVisita;
     }
 
-    public Date getFechaCreacion() {
-        return fechaCreacion;
+    public int getMascota() {
+        return mascota;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public void setMascota(int mascota) {
+        this.mascota = mascota;
     }
 }

@@ -33,6 +33,7 @@ public class AddPet extends AppCompatActivity {
     String[] listaStringEspecie;
     String[] listaStringRaza;
     Spinner auxEspecie;
+
     //el codigo debe ser de  de maximo 8 digitos comenzando por el 1
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,7 @@ public class AddPet extends AppCompatActivity {
 
         spRaza.setAdapter(adaptadorRaza);
         //fin carga spinner
-        mostrar();
+        //mostrar();
 
     }
 
@@ -179,7 +180,7 @@ public class AddPet extends AppCompatActivity {
         Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
     }
 
-    public void mostrar(){
+    /*public void mostrar(){
         MantenedorMascota auxMantenedor =new MantenedorMascota(this);
 
         List<Mascota> auxListaMascota = auxMantenedor.getAll();
@@ -203,7 +204,7 @@ public class AddPet extends AppCompatActivity {
 
         auxListView.setAdapter(new ArrayAdapter(this,android.R.layout.simple_list_item_1,listaString));
     }
-
+*/
     public void cargaDatos(){
 
         EditText auxId = (EditText)findViewById(R.id.txtId);
@@ -228,9 +229,15 @@ public class AddPet extends AppCompatActivity {
         auxDireccion.setText(auxDuenio.getDireccion());
         auxNumero.setText(auxDuenio.getNumero());
 
-        Mascota auxMascota = auxMantMascota.getByCodigo(Integer.valueOf(auxId.getText().toString()));
+        Mascota auxMascota = new Mascota();
+        auxMascota = auxMantMascota.getByCodigo(Integer.valueOf(auxId.getText().toString()));
+
         auxFechaNacimiento.setText(auxMascota.getfNacimiento());
         auxColor.setText(auxMascota.getColor());
+
+        auxSpinnerEspecie.setSelection(Integer.valueOf(auxMascota.getEspecie()));
+        auxSpinnerRaza.setSelection(Integer.valueOf(auxMascota.getRaza()));
+
 
         String auxVar = auxMascota.getSexo().toString();
 
@@ -246,39 +253,54 @@ public class AddPet extends AppCompatActivity {
     public void updateMascota(){
 
         EditText auxId = (EditText)findViewById(R.id.txtId);
-        EditText auxNombreMascota = (EditText)findViewById(R.id.txtMNombre);
-        EditText auxFechaNacimiento = (EditText)findViewById(R.id.txtFNacimiento);
+        mensaje(auxId.getText().toString());
+        EditText auxNombreMascota = (EditText)findViewById(R.id.txtNombreMascota);
+        EditText auxFechaNacimiento = (EditText)findViewById(R.id.txtFechaNacimiento);
+        Spinner auxSpinnerEspecie = (Spinner)findViewById(R.id.spRazaEspecie);
         Spinner auxSpinnerRaza = (Spinner)findViewById(R.id.spRaza);
         RadioButton auxRbMacho = (RadioButton)findViewById(R.id.rbMacho);
         RadioButton auxRbHembra = (RadioButton)findViewById(R.id.rbHembra);
         EditText auxColor = (EditText)findViewById(R.id.txtColor);
         EditText auxRut = (EditText)findViewById(R.id.txtRut);
+        EditText auxNombreDuenio = (EditText)findViewById(R.id.txtNombreDuenio);
+        EditText auxNumero = (EditText)findViewById(R.id.txtNumero);
+        EditText auxDireccion= (EditText)findViewById(R.id.txtDireccion);
 
         MantenedorMascota auxMantenedor = new MantenedorMascota(this);
         Mascota newMascota = new Mascota();
+
+        MantenedorDuenio auxMan = new MantenedorDuenio(this);
+        Duenio newDuenio = new Duenio();
 
         newMascota.setId(Integer.valueOf(auxId.getText().toString()));
         newMascota.setNombre(auxNombreMascota.getText().toString());
         newMascota.setRut(Integer.valueOf(auxRut.getText().toString()));
         newMascota.setfNacimiento(auxFechaNacimiento.getText().toString());
-        newMascota.setEspecie(auxEspecie.getSelectedItemPosition());
+        newMascota.setEspecie(auxSpinnerEspecie.getSelectedItemPosition());
         newMascota.setRaza(auxSpinnerRaza.getSelectedItemPosition());
         newMascota.setColor(auxColor.getText().toString());
+        newDuenio.setRut(auxRut.getText().toString());
+        newDuenio.setNombre(auxNombreDuenio.getText().toString());
+        newDuenio.setDireccion(auxDireccion.getText().toString());
+        newDuenio.setNumero(auxNumero.getText().toString());
 
-        String mascota = auxNombreMascota.getText().toString();
+        auxMan.update(newDuenio);
+
+
         String rut = auxRut.getText().toString();
+        auxMantenedor.update(newMascota);
         try {
             if (auxRbMacho.isChecked()) {
                 newMascota.setSexo("Macho");
 
                 auxMantenedor.update(newMascota);
-
+                String mascota = auxNombreMascota.getText().toString();
                 this.mensaje("Mascota:" + mascota + "|| Dueño: " + rut);
             } else if (auxRbHembra.isChecked()) {
                 newMascota.setSexo("Hembra");
 
                 auxMantenedor.update(newMascota);
-
+                String mascota = auxNombreMascota.getText().toString();
                 this.mensaje("Mascota:" + mascota + "|| Dueño: " + rut);
             } else {
                 mensaje("Error al seleccionar el sexo");
@@ -288,15 +310,16 @@ public class AddPet extends AppCompatActivity {
             this.mensaje("Erro al intentar agregar "+ex);
         }
     }
+
     public void addMascota(View view) {
         if (validar()) {
             updateMascota();
-            mostrar();
+            //mostrar();
         }
         else {
             addDuenio();
             agregarMascota();
-            mostrar();
+           //mostrar();
         }
     }
 }
