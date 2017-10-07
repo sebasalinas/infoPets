@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -42,7 +43,7 @@ public class SearchPet extends AppCompatActivity {
         datosMascota();
         datosDuenio();
         mostrar();
-        Button mShowDialog = (Button) findViewById(R.id.btnAgregarVisita);
+        final Button mShowDialog = (Button) findViewById(R.id.btnAgregarVisita);
         mShowDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,6 +61,7 @@ public class SearchPet extends AppCompatActivity {
 
                         if (!mDescripcionVisita.getText().toString().isEmpty()){
                             cargaVisita(mDescripcionVisita.getText().toString());
+                            onBackPressed();
                         }else {
                             Toast.makeText(SearchPet.this,
                                     "Agrege la descripcion",
@@ -145,11 +147,11 @@ public class SearchPet extends AppCompatActivity {
     public void mostrar(){
         MantenedorVisitas auxMantenedor =new MantenedorVisitas(this);
 
-        int var =Integer.valueOf( auxVar );
-        List<Visitas> auxListaVisitas = auxMantenedor.getAll();
+        int var = Integer.valueOf( auxVar );
+
+        List<Visitas> auxListaVisitas = auxMantenedor.getByCodigo(var);
 
         String[] listaString = new String[auxListaVisitas.size()];
-
         Iterator iter = auxListaVisitas.iterator();
 
         int pos = 0;

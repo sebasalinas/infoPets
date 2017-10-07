@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,8 +16,10 @@ import java.util.List;
 import egt.infopets.R;
 import egt.infopets.clases.Especie;
 import egt.infopets.clases.Mascota;
+import egt.infopets.clases.Visitas;
 import egt.infopets.db.DbInfoPet;
 import egt.infopets.db.MantenedorMascota;
+import egt.infopets.db.MantenedorVisitas;
 
 public class FirstScreen extends AppCompatActivity {
 

@@ -2,6 +2,7 @@ package egt.infopets.db;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -51,19 +52,21 @@ public class MantenedorVisitas {
 
     private ArrayList<String> valores(Visitas visita){
         ArrayList<String> valores = new ArrayList<String>();
-        valores.add(visita.getDescripcion());
         valores.add(visita.getFechaVisita());
         valores.add(Integer.toString(visita.getMascota()));
+        valores.add(visita.getDescripcion());
         return valores;
     }
 
     public ArrayList<Visitas> getByCodigo(int id) {
         this.conector = new DbInfoPet(this.context);
         String query = "SELECT * FROM " + tabla + " WHERE id_Mascota = "+id;
+        Log.i("Query", query);
         Cursor resultado = this.conector.select(query);
         ArrayList<Visitas> visitas = new ArrayList<Visitas>();
         if (resultado.moveToFirst()) {
             do {
+                Log.i("Visitas", "OK");
                 Visitas visita = this.setVisita(resultado);
                 visitas.add(visita);
             } while (resultado.moveToNext());
@@ -91,8 +94,8 @@ public class MantenedorVisitas {
         Visitas visitas = new Visitas();
         visitas.setCod(resultado.getInt(0));
         visitas.setFechaVisita(resultado.getString(1));
-        visitas.setDescripcion(resultado.getString(2));
-        visitas.setMascota(resultado.getInt(3));
+        visitas.setMascota(resultado.getInt(2));
+        visitas.setDescripcion(resultado.getString(3));
         return visitas;
     }
 }
