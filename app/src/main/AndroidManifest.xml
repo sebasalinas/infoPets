@@ -13,19 +13,29 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"
+                    android:windowSoftInputMode="stateHidden" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".mantenedor.AddPet"
+        <activity  android:name=".mantenedor.AddPet"
+
+            android:windowSoftInputMode="stateHidden"
+
             android:parentActivityName=".mantenedor.FirstScreen" />
-        <activity
-            android:name=".mantenedor.AddEspecie"
+        <activity android:name=".mantenedor.AddEspecie"
+
+            android:windowSoftInputMode="stateHidden"
+
             android:parentActivityName=".mantenedor.FirstScreen" />
-        <activity
-            android:name=".mantenedor.SearchPet"
-            android:parentActivityName=".mantenedor.FirstScreen" />
+        <activity android:name=".mantenedor.SearchPet"
+
+            android:parentActivityName=".mantenedor.FirstScreen"
+
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".mantenedor.AddRaza"
-            android:parentActivityName=".mantenedor.FirstScreen"></activity>
+            android:parentActivityName=".mantenedor.FirstScreen"
+
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
     </application>
 </manifest>
