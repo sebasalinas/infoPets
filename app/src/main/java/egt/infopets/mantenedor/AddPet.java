@@ -253,7 +253,6 @@ public class AddPet extends AppCompatActivity {
     public void updateMascota(){
 
         EditText auxId = (EditText)findViewById(R.id.txtId);
-        mensaje(auxId.getText().toString());
         EditText auxNombreMascota = (EditText)findViewById(R.id.txtNombreMascota);
         EditText auxFechaNacimiento = (EditText)findViewById(R.id.txtFechaNacimiento);
         Spinner auxSpinnerEspecie = (Spinner)findViewById(R.id.spRazaEspecie);
