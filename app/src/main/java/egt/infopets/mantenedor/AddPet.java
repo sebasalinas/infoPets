@@ -241,7 +241,7 @@ public class AddPet extends AppCompatActivity {
 
         String auxVar = auxMascota.getSexo().toString();
 
-        if ( auxVar == "Macho" ){
+        if ( auxVar.equalsIgnoreCase("Macho")){
             auxRbMacho.setChecked(true);
         }
         else {

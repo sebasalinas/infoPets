@@ -87,10 +87,6 @@ public class FirstScreen extends AppCompatActivity {
 
     }
 
-    public void touch() {
-
-    }
-
     public void mensaje(String mensaje){
         Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
     }

@@ -1,14 +1,21 @@
 package egt.infopets.mantenedor;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ListViewCompat;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.util.Iterator;
@@ -30,7 +37,9 @@ public class AddEspecie extends AppCompatActivity {
 
         ListView auxListView = (ListView)findViewById(R.id.lvMostrar);
 
+
         mostrar();
+
     }
 
     public void addEspecie(View view) {
@@ -81,7 +90,7 @@ public class AddEspecie extends AppCompatActivity {
     public void mostrar(){
         MantenedorEspecie mantenedorEspecie =new MantenedorEspecie(this);
 
-        List<Especie> auxListaEspecie = mantenedorEspecie.getAll();
+        final List<Especie> auxListaEspecie = mantenedorEspecie.getAll();
 
         String[] listaString = new String[auxListaEspecie.size()];
 
@@ -94,16 +103,92 @@ public class AddEspecie extends AppCompatActivity {
 
             auxLista = (Especie) iter.next();
 
-            listaString[pos] = auxLista.getId() +"         "+ auxLista.getSpecie()+"         "+auxLista.isEstado();
+            listaString[pos] = auxLista.getSpecie();
             pos++;
         }
 
-        ListView auxListView = (ListView)findViewById(R.id.lvMostrar);
+        final ListView auxListView = (ListView)findViewById(R.id.lvMostrar);
 
         auxListView.setAdapter(new ArrayAdapter(this,android.R.layout.simple_list_item_1,listaString));
+
+        auxListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                parent.getAdapter().toString();
+
+                String itemValue    = (String)   auxListView.getItemAtPosition(position);
+
+                AlertDialog.Builder mBuider = new AlertDialog.Builder(AddEspecie.this);
+                final View mView = getLayoutInflater().inflate(R.layout.dialog_especie,null);
+                final EditText mCod = (EditText) mView.findViewById(R.id.txtDialogCodigo);
+                final EditText mEspecie = (EditText) mView.findViewById(R.id.txtDialogEspecie);
+                final RadioButton mRMacho = (RadioButton) mView.findViewById(R.id.DialogActivo);
+                final RadioButton mRHembra = (RadioButton) mView.findViewById(R.id.DialogInactivo);
+                ImageButton mButtonEdit = (ImageButton) mView.findViewById(R.id.btnDialogoEdit);
+                ImageButton mButtonDelete = (ImageButton) mView.findViewById(R.id.btnDialogoDelete);
+                mEspecie.setText(itemValue);
+
+                mButtonEdit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (!mEspecie.getText().toString().isEmpty()){
+                            if (mRHembra.isChecked()){
+                                updateEspecie(position,mEspecie.getText().toString(),mRHembra.getText().toString());
+                            }
+                            else if(mRMacho.isChecked()){
+                                updateEspecie(position+1,mEspecie.getText().toString(),mRMacho.getText().toString());
+                            }
+                            else{
+                               mensaje("Debe seleccionar un estado");
+                            }
+                        }else {
+                           mensaje("Identifique Especie");
+                        }
+                    }
+                });
+
+                mButtonDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        if (!mEspecie.getText().toString().isEmpty()){
+                            mensaje("entro");
+
+                        }else {
+                            Toast.makeText(AddEspecie.this,
+                                    "Agrege la descripcion",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                mBuider.setView(mView);
+                AlertDialog dialog = mBuider.create();
+                dialog.show();
+            }
+        });
+    }
+
+    private void updateEspecie(int cod, String especie,String radio) {
+        MantenedorEspecie auxMantenedor = new MantenedorEspecie(this);
+        Especie auxEspecie = new Especie();
+
+        auxEspecie.setId(Integer.valueOf(cod));
+        auxEspecie.setSpecie(especie);
+        if (radio.equalsIgnoreCase("Activo")){
+            auxEspecie.setEstado(true);
+        }
+        else if (radio.equalsIgnoreCase("Inactivo")){
+            auxEspecie.setEstado(false);
+        }
+
+        auxMantenedor.update(auxEspecie);
+        mensaje("Nombre Mascota Actualizado");
+        mostrar();
     }
 
     public void mensaje(String mensaje) {
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
     }
+
+
 }

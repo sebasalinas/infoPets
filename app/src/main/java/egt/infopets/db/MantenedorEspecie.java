@@ -72,14 +72,14 @@ public class MantenedorEspecie {
     public void update(Especie especie) {
         this.conector = new DbInfoPet(this.context);
         ArrayList<String> valores = this.valores(especie);
-        String condicion = "id = " + especie.getId();
+        String condicion = "id_Especie = " + especie.getId();
         this.conector.update(tabla, columnas, valores, condicion);
         conector.close();
     }
 
     public void delete(int codEspecie) {
         this.conector = new DbInfoPet(this.context);
-        String condicion = "id = " + codEspecie;
+        String condicion = "id_Especie = " + codEspecie;
         this.conector.delete(tabla, condicion);
         conector.close();
     }
