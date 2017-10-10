@@ -8,10 +8,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -166,9 +169,71 @@ public class SearchPet extends AppCompatActivity {
             pos++;
         }
 
-        ListView auxListView = (ListView)findViewById(R.id.lvMedicamentos);
+        final ListView auxListView = (ListView)findViewById(R.id.lvMedicamentos);
 
         auxListView.setAdapter(new ArrayAdapter(this,android.R.layout.simple_list_item_1,listaString));
+
+        auxListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                parent.getAdapter().toString();
+
+                String itemValue    = (String)   auxListView.getItemAtPosition(position);
+
+                AlertDialog.Builder mBuider = new AlertDialog.Builder(SearchPet.this);
+                final View mView = getLayoutInflater().inflate(R.layout.dialog,null);
+                final EditText mCodVisita = (EditText)mView.findViewById(R.id.txtCodVisita);
+                final EditText mDescripcionVisita = (EditText)mView.findViewById(R.id.txtDescripcionVisita);
+                final EditText mCod = (EditText)mView.findViewById(R.id.txtVisitaId);
+                final ImageButton mEdit = (ImageButton) mView.findViewById(R.id.ibtnEdit);
+                final ImageButton mEliminar = (ImageButton) mView.findViewById(R.id.ibtnEliminar);
+                final Button mAdd = (Button) mView.findViewById(R.id.btnAgregarVisita);
+
+                mDescripcionVisita.setText(itemValue);
+
+                mEdit.setVisibility(View.VISIBLE);
+                mEliminar.setVisibility(View.VISIBLE);
+                mAdd.setVisibility(View.GONE);
+
+                mEdit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        if (!mDescripcionVisita.getText().toString().isEmpty()){
+                            /*if (mRHembra.isChecked()){
+                                updateEspecie(auxListaEspecie.get(position).getId(),mEspecie.getText().toString(),mRHembra.getText().toString());
+                            }
+                            else if(mRMacho.isChecked()){
+                                updateEspecie(auxListaEspecie.get(position).getId(),mEspecie.getText().toString(),mRMacho.getText().toString());
+                            }
+                            else{
+                                mensaje("Debe seleccionar un estado");
+                            }*/
+                        }else {
+                            mensaje("Identifique Especie");
+                        }
+                    }
+                });
+
+                mEliminar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        if (!mDescripcionVisita.getText().toString().isEmpty()){
+                            //deleteEspecie((auxListaEspecie.get(position).getId()));
+                            mensaje("Mascota eliminada");
+
+                        }else {
+                            mensaje("Debe especificar el nombre de la mascota");
+                        }
+                    }
+                });
+                mBuider.setView(mView);
+                AlertDialog dialog = mBuider.create();
+                dialog.show();
+                mostrar();
+            }
+        });
     }
 
     public void mensaje(String mensaje){

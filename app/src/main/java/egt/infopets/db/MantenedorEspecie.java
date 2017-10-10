@@ -3,6 +3,7 @@ package egt.infopets.db;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ public class MantenedorEspecie {
         tabla = "especie";
         columnas = new ArrayList<String>();
         columnas.add("estado");
-        columnas.add("especie");
+        columnas.add("specie");
     }
 
     public void insert(Especie especie) {

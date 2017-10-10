@@ -313,12 +313,11 @@ public class AddPet extends AppCompatActivity {
     public void addMascota(View view) {
         if (validar()) {
             updateMascota();
-            //mostrar();
+            finish();
         }
         else {
             addDuenio();
             agregarMascota();
-           //mostrar();
         }
     }
 }

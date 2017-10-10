@@ -20,7 +20,7 @@ public class DbInfoPet extends SQLiteOpenHelper{
     private static final String TABLA_ESPECIE = "CREATE TABLE especie (" +
             "id_Especie INTEGER PRIMARY KEY AUTOINCREMENT," +
             "estado TEXT," +
-            "especie TEXT UNIQUE)";
+            "specie TEXT UNIQUE)";
     private static final String TABLA_RAZA  = "CREATE TABLE raza (" +
             "id_Raza INTEGER PRIMARY KEY AUTOINCREMENT," +
             "descripcion TEXT UNIQUE," +

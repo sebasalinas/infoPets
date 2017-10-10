@@ -30,6 +30,7 @@ import egt.infopets.db.MantenedorEspecie;
  */
 
 public class AddEspecie extends AppCompatActivity {
+    int var = 0;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +89,7 @@ public class AddEspecie extends AppCompatActivity {
     }
 
     public void mostrar(){
-        MantenedorEspecie mantenedorEspecie =new MantenedorEspecie(this);
+        final MantenedorEspecie mantenedorEspecie =new MantenedorEspecie(this);
 
         final List<Especie> auxListaEspecie = mantenedorEspecie.getAll();
 
@@ -133,10 +134,10 @@ public class AddEspecie extends AppCompatActivity {
                     public void onClick(View view) {
                         if (!mEspecie.getText().toString().isEmpty()){
                             if (mRHembra.isChecked()){
-                                updateEspecie(position,mEspecie.getText().toString(),mRHembra.getText().toString());
+                                updateEspecie(auxListaEspecie.get(position).getId(),mEspecie.getText().toString(),mRHembra.getText().toString());
                             }
                             else if(mRMacho.isChecked()){
-                                updateEspecie(position+1,mEspecie.getText().toString(),mRMacho.getText().toString());
+                                updateEspecie(auxListaEspecie.get(position).getId(),mEspecie.getText().toString(),mRMacho.getText().toString());
                             }
                             else{
                                mensaje("Debe seleccionar un estado");
@@ -152,27 +153,35 @@ public class AddEspecie extends AppCompatActivity {
                     public void onClick(View view) {
 
                         if (!mEspecie.getText().toString().isEmpty()){
-                            mensaje("entro");
+                            deleteEspecie((auxListaEspecie.get(position).getId()));
+                            mensaje("Mascota eliminada");
 
                         }else {
-                            Toast.makeText(AddEspecie.this,
-                                    "Agrege la descripcion",
-                                    Toast.LENGTH_SHORT).show();
+                            mensaje("Debe especificar el nombre de la mascota");
                         }
                     }
                 });
                 mBuider.setView(mView);
                 AlertDialog dialog = mBuider.create();
                 dialog.show();
+                mostrar();
             }
         });
+    }
+
+    private void deleteEspecie(int id) {
+        MantenedorEspecie auxMantenedor = new MantenedorEspecie(this);
+
+        auxMantenedor.delete(id);
+        mostrar();
     }
 
     private void updateEspecie(int cod, String especie,String radio) {
         MantenedorEspecie auxMantenedor = new MantenedorEspecie(this);
         Especie auxEspecie = new Especie();
 
-        auxEspecie.setId(Integer.valueOf(cod));
+
+        auxEspecie.setId(cod);
         auxEspecie.setSpecie(especie);
         if (radio.equalsIgnoreCase("Activo")){
             auxEspecie.setEstado(true);
