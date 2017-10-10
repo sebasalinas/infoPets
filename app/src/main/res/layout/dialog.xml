@@ -14,21 +14,28 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:gravity="center"
         android:visibility="gone"
         tools:layout_editor_absoluteY="0dp"
         tools:layout_editor_absoluteX="8dp" />
 
     <EditText
         android:id="@+id/txtDescripcionVisita"
-        android:layout_width="366dp"
-        android:layout_height="151dp"
+        android:layout_width="313dp"
+        android:layout_height="72dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Descripcion"
-        android:inputType="text"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        tools:layout_editor_absoluteY="10dp"
-        tools:layout_editor_absoluteX="8dp" />
+        android:gravity="center"
+        android:inputType="textCapCharacters|textCapWords|textCapSentences"
+        app:layout_constraintTop_toBottomOf="@+id/txtDialogMg"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.0" />
 
     <Button
         android:id="@+id/btnAgregarVisita"
@@ -39,7 +46,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/txtDescripcionVisita" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDescripcionVisita"
+        app:layout_constraintHorizontal_bias="0.405" />
 
     <ImageButton
         android:id="@+id/ibtnEliminar"
@@ -72,4 +80,50 @@
         app:srcCompat="@android:drawable/ic_menu_edit"
         android:layout_marginTop="0dp"
         app:layout_constraintTop_toBottomOf="@+id/txtDescripcionVisita" />
+
+    <EditText
+        android:id="@+id/txtDialogMotivo"
+        android:layout_width="309dp"
+        android:layout_height="44dp"
+        android:ems="10"
+        android:hint="Motivo Visita"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <EditText
+        android:id="@+id/txtDialogMg"
+        android:layout_width="93dp"
+        android:layout_height="43dp"
+        android:ems="10"
+        android:hint="mg"
+        android:inputType="textPersonName"
+        android:gravity="center"
+        app:layout_constraintLeft_toRightOf="@+id/txtDialogMedicamento"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.063"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/txtDialogMotivo"
+        tools:layout_editor_absoluteX="224dp" />
+
+    <EditText
+        android:id="@+id/txtDialogMedicamento"
+        android:layout_width="200dp"
+        android:layout_height="43dp"
+        android:layout_marginLeft="8dp"
+        android:gravity="center"
+        android:layout_marginTop="0dp"
+        android:ems="10"
+        android:hint="Tipo Medicamento"
+        android:inputType="textPersonName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDialogMotivo" />
 </android.support.constraint.ConstraintLayout>

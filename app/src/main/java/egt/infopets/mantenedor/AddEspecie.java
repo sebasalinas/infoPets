@@ -38,7 +38,6 @@ public class AddEspecie extends AppCompatActivity {
 
         ListView auxListView = (ListView)findViewById(R.id.lvMostrar);
 
-
         mostrar();
 
     }
@@ -128,16 +127,20 @@ public class AddEspecie extends AppCompatActivity {
                 ImageButton mButtonEdit = (ImageButton) mView.findViewById(R.id.btnDialogoEdit);
                 ImageButton mButtonDelete = (ImageButton) mView.findViewById(R.id.btnDialogoDelete);
                 mEspecie.setText(itemValue);
-
+                mBuider.setView(mView);
+                final AlertDialog dialog = mBuider.create();
+                dialog.show();
                 mButtonEdit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         if (!mEspecie.getText().toString().isEmpty()){
                             if (mRHembra.isChecked()){
                                 updateEspecie(auxListaEspecie.get(position).getId(),mEspecie.getText().toString(),mRHembra.getText().toString());
+                                dialog.dismiss();
                             }
                             else if(mRMacho.isChecked()){
                                 updateEspecie(auxListaEspecie.get(position).getId(),mEspecie.getText().toString(),mRMacho.getText().toString());
+                                dialog.dismiss();
                             }
                             else{
                                mensaje("Debe seleccionar un estado");
@@ -161,9 +164,7 @@ public class AddEspecie extends AppCompatActivity {
                         }
                     }
                 });
-                mBuider.setView(mView);
-                AlertDialog dialog = mBuider.create();
-                dialog.show();
+
                 mostrar();
             }
         });

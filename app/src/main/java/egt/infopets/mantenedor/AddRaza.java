@@ -74,7 +74,7 @@ public class AddRaza extends AppCompatActivity {
             else {
                  auxVar = "Inactivo";
             }
-            listaString[pos] = auxLista.getId() + "         " + auxLista.getDescripcion()+"         "+ auxVar;
+            listaString[pos] = auxLista.getDescripcion();
             pos++;
         }
 

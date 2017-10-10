@@ -60,13 +60,12 @@ public class MantenedorVisitas {
 
     public ArrayList<Visitas> getByCodigo(int id) {
         this.conector = new DbInfoPet(this.context);
-        String query = "SELECT * FROM " + tabla + " WHERE id_Mascota = "+id;
+        String query = "SELECT * FROM " + tabla + " WHERE cod_Visita = "+id;
         Log.i("Query", query);
         Cursor resultado = this.conector.select(query);
         ArrayList<Visitas> visitas = new ArrayList<Visitas>();
         if (resultado.moveToFirst()) {
             do {
-                Log.i("Visitas", "OK");
                 Visitas visita = this.setVisita(resultado);
                 visitas.add(visita);
             } while (resultado.moveToNext());
@@ -78,14 +77,14 @@ public class MantenedorVisitas {
     public void update(Visitas visitas) {
         this.conector = new DbInfoPet(this.context);
         ArrayList<String> valores = this.valores(visitas);
-        String condicion = "id_Visita = " + visitas.getCod();
+        String condicion = "cod_Visita = " + visitas.getCod();
         this.conector.update(tabla, columnas, valores, condicion);
         conector.close();
     }
 
     public void delete(int cod) {
         this.conector = new DbInfoPet(this.context);
-        String condicion = "id_Visita = " + cod;
+        String condicion = "cod_Visita = " + cod;
         this.conector.delete(tabla, condicion);
         conector.close();
     }

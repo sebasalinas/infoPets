@@ -57,20 +57,21 @@ public class SearchPet extends AppCompatActivity {
                 final View mView = getLayoutInflater().inflate(R.layout.dialog,null);
                 final EditText mCodVisita = (EditText)mView.findViewById(R.id.txtCodVisita);
                 final EditText mDescripcionVisita = (EditText)mView.findViewById(R.id.txtDescripcionVisita);
+                final EditText mMotivio = (EditText)mView.findViewById(R.id.txtDialogMotivo);
+                final EditText mMedicamento = (EditText)mView.findViewById(R.id.txtDialogMedicamento);
+                final EditText mMg = (EditText)mView.findViewById(R.id.txtDialogMg);
                 final EditText mCod = (EditText)mView.findViewById(R.id.txtVisitaId);
+
                 Button mImageButton = (Button)mView.findViewById(R.id.btnAgregarVisita);
 
                 mImageButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
                         if (!mDescripcionVisita.getText().toString().isEmpty()){
                             cargaVisita(mDescripcionVisita.getText().toString());
 
                         }else {
-                            Toast.makeText(SearchPet.this,
-                                    "Agrege la descripcion",
-                                    Toast.LENGTH_SHORT).show();
+                            mensaje("Agrege Descripcion");
                         }
                     }
                 });
@@ -80,6 +81,7 @@ public class SearchPet extends AppCompatActivity {
             }
         });
     }
+
     private void cargaVisita(String descripcion) {
         MantenedorVisitas auxMantenedor = new MantenedorVisitas(this);
 
@@ -142,7 +144,7 @@ public class SearchPet extends AppCompatActivity {
         intent.putExtra("varMascota",auxNombre.getText().toString());
         intent.putExtra("varRut",auxVar2);
         intent.putExtra("varDuenio",auxNombreD.getText().toString());
-
+        finish();
         startActivity(intent);
 
 
@@ -153,7 +155,7 @@ public class SearchPet extends AppCompatActivity {
 
         int var = Integer.valueOf( auxVar );
 
-        List<Visitas> auxListaVisitas = auxMantenedor.getByCodigo(var);
+        final List<Visitas> auxListaVisitas = auxMantenedor.getByCodigo(var);
 
         String[] listaString = new String[auxListaVisitas.size()];
         Iterator iter = auxListaVisitas.iterator();
@@ -184,12 +186,20 @@ public class SearchPet extends AppCompatActivity {
                 final View mView = getLayoutInflater().inflate(R.layout.dialog,null);
                 final EditText mCodVisita = (EditText)mView.findViewById(R.id.txtCodVisita);
                 final EditText mDescripcionVisita = (EditText)mView.findViewById(R.id.txtDescripcionVisita);
+                final EditText mMotivio = (EditText)mView.findViewById(R.id.txtDialogMotivo);
+                final EditText mMedicamento = (EditText)mView.findViewById(R.id.txtDialogMedicamento);
+                final EditText mMg = (EditText)mView.findViewById(R.id.txtDialogMg);
                 final EditText mCod = (EditText)mView.findViewById(R.id.txtVisitaId);
                 final ImageButton mEdit = (ImageButton) mView.findViewById(R.id.ibtnEdit);
                 final ImageButton mEliminar = (ImageButton) mView.findViewById(R.id.ibtnEliminar);
                 final Button mAdd = (Button) mView.findViewById(R.id.btnAgregarVisita);
 
+                mMg.setVisibility(View.GONE);
+                mMedicamento.setVisibility(View.GONE);
+                mMotivio.setVisibility(View.GONE);
+
                 mDescripcionVisita.setText(itemValue);
+
 
                 mEdit.setVisibility(View.VISIBLE);
                 mEliminar.setVisibility(View.VISIBLE);
@@ -200,17 +210,9 @@ public class SearchPet extends AppCompatActivity {
                     public void onClick(View view) {
 
                         if (!mDescripcionVisita.getText().toString().isEmpty()){
-                            /*if (mRHembra.isChecked()){
-                                updateEspecie(auxListaEspecie.get(position).getId(),mEspecie.getText().toString(),mRHembra.getText().toString());
-                            }
-                            else if(mRMacho.isChecked()){
-                                updateEspecie(auxListaEspecie.get(position).getId(),mEspecie.getText().toString(),mRMacho.getText().toString());
-                            }
-                            else{
-                                mensaje("Debe seleccionar un estado");
-                            }*/
+                            updateVisita(mDescripcionVisita.getText().toString(),auxListaVisitas.get(position).getCod());
                         }else {
-                            mensaje("Identifique Especie");
+                            mensaje("Agregue descripcion de visita");
                         }
                     }
                 });
@@ -234,6 +236,18 @@ public class SearchPet extends AppCompatActivity {
                 mostrar();
             }
         });
+    }
+
+    private void updateVisita(String Descripcion,int Cod) {
+        MantenedorVisitas auxMantenedor = new MantenedorVisitas(this);
+        Visitas auxVisita = new Visitas();
+
+        auxVisita.setCod(Cod);
+        auxVisita.setDescripcion(Descripcion);
+
+        auxMantenedor.update(auxVisita);
+        mostrar();
+        mensaje("Se actualizo visita correctamente");
     }
 
     public void mensaje(String mensaje){
