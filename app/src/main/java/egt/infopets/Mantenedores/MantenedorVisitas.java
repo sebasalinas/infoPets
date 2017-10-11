@@ -1,4 +1,4 @@
-package egt.infopets.db;
+package egt.infopets.Mantenedores;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -6,7 +6,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import egt.infopets.clases.Visitas;
+import egt.infopets.Calses.Visitas;
 
 /**
  * Created by Administrador on 06-10-2017.

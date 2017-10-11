@@ -1,20 +1,16 @@
-package egt.infopets.mantenedor;
+package egt.infopets.Funciones;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -24,12 +20,12 @@ import java.util.List;
 import java.util.TimeZone;
 
 import egt.infopets.R;
-import egt.infopets.clases.Duenio;
-import egt.infopets.clases.Mascota;
-import egt.infopets.clases.Visitas;
-import egt.infopets.db.MantenedorDuenio;
-import egt.infopets.db.MantenedorMascota;
-import egt.infopets.db.MantenedorVisitas;
+import egt.infopets.Calses.Duenio;
+import egt.infopets.Calses.Mascota;
+import egt.infopets.Calses.Visitas;
+import egt.infopets.Mantenedores.MantenedorDuenio;
+import egt.infopets.Mantenedores.MantenedorMascota;
+import egt.infopets.Mantenedores.MantenedorVisitas;
 
 public class SearchPet extends AppCompatActivity {
     String auxVar = "";

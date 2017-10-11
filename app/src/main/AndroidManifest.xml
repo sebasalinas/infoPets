@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mantenedor.FirstScreen">
+        <activity android:name=".Funciones.FirstScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,20 +19,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".mantenedor.AddPet"
-            android:parentActivityName=".mantenedor.FirstScreen"
+            android:name=".Funciones.AddPet"
+            android:parentActivityName=".Funciones.FirstScreen"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".mantenedor.AddEspecie"
-            android:parentActivityName=".mantenedor.FirstScreen"
+            android:name=".Funciones.AddEspecie"
+            android:parentActivityName=".Funciones.FirstScreen"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".mantenedor.SearchPet"
-            android:parentActivityName=".mantenedor.FirstScreen"
+            android:name=".Funciones.SearchPet"
+            android:parentActivityName=".Funciones.FirstScreen"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".mantenedor.AddRaza"
-            android:parentActivityName=".mantenedor.FirstScreen"
+            android:name=".Funciones.AddRaza"
+            android:parentActivityName=".Funciones.FirstScreen"
             android:windowSoftInputMode="stateHidden">
         </activity>
     </application>

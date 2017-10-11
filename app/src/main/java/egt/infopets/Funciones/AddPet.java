@@ -1,4 +1,4 @@
-package egt.infopets.mantenedor;
+package egt.infopets.Funciones;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,34 +6,33 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import egt.infopets.R;
-import egt.infopets.clases.Duenio;
-import egt.infopets.clases.Especie;
-import egt.infopets.clases.Mascota;
-import egt.infopets.clases.Raza;
-import egt.infopets.db.MantenedorDuenio;
-import egt.infopets.db.MantenedorEspecie;
-import egt.infopets.db.MantenedorMascota;
-import egt.infopets.db.MantenedorRaza;
+import egt.infopets.Calses.Duenio;
+import egt.infopets.Calses.Especie;
+import egt.infopets.Calses.Mascota;
+import egt.infopets.Calses.Raza;
+import egt.infopets.Mantenedores.MantenedorDuenio;
+import egt.infopets.Mantenedores.MantenedorEspecie;
+import egt.infopets.Mantenedores.MantenedorMascota;
+import egt.infopets.Mantenedores.MantenedorRaza;
 
 public class AddPet extends AppCompatActivity {
 
     Spinner spEspecie;
-    //Spinner spRaza;
+    Spinner spRaza;
     List<Especie> auxListaEspecie;
     ArrayList<Raza> auxListaRaza;
     String[] listaStringEspecie;
     String[] listaStringRaza;
     Spinner auxEspecie;
+    String auxVarRut = "";
 
     //el codigo debe ser de  de maximo 8 digitos comenzando por el 1
     @Override
@@ -46,7 +45,6 @@ public class AddPet extends AppCompatActivity {
         EditText auxRut = (EditText)findViewById(R.id.txtRut);
         EditText auxNombreDuenio = (EditText)findViewById(R.id.txtNombreDuenio);
         ImageButton btnEdit = (ImageButton)findViewById(R.id.ibtnAdd_EditPet);
-
 
         if (getIntent().getStringExtra("varId")!=null){
             auxId.setText(getIntent().getStringExtra("varId"));
@@ -62,7 +60,7 @@ public class AddPet extends AppCompatActivity {
 
         //carga de los spinner
         spEspecie = (Spinner) findViewById(R.id.spRazaEspecie);
-        //spRaza = (Spinner) findViewById(R.id.spRaza);
+        spRaza = (Spinner) findViewById(R.id.spRaza);
 
         consultaListaEspecies();
 
@@ -74,7 +72,7 @@ public class AddPet extends AppCompatActivity {
 
         ArrayAdapter<CharSequence> adaptadorRaza = new ArrayAdapter(this,android.R.layout.simple_spinner_item,listaStringRaza);
 
-        //spRaza.setAdapter(adaptadorRaza);
+        spRaza.setAdapter(adaptadorRaza);
         //fin carga spinner
 
     }
@@ -122,6 +120,7 @@ public class AddPet extends AppCompatActivity {
 
     public boolean validar(){
         EditText auxId = (EditText)findViewById(R.id.txtId);
+
         boolean var = false;
         if (auxId.getText().toString().isEmpty()){
             var = false;
@@ -137,7 +136,7 @@ public class AddPet extends AppCompatActivity {
         EditText auxNombreMascota = (EditText)findViewById(R.id.txtNombreMascota);
         EditText auxFechaNacimiento = (EditText)findViewById(R.id.txtFechaNacimiento);
         auxEspecie = (Spinner)findViewById(R.id.spRazaEspecie);
-        //Spinner auxRaza = (Spinner)findViewById(R.id.spRaza);
+        Spinner auxRaza = (Spinner)findViewById(R.id.spRaza);
         RadioButton auxMacho = (RadioButton)findViewById(R.id.rbMacho);
         RadioButton auxHembra = (RadioButton)findViewById(R.id.rbHembra);
         EditText auxColor = (EditText)findViewById(R.id.txtColor);
@@ -156,7 +155,7 @@ public class AddPet extends AppCompatActivity {
             newMascota.setRut(Integer.valueOf(auxRut.getText().toString()));
             newMascota.setfNacimiento(auxFechaNacimiento.getText().toString());
             newMascota.setEspecie(auxEspecie.getSelectedItemPosition());
-            //newMascota.setRaza(auxRaza.getSelectedItemPosition());
+            newMascota.setRaza(auxRaza.getSelectedItemPosition());
             newMascota.setColor(auxColor.getText().toString());
 
             if (auxMacho.isChecked()){
@@ -199,7 +198,7 @@ public class AddPet extends AppCompatActivity {
         EditText auxNombreMascota = (EditText)findViewById(R.id.txtMNombre);
         EditText auxFechaNacimiento = (EditText)findViewById(R.id.txtFechaNacimiento);
         Spinner auxSpinnerEspecie = (Spinner)findViewById(R.id.spRazaEspecie);
-        //Spinner auxSpinnerRaza = (Spinner)findViewById(R.id.spRaza);
+        Spinner auxSpinnerRaza = (Spinner)findViewById(R.id.spRaza);
         RadioButton auxRbMacho = (RadioButton)findViewById(R.id.rbMacho);
         RadioButton auxRbHembra = (RadioButton)findViewById(R.id.rbHembra);
         EditText auxColor = (EditText)findViewById(R.id.txtColor);
@@ -226,7 +225,7 @@ public class AddPet extends AppCompatActivity {
         auxSpinnerEspecie.setSelection(auxMascota.getEspecie());
 
         auxSpinnerEspecie.setSelection(Integer.valueOf(auxMascota.getEspecie()));
-        //auxSpinnerRaza.setSelection(Integer.valueOf(auxMascota.getRaza()));
+        auxSpinnerRaza.setSelection(Integer.valueOf(auxMascota.getRaza()));
 
 
         String auxVar = auxMascota.getSexo().toString();
@@ -248,7 +247,7 @@ public class AddPet extends AppCompatActivity {
         EditText auxNombreMascota = (EditText)findViewById(R.id.txtNombreMascota);
         EditText auxFechaNacimiento = (EditText)findViewById(R.id.txtFechaNacimiento);
         Spinner auxSpinnerEspecie = (Spinner)findViewById(R.id.spRazaEspecie);
-        //Spinner auxSpinnerRaza = (Spinner)findViewById(R.id.spRaza);
+        Spinner auxSpinnerRaza = (Spinner)findViewById(R.id.spRaza);
         RadioButton auxRbMacho = (RadioButton)findViewById(R.id.rbMacho);
         RadioButton auxRbHembra = (RadioButton)findViewById(R.id.rbHembra);
         EditText auxColor = (EditText)findViewById(R.id.txtColor);
@@ -268,7 +267,7 @@ public class AddPet extends AppCompatActivity {
         newMascota.setRut(Integer.valueOf(auxRut.getText().toString()));
         newMascota.setfNacimiento(auxFechaNacimiento.getText().toString());
         newMascota.setEspecie(auxSpinnerEspecie.getSelectedItemPosition());
-        //newMascota.setRaza(auxSpinnerRaza.getSelectedItemPosition());
+        newMascota.setRaza(auxSpinnerRaza.getSelectedItemPosition());
         newMascota.setColor(auxColor.getText().toString());
         newDuenio.setRut(auxRut.getText().toString());
         newDuenio.setNombre(auxNombreDuenio.getText().toString());
@@ -302,15 +301,54 @@ public class AddPet extends AppCompatActivity {
         }
     }
 
+    private boolean validarDigitoVerificador(String rut){
+        boolean auxVar = false;
+        if(rut.length() > 1) {
+            String rutSinDigito = rut.substring(0, rut.length() - 2);
+            String[] rutSplit = rutSinDigito.split("");
+            int suma = 0;
+            int multiplicador = 2;
+            for(int i = rutSplit.length - 1; i > 0; i--){
+                suma += (Integer.parseInt(rutSplit[i]) * multiplicador);
+                if(multiplicador == 7)
+                    multiplicador = 2;
+                else
+                    ++multiplicador;
+            }
+            int resto = suma % 11;
+            int digitoNumero = 11 - resto;
+            String digito = String.valueOf(digitoNumero);
+
+            if(digitoNumero == 11) digito = "0";
+            if(digitoNumero == 10) digito = "K";
+
+            if(digito.equals(rut.substring(rut.length()-1)))
+                auxVar = true;
+
+        }
+        return auxVar;
+    }
+
     public void addMascota(View view) {
+        EditText auxRut = (EditText) findViewById(R.id.txtRut);
+        EditText auxNombre = (EditText)findViewById(R.id.txtNombreDuenio);
+        auxVarRut = auxRut.getText().toString();
+
+
         if (validar()) {
             updateMascota();
             finish();
         }
         else {
-            addDuenio();
-            agregarMascota();
-            finish();
+            if (validarDigitoVerificador(auxVarRut) && !auxNombre.getText().toString().isEmpty()){
+                addDuenio();
+                agregarMascota();
+                finish();
+            }
+            else {
+                mensaje("falta o erro de datos");
+            }
+
         }
     }
 }

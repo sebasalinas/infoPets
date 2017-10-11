@@ -1,12 +1,11 @@
-package egt.infopets.db;
+package egt.infopets.Mantenedores;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 
 import java.util.ArrayList;
 
-import egt.infopets.clases.Mascota;
+import egt.infopets.Calses.Mascota;
 
 /**
  * Created by Administrador on 05-10-2017.

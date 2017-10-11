@@ -1,11 +1,11 @@
-package egt.infopets.db;
+package egt.infopets.Mantenedores;
 
 import android.content.Context;
 import android.database.Cursor;
 
 import java.util.ArrayList;
 
-import egt.infopets.clases.Duenio;
+import egt.infopets.Calses.Duenio;
 
 /**
  * Created by Administrador on 05-10-2017.

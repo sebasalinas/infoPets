@@ -1,4 +1,4 @@
-package egt.infopets.db;
+package egt.infopets.Mantenedores;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class DbInfoPet extends SQLiteOpenHelper{
 
     private static final int VERSION_BASEDATOS = 1;
-    private static final String NOMBRE_BASEDATOS = "infoPets.db";
+    private static final String NOMBRE_BASEDATOS = "infoPets.Mantenedores";
     private static final String TABLA_ESPECIE = "CREATE TABLE especie (" +
             "id_Especie INTEGER PRIMARY KEY AUTOINCREMENT," +
             "estado TEXT," +

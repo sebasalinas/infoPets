@@ -1,29 +1,23 @@
-package egt.infopets.mantenedor;
+package egt.infopets.Funciones;
 
-import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ListViewCompat;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.util.Iterator;
 import java.util.List;
 
 import egt.infopets.R;
-import egt.infopets.clases.Especie;
-import egt.infopets.db.MantenedorEspecie;
+import egt.infopets.Calses.Especie;
+import egt.infopets.Mantenedores.MantenedorEspecie;
 
 /**
  * Created by cetecom on 05-10-2017.

@@ -1,12 +1,10 @@
-package egt.infopets.mantenedor;
+package egt.infopets.Funciones;
 
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -18,10 +16,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import egt.infopets.R;
-import egt.infopets.clases.Especie;
-import egt.infopets.clases.Raza;
-import egt.infopets.db.MantenedorEspecie;
-import egt.infopets.db.MantenedorRaza;
+import egt.infopets.Calses.Especie;
+import egt.infopets.Calses.Raza;
+import egt.infopets.Mantenedores.MantenedorEspecie;
+import egt.infopets.Mantenedores.MantenedorRaza;
 
 public class AddRaza extends AppCompatActivity {
 
