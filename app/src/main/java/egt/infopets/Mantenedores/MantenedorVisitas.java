@@ -6,7 +6,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import egt.infopets.Calses.Visitas;
+import egt.infopets.Clases.Visitas;
 
 /**
  * Created by Administrador on 06-10-2017.

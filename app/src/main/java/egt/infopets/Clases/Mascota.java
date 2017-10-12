@@ -1,4 +1,4 @@
-package egt.infopets.Calses;
+package egt.infopets.Clases;
 
 import java.io.Serializable;
 
@@ -10,7 +10,7 @@ public class Mascota implements Serializable{
 
     private int id;
     private String nombre;
-    private int rut;
+    private String rut;
     private String fNacimiento;
     private int especie;
     private int raza;
@@ -22,7 +22,7 @@ public class Mascota implements Serializable{
        // visita = new ArrayList<Visitas>();
     }
 
-    public Mascota(int id,String nombre,int rut, String fNacimiento, int especie, int raza, String sexo, String color) {
+    public Mascota(int id,String nombre,String rut, String fNacimiento, int especie, int raza, String sexo, String color) {
         this.setId(id);
         this.setNombre(nombre);
         this.setRut(rut);
@@ -42,11 +42,11 @@ public class Mascota implements Serializable{
         this.id = id;
     }
 
-    public int getRut() {
+    public String getRut() {
         return rut;
     }
 
-    public void setRut(int rut) {
+    public void setRut(String rut) {
         this.rut = rut;
     }
 

@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import egt.infopets.R;
-import egt.infopets.Calses.Duenio;
-import egt.infopets.Calses.Especie;
-import egt.infopets.Calses.Mascota;
-import egt.infopets.Calses.Raza;
+import egt.infopets.Clases.Duenio;
+import egt.infopets.Clases.Especie;
+import egt.infopets.Clases.Mascota;
+import egt.infopets.Clases.Raza;
 import egt.infopets.Mantenedores.MantenedorDuenio;
 import egt.infopets.Mantenedores.MantenedorEspecie;
 import egt.infopets.Mantenedores.MantenedorMascota;
@@ -152,7 +152,7 @@ public class AddPet extends AppCompatActivity {
         try
         {
             newMascota.setNombre(auxNombreMascota.getText().toString());
-            newMascota.setRut(Integer.valueOf(auxRut.getText().toString()));
+            newMascota.setRut(auxRut.getText().toString());
             newMascota.setfNacimiento(auxFechaNacimiento.getText().toString());
             newMascota.setEspecie(auxEspecie.getSelectedItemPosition());
             newMascota.setRaza(auxRaza.getSelectedItemPosition());
@@ -217,7 +217,7 @@ public class AddPet extends AppCompatActivity {
         auxNumero.setText(auxDuenio.getNumero());
 
         Mascota auxMascota = new Mascota();
-        auxMascota = auxMantMascota.getByCodigo(Integer.valueOf(auxId.getText().toString()));
+        auxMascota = auxMantMascota.getByCodigo(auxId.getText().toString());
 
         auxFechaNacimiento.setText(auxMascota.getfNacimiento());
         auxColor.setText(auxMascota.getColor());
@@ -264,7 +264,7 @@ public class AddPet extends AppCompatActivity {
 
         newMascota.setId(Integer.valueOf(auxId.getText().toString()));
         newMascota.setNombre(auxNombreMascota.getText().toString());
-        newMascota.setRut(Integer.valueOf(auxRut.getText().toString()));
+        newMascota.setRut(auxRut.getText().toString());
         newMascota.setfNacimiento(auxFechaNacimiento.getText().toString());
         newMascota.setEspecie(auxSpinnerEspecie.getSelectedItemPosition());
         newMascota.setRaza(auxSpinnerRaza.getSelectedItemPosition());

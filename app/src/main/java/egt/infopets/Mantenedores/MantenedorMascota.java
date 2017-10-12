@@ -5,7 +5,7 @@ import android.database.Cursor;
 
 import java.util.ArrayList;
 
-import egt.infopets.Calses.Mascota;
+import egt.infopets.Clases.Mascota;
 
 /**
  * Created by Administrador on 05-10-2017.
@@ -57,7 +57,7 @@ public class MantenedorMascota {
     private ArrayList<String> valores(Mascota mascota){
         ArrayList<String> valores = new ArrayList<String>();
         valores.add(mascota.getNombre());
-        valores.add(Integer.toString(mascota.getRut()));
+        valores.add(mascota.getRut());
         valores.add(mascota.getfNacimiento());
         valores.add(Integer.toString(mascota.getEspecie()));
         valores.add(Integer.toString(mascota.getRaza()));
@@ -66,7 +66,7 @@ public class MantenedorMascota {
         return valores;
     }
 
-    public Mascota getByCodigo(int cod) {
+    public Mascota getByCodigo(String cod) {
         this.conector = new DbInfoPet(this.context);
         String query = "SELECT * FROM " + tabla + " WHERE id_Mascota = " + cod;
         Cursor resultado = this.conector.select(query);
@@ -97,7 +97,7 @@ public class MantenedorMascota {
         Mascota mascota = new Mascota();
         mascota.setId(resultado.getInt(0));
         mascota.setNombre(resultado.getString(1));
-        mascota.setRut(resultado.getInt(2));
+        mascota.setRut(resultado.getString(2));
         mascota.setfNacimiento(resultado.getString(3));
         mascota.setEspecie(resultado.getInt(4));
         mascota.setRaza(resultado.getInt(5));

@@ -1,4 +1,4 @@
-package egt.infopets.Calses;
+package egt.infopets.Clases;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import egt.infopets.R;
-import egt.infopets.Calses.Mascota;
+import egt.infopets.Clases.Mascota;
 import egt.infopets.Mantenedores.DbInfoPet;
 import egt.infopets.Mantenedores.MantenedorMascota;
 
@@ -48,7 +48,7 @@ public class FirstScreen extends AppCompatActivity {
 
             EditText auxId = (EditText) findViewById(R.id.txtId);
             String auxVar = auxId.getText().toString();
-            if (searchPetById(Integer.valueOf( auxId.getText().toString()))){
+            if (searchPetById(auxId.getText().toString())){
 
                 Intent intent = new Intent(this, SearchPet.class);
 
@@ -68,7 +68,7 @@ public class FirstScreen extends AppCompatActivity {
         }
     }
 
-    public boolean searchPetById(int id) {
+    public boolean searchPetById(String id) {
         MantenedorMascota auxMantenedor =new MantenedorMascota(this);
         Mascota auxListaMascota = auxMantenedor.getByCodigo(id);
 

@@ -5,7 +5,7 @@ import android.database.Cursor;
 
 import java.util.ArrayList;
 
-import egt.infopets.Calses.Duenio;
+import egt.infopets.Clases.Duenio;
 
 /**
  * Created by Administrador on 05-10-2017.

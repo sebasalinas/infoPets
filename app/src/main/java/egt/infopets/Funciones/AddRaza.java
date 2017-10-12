@@ -16,8 +16,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import egt.infopets.R;
-import egt.infopets.Calses.Especie;
-import egt.infopets.Calses.Raza;
+import egt.infopets.Clases.Especie;
+import egt.infopets.Clases.Raza;
 import egt.infopets.Mantenedores.MantenedorEspecie;
 import egt.infopets.Mantenedores.MantenedorRaza;
 

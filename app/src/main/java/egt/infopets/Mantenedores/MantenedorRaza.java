@@ -6,7 +6,7 @@ import android.database.Cursor;
 
 import java.util.ArrayList;
 
-import egt.infopets.Calses.Raza;
+import egt.infopets.Clases.Raza;
 
 /**
  * Created by Soporte on 04-10-2017.

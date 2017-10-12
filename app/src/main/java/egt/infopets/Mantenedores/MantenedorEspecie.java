@@ -5,7 +5,7 @@ import android.database.Cursor;
 
 import java.util.ArrayList;
 
-import egt.infopets.Calses.Especie;
+import egt.infopets.Clases.Especie;
 
 /**
  * Created by Soporte on 03-10-2017.

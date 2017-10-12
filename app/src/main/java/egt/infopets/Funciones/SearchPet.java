@@ -20,9 +20,9 @@ import java.util.List;
 import java.util.TimeZone;
 
 import egt.infopets.R;
-import egt.infopets.Calses.Duenio;
-import egt.infopets.Calses.Mascota;
-import egt.infopets.Calses.Visitas;
+import egt.infopets.Clases.Duenio;
+import egt.infopets.Clases.Mascota;
+import egt.infopets.Clases.Visitas;
 import egt.infopets.Mantenedores.MantenedorDuenio;
 import egt.infopets.Mantenedores.MantenedorMascota;
 import egt.infopets.Mantenedores.MantenedorVisitas;
@@ -112,7 +112,7 @@ public class SearchPet extends AppCompatActivity {
 
     public void datosMascota() {
         MantenedorMascota auxMantenedor = new MantenedorMascota(this);
-        Mascota auxMascota = auxMantenedor.getByCodigo(Integer.valueOf(auxVar));
+        Mascota auxMascota = auxMantenedor.getByCodigo(auxVar);
 
         EditText auxNombre = (EditText) findViewById(R.id.txtMNombre);
         EditText auxEdad = (EditText) findViewById(R.id.txtFNacimiento);
