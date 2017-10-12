@@ -40,7 +40,7 @@ public class SearchPet extends AppCompatActivity {
         auxCod.setText(getIntent().getStringExtra("varCod"));
 
         auxVar = auxCod.getText().toString();
-        mensaje(auxVar);
+
 
         datosMascota();
         datosDuenio();
@@ -196,7 +196,6 @@ public class SearchPet extends AppCompatActivity {
                 mBuider.setView(mView);
                 final AlertDialog dialog = mBuider.create();
                 dialog.show();
-                mostrar();
 
                 mMg.setVisibility(View.GONE);
                 mMedicamento.setVisibility(View.GONE);
@@ -216,6 +215,7 @@ public class SearchPet extends AppCompatActivity {
                         if (!mDescripcionVisita.getText().toString().isEmpty()){
                             updateVisita(mDescripcionVisita.getText().toString(),auxListaVisitas.get(position).getCod());
                             dialog.dismiss();
+                            mostrar();
                         }else {
                             mensaje("Agregue descripcion de visita");
                         }
@@ -229,11 +229,13 @@ public class SearchPet extends AppCompatActivity {
                         if (!mDescripcionVisita.getText().toString().isEmpty()){
                             deleteVisita((auxListaVisitas.get(position).getCod()));
                             dialog.dismiss();
+                            mostrar();
                         }else {
                             mensaje("Debe especificar el nombre de la mascota");
                         }
                     }
                 });
+
 
             }
         });

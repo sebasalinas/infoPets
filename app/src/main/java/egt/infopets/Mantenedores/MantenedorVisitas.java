@@ -60,7 +60,7 @@ public class MantenedorVisitas {
 
     public ArrayList<Visitas> getByCodigo(int id) {
         this.conector = new DbInfoPet(this.context);
-        String query = "SELECT * FROM " + tabla + " WHERE cod_Visita = "+id;
+        String query = "SELECT * FROM " + tabla + " WHERE id_Mascota = "+id;
         Log.i("Query", query);
         Cursor resultado = this.conector.select(query);
         ArrayList<Visitas> visitas = new ArrayList<Visitas>();
