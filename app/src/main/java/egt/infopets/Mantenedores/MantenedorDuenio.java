@@ -75,7 +75,7 @@ public class MantenedorDuenio {
     public void update(Duenio duenio) {
         this.conector = new DbInfoPet(this.context);
         ArrayList<String> valores = this.valores(duenio);
-        String condicion = "rut = " + duenio.getRut();
+        String condicion = "rut = '" + duenio.getRut()+"'";
         this.conector.update(tabla, columnas, valores, condicion);
         conector.close();
     }

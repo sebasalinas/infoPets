@@ -91,7 +91,7 @@ public class DbInfoPet extends SQLiteOpenHelper{
 
     public void update(String tabla ,ArrayList<String> columnas, ArrayList<String> valores, String condicion) throws SQLiteException {
         ContentValues update = new ContentValues();
-        for(int z=1;z<columnas.size();z++)
+        for(int z=0;z<columnas.size();z++)
             update.put(columnas.get(z),valores.get(z));
         db.update(tabla, update, condicion, null);
     }

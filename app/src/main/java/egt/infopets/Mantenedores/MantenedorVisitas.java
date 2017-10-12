@@ -19,7 +19,7 @@ public class MantenedorVisitas {
     private ArrayList<String> columnas;
     private String tabla;
 
-    public MantenedorVisitas(Context context){
+    public MantenedorVisitas(Context context) {
         this.context = context;
         tabla = "visitas";
         columnas = new ArrayList<String>();
@@ -50,7 +50,7 @@ public class MantenedorVisitas {
         return visitas;
     }
 
-    private ArrayList<String> valores(Visitas visita){
+    private ArrayList<String> valores(Visitas visita) {
         ArrayList<String> valores = new ArrayList<String>();
         valores.add(visita.getFechaVisita());
         valores.add(Integer.toString(visita.getMascota()));
@@ -60,8 +60,7 @@ public class MantenedorVisitas {
 
     public ArrayList<Visitas> getByCodigo(int id) {
         this.conector = new DbInfoPet(this.context);
-        String query = "SELECT * FROM " + tabla + " WHERE id_Mascota = "+id;
-        Log.i("Query", query);
+        String query = "SELECT * FROM " + tabla + " WHERE id_Mascota = " + id;
         Cursor resultado = this.conector.select(query);
         ArrayList<Visitas> visitas = new ArrayList<Visitas>();
         if (resultado.moveToFirst()) {
@@ -73,6 +72,8 @@ public class MantenedorVisitas {
         conector.close();
         return visitas;
     }
+
+
 
     public void update(Visitas visitas) {
         this.conector = new DbInfoPet(this.context);
@@ -89,7 +90,7 @@ public class MantenedorVisitas {
         conector.close();
     }
 
-    private Visitas setVisita(Cursor resultado){
+    private Visitas setVisita(Cursor resultado) {
         Visitas visitas = new Visitas();
         visitas.setCod(resultado.getInt(0));
         visitas.setFechaVisita(resultado.getString(1));

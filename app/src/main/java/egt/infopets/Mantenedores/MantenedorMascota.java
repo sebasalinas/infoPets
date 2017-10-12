@@ -105,4 +105,19 @@ public class MantenedorMascota {
         mascota.setColor(resultado.getString(7));
         return mascota;
     }
+
+    public ArrayList<Mascota> getAllGroup() {
+        this.conector = new DbInfoPet(this.context);
+        String query = "SELECT nombre,rut,fnacimiento,especie,raza,sexo,count(rut) FROM " + tabla +" GROUP BY rut";
+        Cursor resultado = this.conector.select(query);
+        ArrayList<Mascota> mascotas = new ArrayList<Mascota>();
+        if (resultado.moveToFirst()) {
+            do {
+                Mascota mascota = this.setMascota(resultado);
+                mascotas.add(mascota);
+            } while (resultado.moveToNext());
+        }
+        conector.close();
+        return mascotas;
+    }
 }

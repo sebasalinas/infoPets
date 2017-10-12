@@ -28,38 +28,40 @@ import egt.infopets.Mantenedores.MantenedorMascota;
 import egt.infopets.Mantenedores.MantenedorVisitas;
 
 public class SearchPet extends AppCompatActivity {
+
     String auxVar = "";
     String auxVar2 = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_pet);
 
-        final EditText auxCod = (EditText)findViewById(R.id.txtVisitaId);
+        final EditText auxCod = (EditText) findViewById(R.id.txtVisitaId);
 
         auxCod.setText(getIntent().getStringExtra("varCod"));
 
         auxVar = auxCod.getText().toString();
 
-
         datosMascota();
         datosDuenio();
         mostrar();
+
         final Button mShowDialog = (Button) findViewById(R.id.btnAgregarVisita);
         mShowDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 AlertDialog.Builder mBuider = new AlertDialog.Builder(SearchPet.this);
-                final View mView = getLayoutInflater().inflate(R.layout.dialog,null);
-                final EditText mCodVisita = (EditText)mView.findViewById(R.id.txtCodVisita);
-                final EditText mDescripcionVisita = (EditText)mView.findViewById(R.id.txtDescripcionVisita);
-                final EditText mMotivio = (EditText)mView.findViewById(R.id.txtDialogMotivo);
-                final EditText mMedicamento = (EditText)mView.findViewById(R.id.txtDialogMedicamento);
-                final EditText mMg = (EditText)mView.findViewById(R.id.txtDialogMg);
-                final EditText mCod = (EditText)mView.findViewById(R.id.txtVisitaId);
+                final View mView = getLayoutInflater().inflate(R.layout.dialog, null);
+                final EditText mCodVisita = (EditText) mView.findViewById(R.id.txtCodVisita);
+                final EditText mDescripcionVisita = (EditText) mView.findViewById(R.id.txtDescripcionVisita);
+                final EditText mMotivio = (EditText) mView.findViewById(R.id.txtDialogMotivo);
+                final EditText mMedicamento = (EditText) mView.findViewById(R.id.txtDialogMedicamento);
+                final EditText mMg = (EditText) mView.findViewById(R.id.txtDialogMg);
+                final EditText mCod = (EditText) mView.findViewById(R.id.txtVisitaId);
 
-                Button mImageButton = (Button)mView.findViewById(R.id.btnAgregarVisita);
+                Button mImageButton = (Button) mView.findViewById(R.id.btnAgregarVisita);
 
                 mBuider.setView(mView);
                 final AlertDialog dialog = mBuider.create();
@@ -68,11 +70,11 @@ public class SearchPet extends AppCompatActivity {
                 mImageButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (!mDescripcionVisita.getText().toString().isEmpty()){
+                        if (!mDescripcionVisita.getText().toString().isEmpty()) {
                             cargaVisita(mDescripcionVisita.getText().toString());
                             dialog.dismiss();
 
-                        }else {
+                        } else {
                             mensaje("Agrege Descripcion");
                         }
                     }
@@ -89,10 +91,10 @@ public class SearchPet extends AppCompatActivity {
         Calendar calendarNow = new GregorianCalendar(TimeZone.getTimeZone("Europe/Madrid"));
 
         int year = calendarNow.get(Calendar.YEAR);
-        int monthDay =calendarNow.get(Calendar.DAY_OF_MONTH);
+        int monthDay = calendarNow.get(Calendar.DAY_OF_MONTH);
         int month = calendarNow.get(Calendar.MONTH);
 
-        String fechaDefault = monthDay+"-"+month+"-"+year;
+        String fechaDefault = monthDay + "-" + month + "-" + year;
 
         auxVisita.setFechaVisita(fechaDefault);
         auxVisita.setDescripcion(descripcion);
@@ -104,9 +106,9 @@ public class SearchPet extends AppCompatActivity {
 
     }
 
-    public void datosDuenio(){
+    public void datosDuenio() {
         MantenedorDuenio auxMantenedor = new MantenedorDuenio(this);
-        EditText auxNombre = (EditText)findViewById(R.id.txtDNombre);
+        EditText auxNombre = (EditText) findViewById(R.id.txtDNombre);
 
         Duenio auxDuenio = auxMantenedor.getByCodigo(auxVar2);
 
@@ -132,27 +134,27 @@ public class SearchPet extends AppCompatActivity {
 
     public void envioMascota(View view) {
 
-        EditText auxCod =(EditText)findViewById(R.id.txtVisitaId);
-        EditText auxNombre = (EditText)findViewById(R.id.txtMNombre);
-        EditText auxNombreD = (EditText)findViewById(R.id.txtDNombre);
+        EditText auxCod = (EditText) findViewById(R.id.txtVisitaId);
+        EditText auxNombre = (EditText) findViewById(R.id.txtMNombre);
+        EditText auxNombreD = (EditText) findViewById(R.id.txtDNombre);
 
 
-        Intent intent = new Intent(this,AddPet.class);
+        Intent intent = new Intent(this, AddPet.class);
 
-        intent.putExtra("varId",auxCod.getText().toString());
-        intent.putExtra("varMascota",auxNombre.getText().toString());
-        intent.putExtra("varRut",auxVar2);
-        intent.putExtra("varDuenio",auxNombreD.getText().toString());
+        intent.putExtra("varId", auxCod.getText().toString());
+        intent.putExtra("varMascota", auxNombre.getText().toString());
+        intent.putExtra("varRut", auxVar2);
+        intent.putExtra("varDuenio", auxNombreD.getText().toString());
         finish();
         startActivity(intent);
 
 
     }
 
-    public void mostrar(){
-        MantenedorVisitas auxMantenedor =new MantenedorVisitas(this);
+    public void mostrar() {
+        MantenedorVisitas auxMantenedor = new MantenedorVisitas(this);
 
-        int var = Integer.valueOf( auxVar );
+        int var = Integer.valueOf(auxVar);
 
         final List<Visitas> auxListaVisitas = auxMantenedor.getByCodigo(var);
 
@@ -161,34 +163,34 @@ public class SearchPet extends AppCompatActivity {
 
         int pos = 0;
 
-        while (iter.hasNext()){
+        while (iter.hasNext()) {
             Visitas auxLista = new Visitas();
 
             auxLista = (Visitas) iter.next();
 
-            listaString[pos] = auxLista.getCod() + " || " + auxLista.getFechaVisita()+ " || "+auxLista.getDescripcion();
+            listaString[pos] = auxLista.getCod() + " || " + auxLista.getFechaVisita() + " || " + auxLista.getDescripcion();
             pos++;
         }
 
-        final ListView auxListView = (ListView)findViewById(R.id.lvMedicamentos);
+        final ListView auxListView = (ListView) findViewById(R.id.lvMedicamentos);
 
-        auxListView.setAdapter(new ArrayAdapter(this,android.R.layout.simple_list_item_1,listaString));
+        auxListView.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaString));
 
         auxListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 parent.getAdapter().toString();
 
-                String itemValue    = (String)   auxListView.getItemAtPosition(position);
+                String itemValue = (String) auxListView.getItemAtPosition(position);
 
                 AlertDialog.Builder mBuider = new AlertDialog.Builder(SearchPet.this);
-                final View mView = getLayoutInflater().inflate(R.layout.dialog,null);
-                final EditText mCodVisita = (EditText)mView.findViewById(R.id.txtCodVisita);
-                final EditText mDescripcionVisita = (EditText)mView.findViewById(R.id.txtDescripcionVisita);
-                final EditText mMotivio = (EditText)mView.findViewById(R.id.txtDialogMotivo);
-                final EditText mMedicamento = (EditText)mView.findViewById(R.id.txtDialogMedicamento);
-                final EditText mMg = (EditText)mView.findViewById(R.id.txtDialogMg);
-                final EditText mCod = (EditText)mView.findViewById(R.id.txtVisitaId);
+                final View mView = getLayoutInflater().inflate(R.layout.dialog, null);
+                final EditText mCodVisita = (EditText) mView.findViewById(R.id.txtCodVisita);
+                final EditText mDescripcionVisita = (EditText) mView.findViewById(R.id.txtDescripcionVisita);
+                final EditText mMotivio = (EditText) mView.findViewById(R.id.txtDialogMotivo);
+                final EditText mMedicamento = (EditText) mView.findViewById(R.id.txtDialogMedicamento);
+                final EditText mMg = (EditText) mView.findViewById(R.id.txtDialogMg);
+                final EditText mCod = (EditText) mView.findViewById(R.id.txtVisitaId);
                 final ImageButton mEdit = (ImageButton) mView.findViewById(R.id.ibtnEdit);
                 final ImageButton mEliminar = (ImageButton) mView.findViewById(R.id.ibtnEliminar);
                 final Button mAdd = (Button) mView.findViewById(R.id.btnAgregarVisita);
@@ -212,11 +214,11 @@ public class SearchPet extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
 
-                        if (!mDescripcionVisita.getText().toString().isEmpty()){
-                            updateVisita(mDescripcionVisita.getText().toString(),auxListaVisitas.get(position).getCod());
+                        if (!mDescripcionVisita.getText().toString().isEmpty()) {
+                            updateVisita(mDescripcionVisita.getText().toString(), auxListaVisitas.get(position).getCod());
                             dialog.dismiss();
                             mostrar();
-                        }else {
+                        } else {
                             mensaje("Agregue descripcion de visita");
                         }
                     }
@@ -226,11 +228,11 @@ public class SearchPet extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
 
-                        if (!mDescripcionVisita.getText().toString().isEmpty()){
+                        if (!mDescripcionVisita.getText().toString().isEmpty()) {
                             deleteVisita((auxListaVisitas.get(position).getCod()));
                             dialog.dismiss();
                             mostrar();
-                        }else {
+                        } else {
                             mensaje("Debe especificar el nombre de la mascota");
                         }
                     }
@@ -241,12 +243,13 @@ public class SearchPet extends AppCompatActivity {
         });
     }
 
-    private void deleteVisita(int id){
+    private void deleteVisita(int id) {
         MantenedorVisitas auxMantenedor = new MantenedorVisitas(this);
 
         auxMantenedor.delete(id);
     }
-    private void updateVisita(String Descripcion,int Cod) {
+
+    private void updateVisita(String Descripcion, int Cod) {
         MantenedorVisitas auxMantenedor = new MantenedorVisitas(this);
         Visitas auxVisita = new Visitas();
 
@@ -258,7 +261,7 @@ public class SearchPet extends AppCompatActivity {
         mensaje("Se actualizo visita correctamente");
     }
 
-    public void mensaje(String mensaje){
-        Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
+    public void mensaje(String mensaje) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
     }
 }

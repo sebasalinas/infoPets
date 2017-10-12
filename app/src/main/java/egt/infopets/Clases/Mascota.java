@@ -16,10 +16,8 @@ public class Mascota implements Serializable{
     private int raza;
     private String sexo;
     private String color;
-    //private ArrayList<Visitas> visita;
 
     public Mascota() {
-       // visita = new ArrayList<Visitas>();
     }
 
     public Mascota(int id,String nombre,String rut, String fNacimiento, int especie, int raza, String sexo, String color) {
@@ -31,7 +29,6 @@ public class Mascota implements Serializable{
         this.setRaza(raza);
         this.setSexo(sexo);
         this.setColor(color);
-        //visita = new ArrayList<Visitas>();
     }
 
     public int getId() {
@@ -98,11 +95,4 @@ public class Mascota implements Serializable{
         this.nombre = nombre;
     }
 
-    /*public ArrayList<Visitas> getVisita() {
-        return visita;
-    }
-
-    public void setVisita(ArrayList<Visitas> visita) {
-        this.visita = visita;
-    }*/
 }
