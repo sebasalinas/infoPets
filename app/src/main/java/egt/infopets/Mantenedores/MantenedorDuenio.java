@@ -62,7 +62,7 @@ public class MantenedorDuenio {
 
     public Duenio getByCodigo(String rut) {
         this.conector = new DbInfoPet(this.context);
-        String query = "SELECT * FROM " + tabla + " WHERE rut = " + rut;
+        String query = "SELECT * FROM " + tabla + " WHERE rut = '" + rut+"'";
         Cursor resultado = this.conector.select(query);
         Duenio duenio = new Duenio();
         if (resultado.moveToFirst()) {
