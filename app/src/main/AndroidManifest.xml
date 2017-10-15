@@ -33,8 +33,11 @@
         <activity
             android:name=".Funciones.AddRaza"
             android:parentActivityName=".Funciones.FirstScreen"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity android:name=".Funciones.Estadisticas"></activity>
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".Funciones.Estadisticas"
+            android:parentActivityName=".Funciones.FirstScreen"
+            android:windowSoftInputMode="stateHidden">
+        </activity>
     </application>
 
 </manifest>

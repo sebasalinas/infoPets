@@ -46,7 +46,6 @@ public class SearchPet extends AppCompatActivity {
         datosMascota();
         datosDuenio();
         mostrar();
-        //fecha();
 
         final Button mShowDialog = (Button) findViewById(R.id.btnAgregarVisita);
         mShowDialog.setOnClickListener(new View.OnClickListener() {
@@ -152,46 +151,6 @@ public class SearchPet extends AppCompatActivity {
 
     }
 
-    /*public void fecha(){
-        EditText fecha = (EditText)findViewById(R.id.txtFechaNacimiento);
-        Calendar c = Calendar.getInstance();
-        String auxFecha = fecha.getText().toString();
-        String[] parts = auxFecha.split("-");
-        String part1 = parts[2];
-        String part2 = parts[1];
-        String part3 = parts[0];
-
-        Calendar fechaInicio = new GregorianCalendar();
-
-        fechaInicio.set(Integer.valueOf(part1), Integer.valueOf(part2), Integer.valueOf(part3));
-
-    Calendar calendarNow = new GregorianCalendar(TimeZone.getTimeZone("Europe/Madrid"));
-
-        int year = calendarNow.get(Calendar.YEAR);
-        int monthDay = calendarNow.get(Calendar.DAY_OF_MONTH);
-        int month = calendarNow.get(Calendar.MONTH);
-
-
-        Calendar fechaFin = new GregorianCalendar();
-
-        fechaFin.set(year, month, monthDay);
-
-//restamos las fechas como se puede ver son de tipo Calendar,
-
-//debemos obtener el valor long con getTime.getTime.
-
-        c.setTimeInMillis(
-
-                fechaFin.getTime().getTime() - fechaInicio.getTime().getTime());
-
-//la resta provoca que guardamos este valor en c,
-
-//los milisegundos corresponde al tiempo en dias
-
-//asi sabemos cuantos dias
-
-        fecha.setText(c.get(Calendar.DAY_OF_YEAR));
-    }*/
     public void mostrar() {
         MantenedorVisitas auxMantenedor = new MantenedorVisitas(this);
 
