@@ -10,6 +10,14 @@
     tools:layout_editor_absoluteX="0dp">
 
     <EditText
+        android:id="@+id/txtCodMascota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:visibility="gone" />
+
+    <EditText
         android:id="@+id/txtCodVisita"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -126,4 +134,5 @@
         android:inputType="textPersonName"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtDialogMotivo" />
+
 </android.support.constraint.ConstraintLayout>

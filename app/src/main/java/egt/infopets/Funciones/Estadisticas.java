@@ -28,7 +28,7 @@ public class Estadisticas extends AppCompatActivity {
 
         //int var = Integer.valueOf(spinner);
 
-        final List<Mascota> auxListaVisitas = auxMantenedor.getAll();
+        final List<Integer> auxListaVisitas = auxMantenedor.getAllRut();
 
         String[] listaString = new String[auxListaVisitas.size()];
         Iterator iter = auxListaVisitas.iterator();

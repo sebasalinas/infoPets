@@ -17,6 +17,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.StringTokenizer;
 import java.util.TimeZone;
 
 import egt.infopets.R;
@@ -31,6 +32,9 @@ public class SearchPet extends AppCompatActivity {
 
     String auxVar = "";
     String auxVar2 = "";
+    int varCodVisita = 0;
+    String varCodMascota = "";
+    String fechaDefault = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,7 @@ public class SearchPet extends AppCompatActivity {
         auxCod.setText(getIntent().getStringExtra("varCod"));
 
         auxVar = auxCod.getText().toString();
+        varCodMascota = auxVar;
 
         datosMascota();
         datosDuenio();
@@ -71,9 +76,8 @@ public class SearchPet extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         if (!mDescripcionVisita.getText().toString().isEmpty()) {
-                            cargaVisita(mDescripcionVisita.getText().toString());
+                            cargaVisita(mMotivio.getText().toString() + " - " + mMedicamento.getText().toString() + " - " + mMg.getText().toString() + " - " + mDescripcionVisita.getText().toString());
                             dialog.dismiss();
-
                         } else {
                             mensaje("Agrege Descripcion");
                         }
@@ -94,7 +98,7 @@ public class SearchPet extends AppCompatActivity {
         int monthDay = calendarNow.get(Calendar.DAY_OF_MONTH);
         int month = calendarNow.get(Calendar.MONTH);
 
-        String fechaDefault = monthDay + "-" + month + "-" + year;
+        fechaDefault = monthDay + "-" + month + "-" + year;
 
         auxVisita.setFechaVisita(fechaDefault);
         auxVisita.setDescripcion(descripcion);
@@ -123,9 +127,29 @@ public class SearchPet extends AppCompatActivity {
         EditText auxEdad = (EditText) findViewById(R.id.txtFNacimiento);
         EditText auxRut = (EditText) findViewById(R.id.txtDNombre);
 
+        String imgpath = auxMascota.getfNacimiento().toString();
+
+        String anioNaciemiento = imgpath.substring(imgpath.lastIndexOf("-") + 1);
+        String mesAnio = imgpath.substring(imgpath.indexOf("-") + 1, 5);
+
+        Calendar calendarNow = new GregorianCalendar();
+
+
+        int year = calendarNow.get(Calendar.YEAR);
+        int month = 1 + calendarNow.get(Calendar.MONTH);
+        int mes = 0;
+        int anio = 0;
+
+        if (year - (Integer.valueOf(anioNaciemiento)) <= 0) {
+            mes = month - (Integer.valueOf(mesAnio));
+        } else {
+            anio = year - (Integer.valueOf(anioNaciemiento));
+            mes = month - (Integer.valueOf(mesAnio));
+        }
+        String Edad = anio + "-" + mes;
 
         auxNombre.setText(auxMascota.getNombre().toString());
-        auxEdad.setText(auxMascota.getfNacimiento().toString());
+        auxEdad.setText(Edad);
         auxRut.setText(String.valueOf(auxMascota.getRut()));
 
         auxVar2 = auxRut.getText().toString();
@@ -157,6 +181,7 @@ public class SearchPet extends AppCompatActivity {
         int var = Integer.valueOf(auxVar);
 
         final List<Visitas> auxListaVisitas = auxMantenedor.getByCodigo(var);
+        //final List<Visitas> auxListaVisitas = auxMantenedor.getAll();
 
         String[] listaString = new String[auxListaVisitas.size()];
         Iterator iter = auxListaVisitas.iterator();
@@ -169,6 +194,7 @@ public class SearchPet extends AppCompatActivity {
             auxLista = (Visitas) iter.next();
 
             listaString[pos] = auxLista.getCod() + " || " + auxLista.getFechaVisita() + " || " + auxLista.getDescripcion();
+
             pos++;
         }
 
@@ -186,11 +212,12 @@ public class SearchPet extends AppCompatActivity {
                 AlertDialog.Builder mBuider = new AlertDialog.Builder(SearchPet.this);
                 final View mView = getLayoutInflater().inflate(R.layout.dialog, null);
                 final EditText mCodVisita = (EditText) mView.findViewById(R.id.txtCodVisita);
+                final EditText mCodMascota = (EditText) mView.findViewById(R.id.txtCodMascota);
                 final EditText mDescripcionVisita = (EditText) mView.findViewById(R.id.txtDescripcionVisita);
-                final EditText mMotivio = (EditText) mView.findViewById(R.id.txtDialogMotivo);
+                final EditText mMotivoo = (EditText) mView.findViewById(R.id.txtDialogMotivo);
                 final EditText mMedicamento = (EditText) mView.findViewById(R.id.txtDialogMedicamento);
                 final EditText mMg = (EditText) mView.findViewById(R.id.txtDialogMg);
-                final EditText mCod = (EditText) mView.findViewById(R.id.txtVisitaId);
+                //final EditText mCod = (EditText) mView.findViewById(R.id.txtVisitaId);
                 final ImageButton mEdit = (ImageButton) mView.findViewById(R.id.ibtnEdit);
                 final ImageButton mEliminar = (ImageButton) mView.findViewById(R.id.ibtnEliminar);
                 final Button mAdd = (Button) mView.findViewById(R.id.btnAgregarVisita);
@@ -201,9 +228,18 @@ public class SearchPet extends AppCompatActivity {
 
                 mMg.setVisibility(View.GONE);
                 mMedicamento.setVisibility(View.GONE);
-                mMotivio.setVisibility(View.GONE);
+                mMotivoo.setVisibility(View.GONE);
 
-                mDescripcionVisita.setText(itemValue);
+
+                varCodVisita = auxListaVisitas.get(position).getCod();
+
+
+                String imgpath = itemValue;
+
+                final String result = imgpath.substring(imgpath.lastIndexOf("|") + 2);
+
+
+                mDescripcionVisita.setText(result);
 
 
                 mEdit.setVisibility(View.VISIBLE);
@@ -215,9 +251,9 @@ public class SearchPet extends AppCompatActivity {
                     public void onClick(View view) {
 
                         if (!mDescripcionVisita.getText().toString().isEmpty()) {
-                            updateVisita(mDescripcionVisita.getText().toString(), auxListaVisitas.get(position).getCod());
-                            dialog.dismiss();
+                            updateVisita(mDescripcionVisita.getText().toString(), varCodVisita, varCodMascota);
                             mostrar();
+                            dialog.dismiss();
                         } else {
                             mensaje("Agregue descripcion de visita");
                         }
@@ -230,8 +266,8 @@ public class SearchPet extends AppCompatActivity {
 
                         if (!mDescripcionVisita.getText().toString().isEmpty()) {
                             deleteVisita((auxListaVisitas.get(position).getCod()));
-                            dialog.dismiss();
                             mostrar();
+                            dialog.dismiss();
                         } else {
                             mensaje("Debe especificar el nombre de la mascota");
                         }
@@ -249,15 +285,22 @@ public class SearchPet extends AppCompatActivity {
         auxMantenedor.delete(id);
     }
 
-    private void updateVisita(String Descripcion, int Cod) {
+    private void updateVisita(String Descripcion, int CodVisita, String codMascota) {
         MantenedorVisitas auxMantenedor = new MantenedorVisitas(this);
         Visitas auxVisita = new Visitas();
 
-        auxVisita.setCod(Cod);
-        auxVisita.setDescripcion(Descripcion);
+        auxVisita.setCod(CodVisita);
+        Calendar calendarNow = new GregorianCalendar(TimeZone.getTimeZone("Europe/Madrid"));
 
+        int year = calendarNow.get(Calendar.YEAR);
+        int monthDay = calendarNow.get(Calendar.DAY_OF_MONTH);
+        int month = calendarNow.get(Calendar.MONTH);
+
+        fechaDefault = monthDay + "-" + month + "-" + year;
+        auxVisita.setFechaVisita(fechaDefault);
+        auxVisita.setDescripcion(Descripcion);
+        auxVisita.setMascota(Integer.valueOf(codMascota));
         auxMantenedor.update(auxVisita);
-        mostrar();
         mensaje("Se actualizo visita correctamente");
     }
 

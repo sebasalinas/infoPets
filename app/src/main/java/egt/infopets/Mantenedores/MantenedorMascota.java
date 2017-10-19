@@ -106,14 +106,14 @@ public class MantenedorMascota {
         return mascota;
     }
 
-    public ArrayList<Mascota> getAllGroup() {
+    public ArrayList<Integer> getAllRut() {
         this.conector = new DbInfoPet(this.context);
-        String query = "SELECT nombre,rut,fnacimiento,especie,raza,sexo,count(rut) FROM " + tabla +" GROUP BY rut";
+        String query = "SELECT COUNT(rut) FROM " + tabla + " GROUP BY rut";
         Cursor resultado = this.conector.select(query);
-        ArrayList<Mascota> mascotas = new ArrayList<Mascota>();
+        ArrayList<Integer> mascotas = new ArrayList<Integer>();
         if (resultado.moveToFirst()) {
             do {
-                Mascota mascota = this.setMascota(resultado);
+                Integer mascota = resultado.getInt(0);
                 mascotas.add(mascota);
             } while (resultado.moveToNext());
         }

@@ -1,5 +1,7 @@
 package egt.infopets.Funciones;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -35,7 +37,6 @@ public class AddPet extends AppCompatActivity {
     Spinner auxRaza;
     String auxVarRut = "";
 
-    //el codigo debe ser de  de maximo 8 digitos comenzando por el 1
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -206,10 +207,10 @@ public class AddPet extends AppCompatActivity {
                 auxMantenedorMascota.insert(newMascota);
                 this.mensaje("Mascota:" + mascota + "|| Dueño: " + rut);
             }else{
-                this.mensaje("Debe Seleccionar el Sexo del Animal");
+                this.mensaje("SELECCIONE EL SEXO");
             }
         } catch (Exception ex) {
-            this.mensaje("Error: " + ex.getMessage().toString());
+            this.mensaje("ERRO: " + ex.getMessage().toString());
         }
     }
 
@@ -219,7 +220,7 @@ public class AddPet extends AppCompatActivity {
 
         auxMantenedor.delete(Integer.valueOf(auxId.getText().toString()));
         finish();
-        mensaje("Mascota eliminada");
+        mensaje("REGISTRO ELIMINADO");
     }
 
     public void mensaje(String mensaje) {
@@ -293,7 +294,6 @@ public class AddPet extends AppCompatActivity {
 
             newMascota.setId(Integer.valueOf(auxId.getText().toString()));
             newMascota.setNombre(auxNMascota.getText().toString());
-            mensaje(auxNMascota.getText().toString());
             newMascota.setRut(auxRut.getText().toString());
             newMascota.setfNacimiento(auxFechaNacimiento.getText().toString());
             newMascota.setEspecie(auxSpinnerEspecie.getSelectedItemPosition());
@@ -307,15 +307,13 @@ public class AddPet extends AppCompatActivity {
 
                 auxMantenedor.update(newMascota);
                 String mascota = auxNMascota.getText().toString();
-                this.mensaje("Mascota:" + mascota + "|| Dueño: " + rut);
             } else if (auxRbHembra.isChecked()) {
                 newMascota.setSexo("Hembra");
 
                 auxMantenedor.update(newMascota);
                 String mascota = auxNMascota.getText().toString();
-                this.mensaje("Mascota:" + mascota + "|| Dueño: " + rut);
             } else {
-                mensaje("Error al seleccionar el sexo");
+                mensaje("ERROR SELECCION DE SEXO");
             }
 
             MantenedorDuenio auxMan = new MantenedorDuenio(this);
@@ -329,7 +327,7 @@ public class AddPet extends AppCompatActivity {
             auxMan.update(newDuenio);
 
         } catch (Exception ex) {
-            this.mensaje("Erro al intentar agregar " + ex);
+            this.mensaje("ERROR AL AGREGAR " + ex);
         }
     }
 
@@ -366,17 +364,18 @@ public class AddPet extends AppCompatActivity {
         EditText auxNombre = (EditText) findViewById(R.id.txtNombreDuenio);
 
         auxVarRut = auxRut.getText().toString();
-
         if (validar()) {
             updateMascota();
+            mensaje("REGISTROS ACTUALIZADOS");
             finish();
         } else {
             if (validarDigitoVerificador(auxVarRut) && !auxNombre.getText().toString().isEmpty() && validarExtras() ) {
                 addDuenio();
                 agregarMascota();
+                mensaje("MASCOTA AGREGADA ");
                 finish();
             } else {
-                mensaje("Faltan datos");
+                mensaje("FALTAN DATOS");
             }
 
         }
