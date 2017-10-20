@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -40,6 +42,26 @@ public class SearchPet extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_pet);
+
+        ListView auxListView = (ListView)findViewById(R.id.lvMedicamentos);
+        ScrollView auxScroll = (ScrollView) findViewById(R.id.scRaza);
+
+        auxScroll.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                findViewById(R.id.lvMedicamentos).getParent()
+                        .requestDisallowInterceptTouchEvent(false);
+                return false;
+            }
+        });
+
+        auxListView.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
 
         final EditText auxCod = (EditText) findViewById(R.id.txtVisitaId);
 

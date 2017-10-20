@@ -4,11 +4,13 @@ package egt.infopets.Funciones;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -34,6 +36,24 @@ public class AddRaza extends AppCompatActivity {
         setContentView(R.layout.add_raza);
 
         ListView auxListView = (ListView) findViewById(R.id.lvMostrarRaza);
+        ScrollView auxScroll = (ScrollView) findViewById(R.id.scView);
+
+        auxScroll.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                findViewById(R.id.lvMostrarRaza).getParent()
+                        .requestDisallowInterceptTouchEvent(false);
+                return false;
+            }
+        });
+
+        auxListView.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
 
         mostrar();
         MantenedorEspecie auxMantenedor = new MantenedorEspecie(this);
