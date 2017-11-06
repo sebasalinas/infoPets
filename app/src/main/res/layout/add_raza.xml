@@ -7,21 +7,16 @@
     tools:context="egt.infopets.Funciones.AddRaza">
 
     <ScrollView
-        android:id="@+id/scView"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/scRaza"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:fillViewport="true"
-        android:overScrollMode="never">
+        android:scrollbars="vertical">
 
         <android.support.constraint.ConstraintLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:fillViewport="true"
-            android:overScrollMode="never">
+            tools:context="egt.infopets.Funciones.AddRaza">
+
 
             <EditText
                 android:id="@+id/txtNewRaza"
@@ -106,32 +101,33 @@
                 android:id="@+id/ibtAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="98dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="78dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="78dp"
                 android:layout_marginTop="8dp"
                 android:onClick="addRaza"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0.355"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@android:drawable/ic_input_add" />
 
             <ListView
                 android:id="@+id/lvMostrarRaza"
                 android:layout_width="fill_parent"
-                android:layout_height="350dp"
+                android:layout_height="344dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintHorizontal_bias="0.244"
+                android:layout_marginTop="24dp"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ibtAdd" />
+                app:layout_constraintTop_toBottomOf="@+id/ibtAdd"
+                tools:layout_editor_absoluteY="313dp"
+                tools:layout_editor_absoluteX="-1dp" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 

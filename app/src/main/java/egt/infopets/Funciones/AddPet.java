@@ -1,18 +1,33 @@
 package egt.infopets.Funciones;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import egt.infopets.R;
@@ -36,15 +51,24 @@ public class AddPet extends AppCompatActivity {
     Spinner auxEspecie;
     Spinner auxRaza;
     String auxVarRut = "";
+    EditText auxNombreMascota;
+    EditText auxRut;
+
+    private static final int ACTIVITY_START_CAMERA_APP = 0;
+    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1 ;
+    private ImageView mPhotoCapturedImageView;
+    private String mImageFileLocation = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pet);
 
+        mPhotoCapturedImageView = (ImageView) findViewById(R.id.btnCamara);
+
         EditText auxId = (EditText) findViewById(R.id.txtId);
-        EditText auxNombreMascota = (EditText) findViewById(R.id.txtNombreMascota);
-        EditText auxRut = (EditText) findViewById(R.id.txtRut);
+        auxNombreMascota = (EditText) findViewById(R.id.txtNombreMascota);
+        auxRut = (EditText) findViewById(R.id.txtRut);
         EditText auxNombreDuenio = (EditText) findViewById(R.id.txtNombreDuenio);
         ImageButton btnEdit = (ImageButton) findViewById(R.id.ibtnAdd_EditPet);
 
@@ -379,5 +403,110 @@ public class AddPet extends AppCompatActivity {
             }
 
         }
+    }
+
+    public void takePhoto(View view) {
+        try{
+            int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+                } else {
+
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+
+                }
+            }
+
+            if(!auxRut.getText().toString().isEmpty() || !auxNombreMascota.getText().toString().isEmpty()){
+                Intent callCameraApplicationIntent = new Intent();
+                callCameraApplicationIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                File photoFile = null;
+                try {
+                    photoFile = createImageFile();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                String authorities = getApplicationContext().getPackageName() + ".fileprovider";
+                Uri imageUri = FileProvider.getUriForFile(this, authorities, photoFile);
+                callCameraApplicationIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+
+                startActivityForResult(callCameraApplicationIntent, ACTIVITY_START_CAMERA_APP);
+
+            }else {
+                mensaje("Ingrese el nombre de la mascota y el rut de la persona");
+            }
+        }catch (Exception ex){
+            mensaje("Ha ocurrido un erro al intentar sacar una foto");
+        }
+
+    }
+
+    File createImageFile() throws IOException {
+        File file = new File(Environment.getExternalStorageDirectory().getPath()+"/InfoPets/");
+        file.mkdirs();
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()).toString();
+        String imageFileName = auxNombreMascota.getText().toString()+"_"+auxRut.getText().toString()+".jpg";
+        File storageDirectory = new File(Environment.getExternalStorageDirectory().getPath(), "/InfoPets");
+        File image = new File(storageDirectory, imageFileName);
+        mImageFileLocation = image.getAbsolutePath();
+
+        return image;
+    }
+
+    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
+        if(requestCode == ACTIVITY_START_CAMERA_APP && resultCode == RESULT_OK) {
+            // Toast.makeText(this, "Picture taken successfully", Toast.LENGTH_SHORT).show();
+            //Bundle extras = data.getBundleExtra("InfoPets");
+            //Bitmap photoCapturedBitmap = (Bitmap) extras.get("data");
+            // mPhotoCapturedImageView.setImageBitmap(photoCapturedBitmap);
+            // photoCapturedBitmap = BitmapFactory.decodeFile(mImageFileLocation);
+            // mPhotoCapturedImageView.setImageBitmap(photoCapturedBitmap);
+            setReducedImageSize();
+
+        }
+    }
+
+   /* @Override
+    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > && grantResults[] == PackageManager.PERMISSION_GRANTED) {
+
+                } else {
+
+                }
+                return;
+            }
+        }
+    }
+*/
+    void setReducedImageSize() {
+        int targetImageViewWidth = mPhotoCapturedImageView.getWidth();
+        int targetImageViewHeight = mPhotoCapturedImageView.getHeight();
+
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(mImageFileLocation, bmOptions);
+        int cameraImageWidth = bmOptions.outWidth;
+        int cameraImageHeight = bmOptions.outHeight;
+
+        int scaleFactor = Math.min(cameraImageWidth/targetImageViewWidth, cameraImageHeight/targetImageViewHeight);
+        bmOptions.inSampleSize = scaleFactor;
+        bmOptions.inJustDecodeBounds = false;
+
+        Bitmap photoReducedSizeBitmp = BitmapFactory.decodeFile(mImageFileLocation, bmOptions);
+        mPhotoCapturedImageView.setImageBitmap(photoReducedSizeBitmp);
+
+
     }
 }

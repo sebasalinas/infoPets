@@ -44,7 +44,7 @@ public class SearchPet extends AppCompatActivity {
         setContentView(R.layout.activity_search_pet);
 
         ListView auxListView = (ListView)findViewById(R.id.lvMedicamentos);
-        ScrollView auxScroll = (ScrollView) findViewById(R.id.scRaza);
+        ScrollView auxScroll = (ScrollView) findViewById(R.id.scBuscar);
 
         auxScroll.setOnTouchListener(new View.OnTouchListener() {
 

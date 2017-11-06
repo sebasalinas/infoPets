@@ -36,7 +36,7 @@ public class AddRaza extends AppCompatActivity {
         setContentView(R.layout.add_raza);
 
         ListView auxListView = (ListView) findViewById(R.id.lvMostrarRaza);
-        ScrollView auxScroll = (ScrollView) findViewById(R.id.scView);
+        ScrollView auxScroll = (ScrollView) findViewById(R.id.scRaza);
 
         auxScroll.setOnTouchListener(new View.OnTouchListener() {
 

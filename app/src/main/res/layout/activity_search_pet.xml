@@ -7,7 +7,7 @@
     tools:context="egt.infopets.Funciones.SearchPet">
 
     <ScrollView
-        android:id="@+id/scRaza"
+        android:id="@+id/scBuscar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical">
