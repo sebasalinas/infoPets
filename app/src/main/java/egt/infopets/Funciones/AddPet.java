@@ -467,7 +467,7 @@ public class AddPet extends AppCompatActivity {
     File createImageFile() throws IOException {
         File file = new File(Environment.getExternalStorageDirectory().getPath()+"/InfoPets/");
         file.mkdirs();
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()).toString();
+        //String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()).toString();
         String imageFileName = auxNombreMascota.getText().toString()+"_"+auxRut.getText().toString()+".jpg";
         File storageDirectory = new File(Environment.getExternalStorageDirectory().getPath(), "/InfoPets");
         File image = new File(storageDirectory, imageFileName);
