@@ -99,6 +99,7 @@ public class AddPet extends AppCompatActivity {
         ArrayAdapter<CharSequence> adaptadorRaza = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listaStringRaza);
 
         spRaza.setAdapter(adaptadorRaza);
+
         //fin carga spinner
 
     }
