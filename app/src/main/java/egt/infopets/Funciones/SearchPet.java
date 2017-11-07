@@ -1,6 +1,9 @@
 package egt.infopets.Funciones;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,10 +14,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
@@ -37,11 +42,16 @@ public class SearchPet extends AppCompatActivity {
     int varCodVisita = 0;
     String varCodMascota = "";
     String fechaDefault = "";
+    EditText auxNombreM;
+    ImageView mPhotoCapturedImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_pet);
+
+
+        mPhotoCapturedImageView = (ImageView) findViewById(R.id.ibtnImagen);
 
         ListView auxListView = (ListView)findViewById(R.id.lvMedicamentos);
         ScrollView auxScroll = (ScrollView) findViewById(R.id.scBuscar);
@@ -139,13 +149,27 @@ public class SearchPet extends AppCompatActivity {
         Duenio auxDuenio = auxMantenedor.getByCodigo(auxVar2);
 
         auxNombre.setText(auxDuenio.getNombre().toString());
+
+        File imgFile = new  File(Environment.getExternalStorageDirectory().getPath()+"/InfoPets/");
+
+        if(imgFile.exists()){
+
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath()+"/"+auxNombreM.getText().toString()+"_"+auxVar2+".jpg");
+
+            ImageView myImage = (ImageView) findViewById(R.id.ibtnImagen);
+
+            myImage.setImageBitmap(myBitmap);
+
+            mPhotoCapturedImageView.setRotation(90);
+
+        }
     }
 
     public void datosMascota() {
         MantenedorMascota auxMantenedor = new MantenedorMascota(this);
         Mascota auxMascota = auxMantenedor.getByCodigo(auxVar);
 
-        EditText auxNombre = (EditText) findViewById(R.id.txtMNombre);
+        auxNombreM = (EditText) findViewById(R.id.txtMNombre);
         EditText auxEdad = (EditText) findViewById(R.id.txtFNacimiento);
         EditText auxRut = (EditText) findViewById(R.id.txtDNombre);
 
@@ -170,7 +194,7 @@ public class SearchPet extends AppCompatActivity {
         }
         String Edad = anio + "-" + mes;
 
-        auxNombre.setText(auxMascota.getNombre().toString());
+        auxNombreM.setText(auxMascota.getNombre().toString());
         auxEdad.setText(Edad);
         auxRut.setText(String.valueOf(auxMascota.getRut()));
 

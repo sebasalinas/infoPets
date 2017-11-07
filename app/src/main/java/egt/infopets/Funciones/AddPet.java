@@ -3,6 +3,7 @@ package egt.infopets.Funciones;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -79,7 +80,6 @@ public class AddPet extends AppCompatActivity {
             auxNombreDuenio.setText(getIntent().getStringExtra("varDuenio"));
             auxRut.setEnabled(false);
             btnEdit.setVisibility(View.VISIBLE);
-
 
             cargaDatos();
         }
@@ -296,6 +296,19 @@ public class AddPet extends AppCompatActivity {
             auxRbHembra.setChecked(true);
         }
 
+        File imgFile = new  File(Environment.getExternalStorageDirectory().getPath()+"/InfoPets/"+auxNombreMascota.getText().toString()+"_"+auxRut.getText().toString()+".jpg");
+
+        if(imgFile.exists()){
+
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+
+            ImageView myImage = (ImageView) findViewById(R.id.btnCamara);
+
+            myImage.setImageBitmap(myBitmap);
+
+            mPhotoCapturedImageView.setRotation(90);
+
+        }
 
     }
 

@@ -29,32 +29,17 @@
                 app:layout_constraintRight_toLeftOf="@+id/txtFNacimiento"
                 app:layout_constraintTop_toBottomOf="@+id/txtDNombre" />
 
-            <ImageButton
-                android:id="@+id/ibtnImagen"
-                android:layout_width="87dp"
-                android:layout_height="53dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:onClick="envioMascota"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@android:drawable/ic_menu_report_image" />
-
             <EditText
                 android:id="@+id/txtMNombre"
                 android:layout_width="268dp"
                 android:layout_height="52dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
                 android:ems="10"
                 android:enabled="false"
                 android:inputType="textPersonName"
-                app:layout_constraintHorizontal_bias="0.777"
-                app:layout_constraintLeft_toRightOf="@+id/ibtnImagen"
                 app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ibtnImagen"
                 tools:layout_editor_absoluteY="8dp" />
 
             <EditText
@@ -116,18 +101,27 @@
                 android:id="@+id/txtDNombre"
                 android:layout_width="366dp"
                 android:layout_height="52dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:ems="10"
                 android:enabled="false"
                 android:inputType="textPersonName"
-                app:layout_constraintHorizontal_bias="0.545"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtMNombre" />
+
+            <ImageView
+                android:id="@+id/ibtnImagen"
+                android:layout_width="81dp"
+                android:layout_height="53dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:onClick="envioMascota"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_menu_gallery" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
