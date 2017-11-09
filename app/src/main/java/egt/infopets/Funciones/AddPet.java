@@ -1,6 +1,7 @@
 package egt.infopets.Funciones;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -15,19 +16,23 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -54,6 +59,7 @@ public class AddPet extends AppCompatActivity {
     String auxVarRut = "";
     EditText auxNombreMascota;
     EditText auxRut;
+    EditText fechaNacimientoMascota;
 
     private static final int ACTIVITY_START_CAMERA_APP = 0;
     private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1 ;
@@ -64,6 +70,26 @@ public class AddPet extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pet);
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+            } else {
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+
+            }
+        }
+
+        fechaNacimientoMascota = (EditText)findViewById(R.id.txtFechaNacimiento) ;
+        fechaNacimientoMascota.setInputType(InputType.TYPE_NULL);
+
 
         mPhotoCapturedImageView = (ImageView) findViewById(R.id.btnCamara);
 
@@ -407,11 +433,12 @@ public class AddPet extends AppCompatActivity {
             mensaje("REGISTROS ACTUALIZADOS");
             finish();
         } else {
-            if (validarDigitoVerificador(auxVarRut) && !auxNombre.getText().toString().isEmpty() && validarExtras() ) {
+            if (validarDigitoVerificador(auxVarRut) && !auxNombre.getText().toString().isEmpty() && validarExtras() && mPhotoCapturedImageView.getDrawable() != null) {
                 addDuenio();
                 agregarMascota();
                 mensaje("MASCOTA AGREGADA ");
                 finish();
+                mensaje(fechaNacimientoMascota.getText().toString());
             } else {
                 mensaje("FALTAN DATOS");
             }
@@ -421,22 +448,7 @@ public class AddPet extends AppCompatActivity {
 
     public void takePhoto(View view) {
         try{
-            int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-            if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED) {
 
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-
-                } else {
-
-                    ActivityCompat.requestPermissions(this,
-                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                            MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-
-                }
-            }
 
             if(!auxRut.getText().toString().isEmpty() || !auxNombreMascota.getText().toString().isEmpty()){
                 Intent callCameraApplicationIntent = new Intent();
@@ -467,7 +479,6 @@ public class AddPet extends AppCompatActivity {
     File createImageFile() throws IOException {
         File file = new File(Environment.getExternalStorageDirectory().getPath()+"/InfoPets/");
         file.mkdirs();
-        //String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()).toString();
         String imageFileName = auxNombreMascota.getText().toString()+"_"+auxRut.getText().toString()+".jpg";
         File storageDirectory = new File(Environment.getExternalStorageDirectory().getPath(), "/InfoPets");
         File image = new File(storageDirectory, imageFileName);
@@ -508,4 +519,22 @@ public class AddPet extends AppCompatActivity {
 
 
     }
+
+    public void selectDate(View view) {
+        Calendar cal = Calendar.getInstance();
+        int auxDay = cal.get(Calendar.DAY_OF_MONTH);
+        int auxMonth = cal.get(Calendar.MONTH);
+        int auxYear = cal.get(Calendar.YEAR);
+
+        DatePickerDialog dpd = new DatePickerDialog(AddPet.this, new DatePickerDialog.OnDateSetListener(){
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                fechaNacimientoMascota.setText(day+"-"+month+"-"+year);
+            }
+        },auxYear,auxMonth,auxDay);
+        dpd.show();
+
+    }
+
+
 }

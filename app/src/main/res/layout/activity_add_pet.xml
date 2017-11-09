@@ -31,6 +31,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="fecha Nacimiento (01-01-1999)"
+        android:onClick="selectDate"
         android:inputType="date"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
