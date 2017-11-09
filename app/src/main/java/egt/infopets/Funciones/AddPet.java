@@ -433,7 +433,7 @@ public class AddPet extends AppCompatActivity {
             mensaje("REGISTROS ACTUALIZADOS");
             finish();
         } else {
-            if (validarDigitoVerificador(auxVarRut) && !auxNombre.getText().toString().isEmpty() && validarExtras() && mPhotoCapturedImageView.getDrawable() != null) {
+            if (validarDigitoVerificador(auxVarRut) && !auxNombre.getText().toString().isEmpty() && validarExtras()) {
                 addDuenio();
                 agregarMascota();
                 mensaje("MASCOTA AGREGADA ");

@@ -176,7 +176,7 @@ public class SearchPet extends AppCompatActivity {
         String imgpath = auxMascota.getfNacimiento().toString();
 
         String anioNaciemiento = imgpath.substring(imgpath.lastIndexOf("-") + 1);
-        String mesAnio = imgpath.substring(imgpath.indexOf("-") + 1, 5);
+        String mesAnio = imgpath.substring(imgpath.indexOf("-") + 1, 4);
 
         Calendar calendarNow = new GregorianCalendar();
 
