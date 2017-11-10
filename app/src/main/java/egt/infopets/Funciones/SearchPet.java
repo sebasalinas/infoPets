@@ -160,7 +160,7 @@ public class SearchPet extends AppCompatActivity {
 
             myImage.setImageBitmap(myBitmap);
 
-            mPhotoCapturedImageView.setRotation(90);
+            mPhotoCapturedImageView.setRotation(-90);
 
         }
     }

@@ -306,7 +306,7 @@ public class AddPet extends AppCompatActivity {
 
             myImage.setImageBitmap(myBitmap);
 
-            mPhotoCapturedImageView.setRotation(90);
+            mPhotoCapturedImageView.setRotation(-90);
 
         }
 
@@ -489,21 +489,6 @@ public class AddPet extends AppCompatActivity {
         }
     }
 
-   /* @Override
-    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > && grantResults[] == PackageManager.PERMISSION_GRANTED) {
-
-                } else {
-
-                }
-                return;
-            }
-        }
-    }
-*/
     void setReducedImageSize() {
         int targetImageViewWidth = mPhotoCapturedImageView.getWidth();
         int targetImageViewHeight = mPhotoCapturedImageView.getHeight();
