@@ -62,9 +62,11 @@ public class AddPet extends AppCompatActivity {
     EditText fechaNacimientoMascota;
 
     private static final int ACTIVITY_START_CAMERA_APP = 0;
-    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1 ;
+    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     private ImageView mPhotoCapturedImageView;
-    private String mImageFileLocation = "";
+    private String mImageFileLocation;
+    int targetImageViewWidth;
+    int targetImageViewHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +89,7 @@ public class AddPet extends AppCompatActivity {
             }
         }
 
-        fechaNacimientoMascota = (EditText)findViewById(R.id.txtFechaNacimiento) ;
+        fechaNacimientoMascota = (EditText) findViewById(R.id.txtFechaNacimiento);
         fechaNacimientoMascota.setInputType(InputType.TYPE_NULL);
 
 
@@ -135,10 +137,10 @@ public class AddPet extends AppCompatActivity {
 
         auxListaEspecie = auxMantenedorEspecie.getAll();
 
-        listaStringEspecie = new String[auxListaEspecie.size()+1];
+        listaStringEspecie = new String[auxListaEspecie.size() + 1];
         listaStringEspecie[0] = "Seleccione...";
         for (int i = 0; i < auxListaEspecie.size(); i++)
-            listaStringEspecie[i+1] = auxListaEspecie.get(i).getSpecie();
+            listaStringEspecie[i + 1] = auxListaEspecie.get(i).getSpecie();
     }
 
     private void consultaListaRaza() {
@@ -146,10 +148,10 @@ public class AddPet extends AppCompatActivity {
 
         auxListaRaza = auxMantenedorRaza.getAll();
 
-        listaStringRaza = new String[auxListaRaza.size()+1];
+        listaStringRaza = new String[auxListaRaza.size() + 1];
         listaStringRaza[0] = "Seleccione...";
         for (int i = 0; i < auxListaRaza.size(); i++)
-            listaStringRaza[i+1] = auxListaRaza.get(i).getDescripcion();
+            listaStringRaza[i + 1] = auxListaRaza.get(i).getDescripcion();
     }
 
     public void addDuenio() {
@@ -190,20 +192,19 @@ public class AddPet extends AppCompatActivity {
         RadioButton auxHembra = (RadioButton) findViewById(R.id.rbHembra);
 
         boolean var = false;
-        if (auxEspecie.getSelectedItemPosition()> 0) {
+        if (auxEspecie.getSelectedItemPosition() > 0) {
             var = true;
-        }else{
+        } else {
             var = false;
         }
-        if (auxRaza.getSelectedItemPosition()> 0) {
+        if (auxRaza.getSelectedItemPosition() > 0) {
             var = true;
-        }else{
+        } else {
             var = false;
         }
-        if (auxMacho.isChecked() || auxHembra.isChecked()){
+        if (auxMacho.isChecked() || auxHembra.isChecked()) {
             var = true;
-        }
-        else {
+        } else {
             var = false;
         }
         return var;
@@ -239,25 +240,25 @@ public class AddPet extends AppCompatActivity {
                 newMascota.setSexo("Macho");
             } else if (auxHembra.isChecked()) {
                 newMascota.setSexo("Hembra");
-            }else{
+            } else {
                 guarda = false;
             }
 
-            if(auxEspecie.getSelectedItemPosition() > 0){
+            if (auxEspecie.getSelectedItemPosition() > 0) {
                 newMascota.setEspecie(auxEspecie.getSelectedItemPosition());
-            }else{
-                guarda= false;
-            }
-            if(auxRaza.getSelectedItemPosition() > 0){
-                newMascota.setEspecie(auxEspecie.getSelectedItemPosition());
-                guarda = true;
-            }else {
+            } else {
                 guarda = false;
             }
-            if(guarda){
+            if (auxRaza.getSelectedItemPosition() > 0) {
+                newMascota.setEspecie(auxEspecie.getSelectedItemPosition());
+                guarda = true;
+            } else {
+                guarda = false;
+            }
+            if (guarda) {
                 auxMantenedorMascota.insert(newMascota);
                 this.mensaje("Mascota:" + mascota + "|| Dueño: " + rut);
-            }else{
+            } else {
                 this.mensaje("SELECCIONE EL SEXO");
             }
         } catch (Exception ex) {
@@ -322,9 +323,9 @@ public class AddPet extends AppCompatActivity {
             auxRbHembra.setChecked(true);
         }
 
-        File imgFile = new  File(Environment.getExternalStorageDirectory().getPath()+"/InfoPets/"+auxNombreMascota.getText().toString()+"_"+auxRut.getText().toString()+".jpg");
+        File imgFile = new File(Environment.getExternalStorageDirectory().getPath() + "/InfoPets/" + auxNombreMascota.getText().toString() + "_" + auxRut.getText().toString() + ".jpg");
 
-        if(imgFile.exists()){
+        if (imgFile.exists()) {
 
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
 
@@ -438,7 +439,6 @@ public class AddPet extends AppCompatActivity {
                 agregarMascota();
                 mensaje("MASCOTA AGREGADA ");
                 finish();
-                mensaje(fechaNacimientoMascota.getText().toString());
             } else {
                 mensaje("FALTAN DATOS");
             }
@@ -447,10 +447,10 @@ public class AddPet extends AppCompatActivity {
     }
 
     public void takePhoto(View view) {
-        try{
+        try {
 
 
-            if(!auxRut.getText().toString().isEmpty() || !auxNombreMascota.getText().toString().isEmpty()){
+            if (!auxRut.getText().toString().isEmpty() || !auxNombreMascota.getText().toString().isEmpty()) {
                 Intent callCameraApplicationIntent = new Intent();
                 callCameraApplicationIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
 
@@ -467,19 +467,19 @@ public class AddPet extends AppCompatActivity {
 
                 startActivityForResult(callCameraApplicationIntent, ACTIVITY_START_CAMERA_APP);
 
-            }else {
+            } else {
                 mensaje("Ingrese el nombre de la mascota y el rut de la persona");
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
             mensaje("Ha ocurrido un erro al intentar sacar una foto");
         }
 
     }
 
     File createImageFile() throws IOException {
-        File file = new File(Environment.getExternalStorageDirectory().getPath()+"/InfoPets/");
+        File file = new File(Environment.getExternalStorageDirectory().getPath() + "/InfoPets/");
         file.mkdirs();
-        String imageFileName = auxNombreMascota.getText().toString()+"_"+auxRut.getText().toString()+".jpg";
+        String imageFileName = auxNombreMascota.getText().toString() + "_" + auxRut.getText().toString() + ".jpg";
         File storageDirectory = new File(Environment.getExternalStorageDirectory().getPath(), "/InfoPets");
         File image = new File(storageDirectory, imageFileName);
         mImageFileLocation = image.getAbsolutePath();
@@ -487,30 +487,30 @@ public class AddPet extends AppCompatActivity {
         return image;
     }
 
-    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
-        if(requestCode == ACTIVITY_START_CAMERA_APP && resultCode == RESULT_OK) {
-            // Toast.makeText(this, "Picture taken successfully", Toast.LENGTH_SHORT).show();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        Toast.makeText(this, "Picture taken successfully", Toast.LENGTH_SHORT).show();
+        if (requestCode == ACTIVITY_START_CAMERA_APP && resultCode == RESULT_OK) {
             //Bundle extras = data.getBundleExtra("InfoPets");
             //Bitmap photoCapturedBitmap = (Bitmap) extras.get("data");
-            // mPhotoCapturedImageView.setImageBitmap(photoCapturedBitmap);
-            // photoCapturedBitmap = BitmapFactory.decodeFile(mImageFileLocation);
-            // mPhotoCapturedImageView.setImageBitmap(photoCapturedBitmap);
-            setReducedImageSize();
-
+            //mPhotoCapturedImageView.setImageBitmap(photoCapturedBitmap);
+            //photoCapturedBitmap = BitmapFactory.decodeFile(mImageFileLocation);
+            //mPhotoCapturedImageView.setImageBitmap(photoCapturedBitmap);
         }
+        setReducedImageSize();
+        targetImageViewWidth = mPhotoCapturedImageView.getWidth();
+        targetImageViewHeight = mPhotoCapturedImageView.getHeight();
     }
 
     void setReducedImageSize() {
-        int targetImageViewWidth = mPhotoCapturedImageView.getWidth();
-        int targetImageViewHeight = mPhotoCapturedImageView.getHeight();
 
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
         bmOptions.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(mImageFileLocation, bmOptions);
-        int cameraImageWidth = bmOptions.outWidth;
-        int cameraImageHeight = bmOptions.outHeight;
+        int cameraImageWidth = 150;
+        int cameraImageHeight = 168;
 
-        int scaleFactor = Math.min(cameraImageWidth/targetImageViewWidth, cameraImageHeight/targetImageViewHeight);
+        int scaleFactor = Math.min(cameraImageWidth, cameraImageHeight );
         bmOptions.inSampleSize = scaleFactor;
         bmOptions.inJustDecodeBounds = false;
 
@@ -526,12 +526,12 @@ public class AddPet extends AppCompatActivity {
         int auxMonth = cal.get(Calendar.MONTH);
         int auxYear = cal.get(Calendar.YEAR);
 
-        DatePickerDialog dpd = new DatePickerDialog(AddPet.this, new DatePickerDialog.OnDateSetListener(){
+        DatePickerDialog dpd = new DatePickerDialog(AddPet.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
-                fechaNacimientoMascota.setText(day+"-"+month+"-"+year);
+                fechaNacimientoMascota.setText(day + "-" + month + "-" + year);
             }
-        },auxYear,auxMonth,auxDay);
+        }, auxYear, auxMonth, auxDay);
         dpd.show();
 
     }
