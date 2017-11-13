@@ -28,4 +28,6 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:26.+'
     testCompile 'junit:junit:4.12'
+    compile 'org.mongodb:mongodb-driver:3.5.0'
+    compile files('libs/ksoap2-android-assembly-3.6.1-jar-with-dependencies.jar')
 }
