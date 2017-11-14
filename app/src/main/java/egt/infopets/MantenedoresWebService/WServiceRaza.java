@@ -1,4 +1,4 @@
-package egt.infopets.Mantenedores;
+package egt.infopets.MantenedoresWebService;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.PropertyInfo;
@@ -10,12 +10,12 @@ import org.ksoap2.transport.HttpTransportSE;
  * Created by Soporte on 13-11-2017.
  */
 
-public class WebService {
+public class WServiceRaza {
 
     //----Modificar
     private static String NAMESPACE = "http://tempuri.org/";
     private static String URL = "http://172.24.15.186:8073/WebServiceMongoDB.asmx";
-    private static String SOAP_ACTION = "http://tempuri.org/insertarDuenio";
+    private static String SOAP_ACTION = "http://tempuri.org/insertarRaza";
     private static String TOKEN = "hqcRzb987vi2Tdl/h1mz0w==";
 
 
@@ -24,7 +24,7 @@ public class WebService {
     public static String agregarMascota() {
 
         //--Modificar
-        String nomMetodo = "consultaClienteJson";
+        String nomMetodo = "insertarRaza";
         //Modificar
         String resTxt = null;
         // Create request
