@@ -25,14 +25,14 @@ import java.util.ArrayList;
 
 public class Conexion extends AppCompatActivity{
 
-        //private static String NAMESPACE = "http://tempuri.org/";
-        //private static String URL = "http://172.24.15.186:8073/WebServiceMongoDB.asmx";
-        //private static String SOAP_ACTION = "http://tempuri.org/insertarRaza";
-        //private static String TOKEN = "hqcRzb987vi2Tdl/h1mz0w==";
+        private static String NAMESPACE = "http://tempuri.org/";
+        private static String URL = "http://172.24.15.186:8073/WebServiceMongoDB.asmx";
+        private static String SOAP_ACTION = "http://tempuri.org/insertarRaza";
+        private static String TOKEN = "hqcRzb987vi2Tdl/h1mz0w==";
 
         public static void insert(String nameCollection, ArrayList<String> columnas, ArrayList<String> valores){
                 try {
-                        MongoClientURI uri  = new MongoClientURI("mongodb://Sebastian:pelaox56@ds049446.mlab.com:49446/infopets");
+                        MongoClientURI uri  = new MongoClientURI("mongodb://Sebastian:pelaox56@ds259245.mlab.com:59245/infopets");
                         MongoClient client = new MongoClient(uri);
 
                         MongoDatabase db = client.getDatabase(uri.getDatabase());
@@ -41,15 +41,17 @@ public class Conexion extends AppCompatActivity{
                         BasicDBObject document = new BasicDBObject();
                         document.put("descripcion", "Perros");
                         collection.insertOne(document);
-
-                        MongoCursor iterator = collection.find().iterator();
+                        //MongoCursor iterator = collection.find().iterator();
                         //System.out.println("Insert successfully");
-                        while (iterator.hasNext()) {
-                                System.out.println(iterator.next());
-                        }
+
+                        //while (iterator.hasNext()) {
+                        //        System.out.println(iterator.next());}
+
+
                 } catch (Exception e) {
                         e.printStackTrace();
                 }
+
         }
 
         public static boolean verificaConexion(Context ctx) {

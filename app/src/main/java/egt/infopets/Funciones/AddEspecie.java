@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.util.Iterator;
 import java.util.List;
 
+import egt.infopets.MantenedoresWebService.SMantenedorEspecie;
 import egt.infopets.R;
 import egt.infopets.Clases.Especie;
 import egt.infopets.Mantenedores.MantenedorEspecie;
@@ -43,7 +44,7 @@ public class AddEspecie extends AppCompatActivity {
             RadioButton auxInactivo = (RadioButton) findViewById(R.id.rbInactivo);
 
             Especie newEspecie = new Especie();
-            MantenedorEspecie auxMantenedor = new MantenedorEspecie(this);
+            SMantenedorEspecie auxMantenedor = new SMantenedorEspecie();
 
 
             String especie = auxEspecie.getText().toString();
@@ -54,14 +55,16 @@ public class AddEspecie extends AppCompatActivity {
                 {
                     newEspecie.setEstado(true);
                     newEspecie.setSpecie(auxEspecie.getText().toString());
-                    auxMantenedor.insert(newEspecie);
+                    //auxMantenedor.insert(newEspecie);
+                    auxMantenedor.execute(especie);
                     this.mensaje("Especie: "+ especie +" || Esado: Activo");
                     ((EditText) findViewById(R.id.txtNewEspecie)).setText("");
                 } else if (auxInactivo.isChecked())
                 {
                     newEspecie.setEstado(false);
                     newEspecie.setSpecie(auxEspecie.getText().toString());
-                    auxMantenedor.insert(newEspecie);
+                    //auxMantenedor.insert(newEspecie);
+                    auxMantenedor.execute(especie);
                     this.mensaje("Especie: "+ especie +" || Esado: Inactivo");
                     ((EditText) findViewById(R.id.txtNewEspecie)).setText("");
                 }
