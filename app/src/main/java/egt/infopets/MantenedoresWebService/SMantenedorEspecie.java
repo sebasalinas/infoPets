@@ -31,7 +31,7 @@ public class SMantenedorEspecie extends AsyncTask<String, Void, Void> {
             //---------------Modificar
             // WebService ws = new WebService();
             String NAMESPACE = "http://tempuri.org/";
-            //modificar server
+            //modificar server.
             String URL="http://192.168.78.1:8013/WebServiceMDB.asmx";
             String METHOD_NAME = "insertarEspecie";
             String SOAP_ACTION = "http://tempuri.org/insertarEspecie";
