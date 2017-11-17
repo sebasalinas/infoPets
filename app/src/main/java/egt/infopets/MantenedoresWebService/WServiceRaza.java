@@ -14,7 +14,7 @@ public class WServiceRaza {
 
     //----Modificar
     private static String NAMESPACE = "http://tempuri.org/";
-    private static String URL = "http://172.24.15.186:8073/WebServiceMongoDB.asmx";
+    private static String URL = "http://172.24.15.186:8013/WebServiceMDB.asmx";
     private static String SOAP_ACTION = "http://tempuri.org/consultaClienteJson";
     private static String TOKEN = "hqcRzb987vi2Tdl/h1mz0w==";
 
@@ -68,6 +68,7 @@ public class WServiceRaza {
         //Return resTxt to calling object
         return resTxt;
     } //Fin devuelve cliente
+
     public static String verMascota() {
 
         //--Modificar

@@ -32,7 +32,7 @@ public class AddEspecie extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_especie);
 
-        ListView auxListView = (ListView)findViewById(R.id.lvMostrar);
+        //ListView auxListView = (ListView)findViewById(R.id.lvMostrar);
 
         mostrar();
 
@@ -54,9 +54,6 @@ public class AddEspecie extends AppCompatActivity {
 
             if (!auxEspecie.getText().toString().isEmpty())
             {
-                if (auxActivo.isChecked())
-                {
-                    newEspecie.setEstado(true);
                     newEspecie.setSpecie(auxEspecie.getText().toString());
                     if (!cnn.verificaConexion(this)){
                         auxMantenedor.insert(newEspecie);
@@ -65,19 +62,6 @@ public class AddEspecie extends AppCompatActivity {
                     }
                     this.mensaje("Especie: "+ especie +" || Esado: Activo");
                     ((EditText) findViewById(R.id.txtNewEspecie)).setText("");
-                } else if (auxInactivo.isChecked())
-                {
-                    newEspecie.setEstado(false);
-                    newEspecie.setSpecie(auxEspecie.getText().toString());
-                    //auxMantenedor.insert(newEspecie);
-                    auxWMantenedor.execute(especie);
-                    this.mensaje("Especie: "+ especie +" || Esado: Inactivo");
-                    ((EditText) findViewById(R.id.txtNewEspecie)).setText("");
-                }
-                else
-                    {
-                        mensaje("Debe seleccionar el estado de la especie");
-                    }
             }
             else
                 {
@@ -187,13 +171,6 @@ public class AddEspecie extends AppCompatActivity {
 
         auxEspecie.setId(cod);
         auxEspecie.setSpecie(especie);
-        if (radio.equalsIgnoreCase("Activo")){
-            auxEspecie.setEstado(true);
-        }
-        else if (radio.equalsIgnoreCase("Inactivo")){
-            auxEspecie.setEstado(false);
-        }
-
         auxMantenedor.update(auxEspecie);
         mensaje("Nombre Mascota Actualizado");
         mostrar();
