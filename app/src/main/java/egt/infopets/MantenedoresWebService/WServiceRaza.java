@@ -15,7 +15,7 @@ public class WServiceRaza {
     //----Modificar
     private static String NAMESPACE = "http://tempuri.org/";
     private static String URL = "http://172.24.15.186:8073/WebServiceMongoDB.asmx";
-    private static String SOAP_ACTION = "http://tempuri.org/insertarRaza";
+    private static String SOAP_ACTION = "http://tempuri.org/consultaClienteJson";
     private static String TOKEN = "hqcRzb987vi2Tdl/h1mz0w==";
 
 
@@ -24,7 +24,7 @@ public class WServiceRaza {
     public static String agregarMascota() {
 
         //--Modificar
-        String nomMetodo = "insertarRaza";
+        String nomMetodo = "consultaClienteJson";
         //Modificar
         String resTxt = null;
         // Create request

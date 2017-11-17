@@ -2,6 +2,7 @@ package egt.infopets.MantenedoresWebService;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
@@ -32,7 +33,7 @@ public class SMantenedorEspecie extends AsyncTask<String, Void, Void> {
             // WebService ws = new WebService();
             String NAMESPACE = "http://tempuri.org/";
             //modificar server.
-            String URL="http://192.168.78.1:8013/WebServiceMDB.asmx";
+            String URL="http://172.24.15.186:8013/WebServiceMDB.asmx";
             String METHOD_NAME = "insertarEspecie";
             String SOAP_ACTION = "http://tempuri.org/insertarEspecie";
             //------------------------
@@ -56,6 +57,7 @@ public class SMantenedorEspecie extends AsyncTask<String, Void, Void> {
             try
             {
                 transporte.call(SOAP_ACTION, envelope);
+                resultado = "funciona";
 
                 //Se procesa el resultado devuelto
                 //...
@@ -85,12 +87,6 @@ public class SMantenedorEspecie extends AsyncTask<String, Void, Void> {
             resultado = "Datos Guardados";
             //   else
             //     resultado = "Datos Guardados";
-
-
-
-
-
-
 
         }
         catch (final Exception ex)
@@ -123,7 +119,6 @@ public class SMantenedorEspecie extends AsyncTask<String, Void, Void> {
 
             switch (resultado){
                 case "true":
-
                     break;
                 default:
                     // Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();

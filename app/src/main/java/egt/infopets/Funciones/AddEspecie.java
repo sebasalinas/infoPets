@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.util.Iterator;
 import java.util.List;
 
+import egt.infopets.MantenedoresWebService.Conexion;
 import egt.infopets.MantenedoresWebService.SMantenedorEspecie;
 import egt.infopets.R;
 import egt.infopets.Clases.Especie;
@@ -39,12 +40,14 @@ public class AddEspecie extends AppCompatActivity {
 
     public void addEspecie(View view) {
         try {
+            Conexion cnn = new Conexion();
             EditText auxEspecie = (EditText) findViewById(R.id.txtNewEspecie);
             RadioButton auxActivo = (RadioButton) findViewById(R.id.rbActivo);
             RadioButton auxInactivo = (RadioButton) findViewById(R.id.rbInactivo);
 
             Especie newEspecie = new Especie();
-            SMantenedorEspecie auxMantenedor = new SMantenedorEspecie();
+            SMantenedorEspecie auxWMantenedor = new SMantenedorEspecie();
+            MantenedorEspecie auxMantenedor = new MantenedorEspecie(this);
 
 
             String especie = auxEspecie.getText().toString();
@@ -55,8 +58,11 @@ public class AddEspecie extends AppCompatActivity {
                 {
                     newEspecie.setEstado(true);
                     newEspecie.setSpecie(auxEspecie.getText().toString());
-                    //auxMantenedor.insert(newEspecie);
-                    auxMantenedor.execute(especie);
+                    if (!cnn.verificaConexion(this)){
+                        auxMantenedor.insert(newEspecie);
+                    }else {
+                        auxWMantenedor.execute(especie);
+                    }
                     this.mensaje("Especie: "+ especie +" || Esado: Activo");
                     ((EditText) findViewById(R.id.txtNewEspecie)).setText("");
                 } else if (auxInactivo.isChecked())
@@ -64,7 +70,7 @@ public class AddEspecie extends AppCompatActivity {
                     newEspecie.setEstado(false);
                     newEspecie.setSpecie(auxEspecie.getText().toString());
                     //auxMantenedor.insert(newEspecie);
-                    auxMantenedor.execute(especie);
+                    auxWMantenedor.execute(especie);
                     this.mensaje("Especie: "+ especie +" || Esado: Inactivo");
                     ((EditText) findViewById(R.id.txtNewEspecie)).setText("");
                 }
