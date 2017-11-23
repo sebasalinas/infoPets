@@ -1,19 +1,12 @@
-package egt.infopets.MantenedoresWebService;
+package egt.infopets.Mantenedores.MDB;
 
-import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
-
-import java.util.ArrayList;
-
-import egt.infopets.Clases.Especie;
-import egt.infopets.Mantenedores.DbInfoPet;
 
 /**
  * Created by Soporte on 15-11-2017.

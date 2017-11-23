@@ -1,11 +1,10 @@
-package egt.infopets.Funciones;
+package egt.infopets.Vistas;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -40,9 +39,9 @@ import egt.infopets.R;
 import egt.infopets.Clases.Duenio;
 import egt.infopets.Clases.Mascota;
 import egt.infopets.Clases.Visitas;
-import egt.infopets.Mantenedores.MantenedorDuenio;
-import egt.infopets.Mantenedores.MantenedorMascota;
-import egt.infopets.Mantenedores.MantenedorVisitas;
+import egt.infopets.Mantenedores.SQLite.MantenedorDuenio;
+import egt.infopets.Mantenedores.SQLite.MantenedorMascota;
+import egt.infopets.Mantenedores.SQLite.MantenedorVisitas;
 
 public class SearchPet extends AppCompatActivity {
 

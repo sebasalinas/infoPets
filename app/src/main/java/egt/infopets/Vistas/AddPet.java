@@ -1,10 +1,8 @@
-package egt.infopets.Funciones;
+package egt.infopets.Vistas;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -25,15 +23,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import egt.infopets.R;
@@ -41,10 +36,10 @@ import egt.infopets.Clases.Duenio;
 import egt.infopets.Clases.Especie;
 import egt.infopets.Clases.Mascota;
 import egt.infopets.Clases.Raza;
-import egt.infopets.Mantenedores.MantenedorDuenio;
-import egt.infopets.Mantenedores.MantenedorEspecie;
-import egt.infopets.Mantenedores.MantenedorMascota;
-import egt.infopets.Mantenedores.MantenedorRaza;
+import egt.infopets.Mantenedores.SQLite.MantenedorDuenio;
+import egt.infopets.Mantenedores.SQLite.MantenedorEspecie;
+import egt.infopets.Mantenedores.SQLite.MantenedorMascota;
+import egt.infopets.Mantenedores.SQLite.MantenedorRaza;
 
 public class AddPet extends AppCompatActivity {
 

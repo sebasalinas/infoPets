@@ -1,4 +1,4 @@
-package egt.infopets.MantenedoresWebService;
+package egt.infopets.Mantenedores.MDB;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.PropertyInfo;

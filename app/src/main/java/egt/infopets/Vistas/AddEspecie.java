@@ -1,4 +1,4 @@
-package egt.infopets.Funciones;
+package egt.infopets.Vistas;
 
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -15,11 +15,11 @@ import android.widget.Toast;
 import java.util.Iterator;
 import java.util.List;
 
-import egt.infopets.MantenedoresWebService.Conexion;
-import egt.infopets.MantenedoresWebService.SMantenedorEspecie;
+import egt.infopets.Mantenedores.MDB.Conexion;
+import egt.infopets.Mantenedores.MDB.SMantenedorEspecie;
 import egt.infopets.R;
 import egt.infopets.Clases.Especie;
-import egt.infopets.Mantenedores.MantenedorEspecie;
+import egt.infopets.Mantenedores.SQLite.MantenedorEspecie;
 
 /**
  * Created by cetecom on 05-10-2017.

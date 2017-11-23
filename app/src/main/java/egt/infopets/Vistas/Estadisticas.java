@@ -1,4 +1,4 @@
-package egt.infopets.Funciones;
+package egt.infopets.Vistas;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,9 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import egt.infopets.Clases.Mascota;
-import egt.infopets.Clases.Visitas;
-import egt.infopets.Mantenedores.MantenedorMascota;
-import egt.infopets.Mantenedores.MantenedorVisitas;
+import egt.infopets.Mantenedores.SQLite.MantenedorMascota;
 import egt.infopets.R;
 
 public class Estadisticas extends AppCompatActivity {

@@ -1,8 +1,7 @@
-package egt.infopets.Mantenedores;
+package egt.infopets.Mantenedores.SQLite;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
 
 import java.util.ArrayList;
 

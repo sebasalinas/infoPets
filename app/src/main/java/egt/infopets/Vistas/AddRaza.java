@@ -1,4 +1,4 @@
-package egt.infopets.Funciones;
+package egt.infopets.Vistas;
 
 
 
@@ -20,8 +20,8 @@ import java.util.List;
 import egt.infopets.R;
 import egt.infopets.Clases.Especie;
 import egt.infopets.Clases.Raza;
-import egt.infopets.Mantenedores.MantenedorEspecie;
-import egt.infopets.Mantenedores.MantenedorRaza;
+import egt.infopets.Mantenedores.SQLite.MantenedorEspecie;
+import egt.infopets.Mantenedores.SQLite.MantenedorRaza;
 
 public class AddRaza extends AppCompatActivity {
 

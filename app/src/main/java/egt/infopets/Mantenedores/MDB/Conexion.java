@@ -1,4 +1,4 @@
-package egt.infopets.MantenedoresWebService;
+package egt.infopets.Mantenedores.MDB;
 
 import android.content.ContentValues;
 import android.content.Context;

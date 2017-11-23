@@ -1,17 +1,12 @@
-package egt.infopets.Funciones;
+package egt.infopets.Vistas;
 
-import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,11 +14,11 @@ import java.util.Iterator;
 import java.util.List;
 
 import egt.infopets.Clases.Visitas;
-import egt.infopets.Mantenedores.MantenedorVisitas;
+import egt.infopets.Mantenedores.SQLite.MantenedorVisitas;
 import egt.infopets.R;
 import egt.infopets.Clases.Mascota;
-import egt.infopets.Mantenedores.DbInfoPet;
-import egt.infopets.Mantenedores.MantenedorMascota;
+import egt.infopets.Mantenedores.SQLite.DbInfoPet;
+import egt.infopets.Mantenedores.SQLite.MantenedorMascota;
 
 public class FirstScreen extends AppCompatActivity {
 

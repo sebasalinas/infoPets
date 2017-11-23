@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Funciones.FirstScreen">
+        <activity android:name=".Vistas.FirstScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,23 +25,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Funciones.AddPet"
-            android:parentActivityName=".Funciones.FirstScreen"
+            android:name=".Vistas.AddPet"
+            android:parentActivityName=".Vistas.FirstScreen"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".Funciones.AddEspecie"
-            android:parentActivityName=".Funciones.FirstScreen"
+            android:name=".Vistas.AddEspecie"
+            android:parentActivityName=".Vistas.FirstScreen"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".Funciones.SearchPet"
-            android:parentActivityName=".Funciones.FirstScreen"
+            android:name=".Vistas.SearchPet"
+            android:parentActivityName=".Vistas.FirstScreen"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".Funciones.AddRaza"
-            android:parentActivityName=".Funciones.FirstScreen"
+            android:name=".Vistas.AddRaza"
+            android:parentActivityName=".Vistas.FirstScreen"
             android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".Funciones.Estadisticas"
-            android:parentActivityName=".Funciones.FirstScreen"
+        <activity android:name=".Vistas.Estadisticas"
+            android:parentActivityName=".Vistas.FirstScreen"
             android:windowSoftInputMode="stateHidden">
         </activity>
 
