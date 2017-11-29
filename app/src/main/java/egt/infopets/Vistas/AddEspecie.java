@@ -58,7 +58,7 @@ public class AddEspecie extends AppCompatActivity {
                     if (!cnn.verificaConexion(this)){
                         auxMantenedor.insert(newEspecie);
                     }else {
-                        auxWMantenedor.execute(especie);
+                        auxWMantenedor.execute("insert",especie);
                     }
                     this.mensaje("Especie: "+ especie +" || Esado: Activo");
                     ((EditText) findViewById(R.id.txtNewEspecie)).setText("");

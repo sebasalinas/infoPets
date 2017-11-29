@@ -16,14 +16,14 @@ public class SMantenedorEspecie extends AsyncTask<String, Void, Void> {
 
     String resultado = "";
     private static String NAMESPACE = "http://tempuri.org/";
-    private static String URL = "http://172.24.15.186:8013/WebServiceMDB.asmx";
-    private static String SOAP_ACTION = "http://tempuri.org/insertarEspecie";
+    private static String URL = "http://192.168.153.1:8089/WebServiceMDB.asmx";
+    private static String SOAP_ACTION = "http://tempuri.org/insert";
     private static String TOKEN = "hqcRzb987vi2Tdl/h1mz0w==";
 
     public static String agregarMascota() {
 
         //--Modificar
-        String nomMetodo = "insertarEspecie";
+        String nomMetodo = "insert";
         //Modificar
         String resTxt = null;
         // Create request
@@ -72,78 +72,87 @@ public class SMantenedorEspecie extends AsyncTask<String, Void, Void> {
     @Override
     protected Void doInBackground(String... params)
     {
-        try {
+        switch (params[0].toString()){
+            case "insert":
+                try {
+                    //---------------Modificar
+                    // WebService ws = new WebService();
+                    String NAMESPACE = "http://tempuri.org/";
+                    //modificar server.
+                    String URL="http://172.24.15.186:8013/WebServiceMDB.asmx";
+                    String METHOD_NAME = "insertarEspecie";
+                    String SOAP_ACTION = "http://tempuri.org/insertarEspecie";
+                    //------------------------
+                    SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
 
-            //---------------Modificar
-            // WebService ws = new WebService();
-            String NAMESPACE = "http://tempuri.org/";
-            //modificar server.
-            String URL="http://172.24.15.186:8013/WebServiceMDB.asmx";
-            String METHOD_NAME = "insertarEspecie";
-            String SOAP_ACTION = "http://tempuri.org/insertarEspecie";
-            //------------------------
-            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-
-            //----------Modificar
-            //request.addProperty("rut", params[0].toString());
-            request.addProperty("descripcion", params[0].toString());
-            //------------------------
+                    //----------Modificar
+                    request.addProperty("descripcion", params[1].toString());
+                    //------------------------
 
 
-            SoapSerializationEnvelope envelope =
-                    new SoapSerializationEnvelope(SoapEnvelope.VER11);
+                    SoapSerializationEnvelope envelope =
+                            new SoapSerializationEnvelope(SoapEnvelope.VER11);
 
-            envelope.dotNet = true;
+                    envelope.dotNet = true;
 
-            envelope.setOutputSoapObject(request);
+                    envelope.setOutputSoapObject(request);
 
-            HttpTransportSE transporte = new HttpTransportSE(URL);
+                    HttpTransportSE transporte = new HttpTransportSE(URL);
 
-            try
-            {
-                transporte.call(SOAP_ACTION, envelope);
-                resultado = "funciona";
+                    try
+                    {
+                        transporte.call(SOAP_ACTION, envelope);
+                        resultado = "funciona";
 
-                //Se procesa el resultado devuelto
-                //...
-            }
-            catch (Exception e)
-            {
-                // this.mensaje("error");
-                resultado = "error";
-            }
+                        //Se procesa el resultado devuelto
+                        //...
+                    }
+                    catch (Exception e)
+                    {
+                        // this.mensaje("error");
+                        resultado = "error";
+                    }
 
-            String res = "";
-            try {
+                    String res = "";
+                    try {
 
-                //   SoapPrimitive resultado_xml = (SoapPrimitive) envelope.getResponse();
-                //  if (resultado_xml != null)
-                //    res = resultado_xml.toString();
-            }
-            catch(Exception ex)
-            {
-                // this.mensaje("error");
+                        //   SoapPrimitive resultado_xml = (SoapPrimitive) envelope.getResponse();
+                        //  if (resultado_xml != null)
+                        //    res = resultado_xml.toString();
+                    }
+                    catch(Exception ex)
+                    {
+                        // this.mensaje("error");
 
-            }
+                    }
 
-            // if (res != "")
-            // if(res.equals("1"))
-            // this.mensaje("Insertado OK");
-            resultado = "Datos Guardados";
-            //   else
-            //     resultado = "Datos Guardados";
+                    // if (res != "")
+                    // if(res.equals("1"))
+                    // this.mensaje("Insertado OK");
+                    resultado = "Datos Guardados";
+                    //   else
+                    //     resultado = "Datos Guardados";
 
+                }
+                catch (final Exception ex)
+                {
+                    // runOnUiThread(new Runnable() {
+                    //   public void run() {
+
+                    //  TextView aux = (TextView)findViewById(R.id.txtTest);
+                    //  aux.setText(ex.getMessage());
+                    // }
+                    // });
+                }
+                break;
+            case "readAll":
+                break;
+            case "reaByCod":
+                break;
+            case "delete":
+                break;
         }
-        catch (final Exception ex)
-        {
-            // runOnUiThread(new Runnable() {
-            //   public void run() {
 
-            //  TextView aux = (TextView)findViewById(R.id.txtTest);
-            //  aux.setText(ex.getMessage());
-            // }
-            // });
-        }
         return null;
     }
 
