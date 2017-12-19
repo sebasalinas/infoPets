@@ -90,7 +90,7 @@ public class AddPet extends AppCompatActivity {
 
         mPhotoCapturedImageView = (ImageView) findViewById(R.id.btnCamara);
 
-        EditText auxId = (EditText) findViewById(R.id.txtId);
+        EditText auxId = (EditText) findViewById(R.id.txtInfoBuscars);
         auxNombreMascota = (EditText) findViewById(R.id.txtNombreMascota);
         auxRut = (EditText) findViewById(R.id.txtRut);
         EditText auxNombreDuenio = (EditText) findViewById(R.id.txtNombreDuenio);
@@ -169,7 +169,7 @@ public class AddPet extends AppCompatActivity {
     }
 
     public boolean validar() {
-        EditText auxId = (EditText) findViewById(R.id.txtId);
+        EditText auxId = (EditText) findViewById(R.id.txtInfoBuscars);
 
         boolean var = false;
         if (auxId.getText().toString().isEmpty()) {
@@ -262,7 +262,7 @@ public class AddPet extends AppCompatActivity {
     }
 
     public void eliminarMascota(View view) {
-        EditText auxId = (EditText) findViewById(R.id.txtId);
+        EditText auxId = (EditText) findViewById(R.id.txtInfoBuscars);
         MantenedorMascota auxMantenedor = new MantenedorMascota(this);
 
         auxMantenedor.delete(Integer.valueOf(auxId.getText().toString()));
@@ -276,7 +276,7 @@ public class AddPet extends AppCompatActivity {
 
     public void cargaDatos() {
 
-        EditText auxId = (EditText) findViewById(R.id.txtId);
+        EditText auxId = (EditText) findViewById(R.id.txtInfoBuscars);
         EditText auxNombreMascota = (EditText) findViewById(R.id.txtNombreMascota);
         EditText auxFechaNacimiento = (EditText) findViewById(R.id.txtFechaNacimiento);
         Spinner auxSpinnerEspecie = (Spinner) findViewById(R.id.spRazaEspecie);
@@ -336,7 +336,7 @@ public class AddPet extends AppCompatActivity {
 
     public void updateMascota() {
         try {
-            EditText auxId = (EditText) findViewById(R.id.txtId);
+            EditText auxId = (EditText) findViewById(R.id.txtInfoBuscars);
             EditText auxNMascota = (EditText) findViewById(R.id.txtNombreMascota);
             EditText auxFechaNacimiento = (EditText) findViewById(R.id.txtFechaNacimiento);
             Spinner auxSpinnerEspecie = (Spinner) findViewById(R.id.spRazaEspecie);

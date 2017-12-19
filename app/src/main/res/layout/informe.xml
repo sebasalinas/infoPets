@@ -20,44 +20,43 @@
             tools:layout_editor_absoluteY="8dp">
 
             <ListView
-                android:id="@+id/lvEstadistica"
+                android:id="@+id/lvInfoListars"
                 android:layout_width="0dp"
                 android:layout_height="439dp"
                 android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="@+id/spEstadisticas"
-                app:layout_constraintRight_toRightOf="@+id/spEstadisticas"
+                app:layout_constraintLeft_toLeftOf="@+id/spInfoSeleccion"
+                app:layout_constraintRight_toRightOf="@+id/spInfoSeleccion"
+                app:layout_constraintTop_toBottomOf="@+id/txtInfoBuscars"
                 tools:layout_constraintBottom_creator="1"
                 tools:layout_constraintLeft_creator="1"
                 tools:layout_constraintRight_creator="1" />
 
-            <Spinner
-                android:id="@+id/spEstadisticas"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
+            <EditText
+                android:id="@+id/txtInfoBuscars"
+                android:layout_width="241dp"
+                android:layout_height="40dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/lvEstadistica"
+                android:ems="10"
+                android:hint="A Buscar"
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                app:layout_constraintHorizontal_bias="0.503"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                tools:layout_constraintBottom_creator="1"
-                tools:layout_constraintLeft_creator="1"
-                tools:layout_constraintRight_creator="1" />
+                app:layout_constraintTop_toBottomOf="@+id/btnInfoBuscars" />
 
             <ImageButton
-                android:id="@+id/iBtnBuscarInforme"
+                android:id="@+id/btnInfoBuscars"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
                 android:background="@android:color/holo_green_dark"
                 android:tint="@android:color/black"
-                app:layout_constraintBottom_toTopOf="@+id/spEstadisticas"
+                app:layout_constraintBottom_toTopOf="@+id/spInfoSeleccion"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:srcCompat="@android:drawable/ic_menu_search"

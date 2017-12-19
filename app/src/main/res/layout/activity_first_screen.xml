@@ -28,7 +28,7 @@
 
 
             <EditText
-                android:id="@+id/txtId"
+                android:id="@+id/txtInfoBuscars"
                 android:layout_width="241dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="8dp"
@@ -88,13 +88,12 @@
                 app:srcCompat="@android:drawable/ic_input_add" />
 
             <ImageButton
-                android:id="@+id/ibtnEstadisticas"
+                android:id="@+id/btnInfoEstadistica"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="108dp"
                 android:layout_marginTop="8dp"
-                android:onClick="goToEstadisticas"
                 android:tint="@android:color/holo_green_dark"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -143,7 +142,7 @@
                 app:layout_constraintHorizontal_bias="0.504"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtId"
+                app:layout_constraintTop_toBottomOf="@+id/txtInfoBuscars"
                 app:srcCompat="@android:drawable/ic_menu_search" />
 
             <ImageButton
@@ -181,7 +180,7 @@
                 android:tint="@android:color/holo_green_dark"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ibtnEstadisticas"
+                app:layout_constraintStart_toEndOf="@+id/btnInfoEstadistica"
                 app:layout_constraintTop_toBottomOf="@+id/btnRaza"
                 app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@android:drawable/ic_menu_rotate" />

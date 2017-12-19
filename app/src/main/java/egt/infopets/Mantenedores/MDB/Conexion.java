@@ -25,24 +25,15 @@ import java.util.ArrayList;
 
 public class Conexion extends AppCompatActivity{
 
-        private static String NAMESPACE = "http://tempuri.org/";
-        private static String URL = "http://172.24.15.186:8013/WebServiceMDB.asmx";
-        private static String SOAP_ACTION = "http://tempuri.org/insertarEspecie";
-        private static String TOKEN = "hqcRzb987vi2Tdl/h1mz0w==";
-
         public static boolean verificaConexion(Context ctx) {
                 boolean auxConec = false;
                 ConnectivityManager cm = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-                if (activeNetwork != null) { // connected to the internet
+                if (activeNetwork != null) {
                         if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
-                                // connected to wifi
                                 auxConec = true;
-                                // Toast.makeText(ctx, activeNetwork.getTypeName(), Toast.LENGTH_SHORT).show();
                         } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
-                                // connected to the mobile provider's data plan
                                 auxConec = true;
-                                // Toast.makeText(ctx, activeNetwork.getTypeName(), Toast.LENGTH_SHORT).show();
                         }
                 }
                 else
@@ -50,5 +41,5 @@ public class Conexion extends AppCompatActivity{
                         auxConec = false;
                 }
                 return auxConec;
-        } //Fin verficicar
+        }
 }

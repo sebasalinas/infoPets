@@ -6,11 +6,46 @@
     android:layout_height="match_parent"
     tools:context="egt.infopets.Vistas.Estadisticas">
 
+    <ImageButton
+        android:id="@+id/btnInfoBuscar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/holo_green_dark"
+        android:tint="@android:color/black"
+        android:onClick="buscar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_search"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
+    <EditText
+        android:id="@+id/txtInfoBuscar"
+        android:layout_width="239dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="A Buscar"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnInfoBuscar" />
+
     <ListView
-        android:id="@+id/lvEstadisticas"
+        android:id="@+id/lvInfoListar"
         android:layout_width="387dp"
         android:layout_height="450dp"
-        tools:layout_editor_absoluteX="-1dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtInfoBuscar" />
 </android.support.constraint.ConstraintLayout>
