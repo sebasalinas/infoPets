@@ -13,18 +13,24 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import egt.infopets.Clases.Duenio;
 import egt.infopets.Clases.Especie;
 import egt.infopets.Clases.Mascota;
 import egt.infopets.Clases.Raza;
+import egt.infopets.Clases.Visitas;
+import egt.infopets.Mantenedores.SQLite.MantenedorDuenio;
 import egt.infopets.Mantenedores.SQLite.MantenedorEspecie;
 import egt.infopets.Mantenedores.SQLite.MantenedorMascota;
 import egt.infopets.Mantenedores.SQLite.MantenedorRaza;
+import egt.infopets.Mantenedores.SQLite.MantenedorVisitas;
 import egt.infopets.R;
 
 public class Estadisticas extends AppCompatActivity {
     String[] listaString;
     Spinner seleccion;
     ListView list;
+    private ArrayList<String> listaVisitas;
+    private ArrayAdapter<String> adaptador1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +68,64 @@ public class Estadisticas extends AppCompatActivity {
                 list.setAdapter(null);
                 cargarRazas();
                 break;
+            case 3:
+                list.setAdapter(null);
+                cargarDuenio();
+                break;
+            case 4:
+                list.setAdapter(null);
+                cargarVisitas();
+                break;
+            case 5:
+                list.setAdapter(null);
+                cargarMascota();
+                break;
             default:
                 list.setAdapter(null);
                 mensaje("Ha ocurrido un error inesperado");
         }
+    }
+
+    private void cargarDuenio() {
+
+        final MantenedorDuenio mantenedorDuenio = new MantenedorDuenio(this);
+
+        final List<Duenio> auxListaDuenio = mantenedorDuenio.getAll();
+
+        String[] listaString = new String[auxListaDuenio.size()];
+
+        Iterator iter = auxListaDuenio.iterator();
+
+        int pos = 0;
+
+        while (iter.hasNext()) {
+            Duenio auxLista = new Duenio();
+
+            auxLista = (Duenio) iter.next();
+
+            int pos2 = conteo("Dueño",auxLista.getRut());
+
+            listaString[pos] = auxLista.getNombre() +" || "+pos2;
+            pos++;
+        }
+
+        final ListView auxListView = (ListView) findViewById(R.id.lvInfoListar);
+
+        auxListView.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaString));
+    }
+
+    private void cargarVisitas() {
+        MantenedorVisitas mantenedorVisitas = new MantenedorVisitas(this);
+
+        List<Visitas> auxListaVisitas = mantenedorVisitas.getAll();
+
+        listaVisitas = new ArrayList<String>();
+
+        listaVisitas.add("Total de visitas atendidas: "+ auxListaVisitas.size());
+
+        adaptador1=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listaVisitas);
+
+        list.setAdapter(adaptador1);
     }
 
     private void cargarRazas() {
@@ -102,14 +162,16 @@ public class Estadisticas extends AppCompatActivity {
 
         Iterator iter = auxListaEspecie.iterator();
 
-        int pos = 0;
+        int pos = 1;
 
         while (iter.hasNext()) {
             Especie auxLista = new Especie();
 
             auxLista = (Especie) iter.next();
 
-            listaString[pos] = auxLista.getSpecie();
+            //int pos2 = conteo("Raza",Integer.toString(auxLista.getId()));
+
+            listaString[pos] = auxLista.getSpecie() /*+" || "+ pos2 */;
             pos++;
         }
 
@@ -117,6 +179,82 @@ public class Estadisticas extends AppCompatActivity {
 
         auxListView.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaString));
 
+    }
+
+    private void cargarMascota() {
+        final MantenedorMascota mantenedorMascota = new MantenedorMascota(this);
+
+        final List<Mascota> auxListaMascota = mantenedorMascota.getAll();
+
+        String[] listaString = new String[auxListaMascota.size()];
+
+        Iterator iter = auxListaMascota.iterator();
+
+        int pos = 0;
+
+        while (iter.hasNext()) {
+            Mascota auxLista = new Mascota();
+
+            auxLista = (Mascota) iter.next();
+
+            int pos2 = conteo("Mascota",Integer.toString(auxLista.getId()));
+
+            listaString[pos] = "Nombre: "+auxLista.getNombre() +"      ||      "+ "Visitas: "+ pos2;
+            pos++;
+        }
+
+        if (pos == 0){
+            mensaje("No hay Mascotas registradas");
+        }
+
+        final ListView auxListView = (ListView) findViewById(R.id.lvInfoListar);
+
+        auxListView.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaString));
+
+    }
+
+    private int conteo(String tipo,String id){
+        int count = 0;
+
+        MantenedorVisitas mantenedorVisitas = new MantenedorVisitas(this);
+        MantenedorMascota mantenedorMascota = new MantenedorMascota(this);
+        MantenedorRaza mantenedorRaza = new MantenedorRaza(this);
+
+        List<Visitas> auxListaVisitas;
+        List<Mascota> auxListaMascota;
+        List<Raza> auxListaRaza;
+
+        switch (tipo){
+            case "Mascota":
+
+                auxListaVisitas = mantenedorVisitas.getByCodigo(Integer.parseInt(id));
+                count = auxListaVisitas.size();
+                break;
+
+            case "Raza":
+
+                auxListaRaza = mantenedorRaza.getById(Integer.parseInt(id));
+                count = auxListaRaza.size();
+                break;
+
+            case "Especie":
+
+
+                break;
+
+            case "Dueño":
+
+                auxListaMascota = mantenedorMascota.getByRut(id.toString());
+                count = auxListaMascota.size();
+                break;
+
+            case "Visitas":
+
+                auxListaVisitas = mantenedorVisitas.getAll();
+                count = auxListaVisitas.size();
+                break;
+        }
+       return count;
     }
 
     public void buscar(View view) {

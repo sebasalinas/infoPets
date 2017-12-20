@@ -120,4 +120,19 @@ public class MantenedorMascota {
         conector.close();
         return mascotas;
     }
+
+    public ArrayList<Mascota> getByRut(String id) {
+        this.conector = new DbInfoPet(this.context);
+        String query = "SELECT * FROM " + tabla + " WHERE rut = " + id;
+        Cursor resultado = this.conector.select(query);
+        ArrayList<Mascota> mascotas = new ArrayList<Mascota>();
+        if (resultado.moveToFirst()) {
+            do {
+                Mascota mascota = this.setMascota(resultado);
+                mascotas.add(mascota);
+            } while (resultado.moveToNext());
+        }
+        conector.close();
+        return mascotas;
+    }
 }

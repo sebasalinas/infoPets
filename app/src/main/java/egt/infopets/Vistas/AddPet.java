@@ -214,7 +214,7 @@ public class AddPet extends AppCompatActivity {
         RadioButton auxMacho = (RadioButton) findViewById(R.id.rbMacho);
         RadioButton auxHembra = (RadioButton) findViewById(R.id.rbHembra);
         EditText auxColor = (EditText) findViewById(R.id.txtColor);
-        EditText auxRut = (EditText) findViewById(R.id.txtRut);
+        EditText auxRutDuenio = (EditText) findViewById(R.id.txtRut);
 
         String mascota = auxNombreMascota.getText().toString();
         String rut = auxRut.getText().toString();
@@ -225,7 +225,7 @@ public class AddPet extends AppCompatActivity {
 
         try {
             newMascota.setNombre(auxNombreMascota.getText().toString());
-            newMascota.setRut(auxRut.getText().toString());
+            newMascota.setRut(auxRutDuenio.getText().toString());
             newMascota.setfNacimiento(auxFechaNacimiento.getText().toString());
 
             newMascota.setRaza(auxRaza.getSelectedItemPosition());
@@ -307,6 +307,8 @@ public class AddPet extends AppCompatActivity {
 
         auxSpinnerEspecie.setSelection(Integer.valueOf(auxMascota.getEspecie()));
         auxSpinnerRaza.setSelection(Integer.valueOf(auxMascota.getRaza()));
+
+
 
 
         String auxVar = auxMascota.getSexo().toString();

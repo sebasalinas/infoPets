@@ -70,6 +70,21 @@ public class MantenedorRaza {
         return raza;
     }
 
+    public ArrayList<Raza> getById(int id) {
+        this.conector = new DbInfoPet(this.context);
+        String query = "SELECT * FROM " + tabla + " WHERE id_Especie = " + id;
+        Cursor resultado = this.conector.select(query);
+        ArrayList<Raza> razas = new ArrayList<Raza>();
+        if (resultado.moveToFirst()) {
+            do {
+                Raza raza = this.setRaza(resultado);
+                razas.add(raza);
+            } while (resultado.moveToNext());
+        }
+        conector.close();
+        return razas;
+    }
+
     public void update(Raza raza) {
         this.conector = new DbInfoPet(this.context);
         ArrayList<String> valores = this.valores(raza);
