@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     tools:context="egt.infopets.Vistas.Estadisticas">
 
+    <Spinner
+        android:id="@+id/spSeleccion"
+        android:layout_width="366dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnInfoBuscar" />
+
     <ImageButton
         android:id="@+id/btnInfoBuscar"
         android:layout_width="0dp"
@@ -24,22 +39,6 @@
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1" />
 
-    <EditText
-        android:id="@+id/txtInfoBuscar"
-        android:layout_width="239dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="A Buscar"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnInfoBuscar" />
-
     <ListView
         android:id="@+id/lvInfoListar"
         android:layout_width="387dp"
@@ -47,5 +46,5 @@
         android:layout_marginTop="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtInfoBuscar" />
+        app:layout_constraintTop_toBottomOf="@+id/spSeleccion" />
 </android.support.constraint.ConstraintLayout>
